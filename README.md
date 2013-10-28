@@ -14,4 +14,5 @@ cd fenv
 ./install.sh
 ```
 
-Note: After installing, the bashrcs will append to `~/.bash_profile`
+Note: After installing, you need to re-login<br>
+Note: The extension bashrc will append to `~/.bash_profile`
