@@ -1,14 +1,13 @@
-fenv
+Fenv
 =============
 
-Basic development environment, include bashrc, vimrc/plugins, gitconfig, etc.
-The purpose is to build a simple, clean and easy to manage dev environment
+The project is Basic Development Environment, including bashrc, vimrc/plugins, gitconfig, etc.
+This environment is very simple, clean and very easy to manage.
 
 How to Install
 --------------
 
-  * Click `Fork` Button
-  * Clone the code from your own repository and install it
+First click `Fork` Button, then clone the code from your own repository and install it
 ```c
 git clone git@github.com:$yourname/final_dev_env.git fenv
 cd fenv
