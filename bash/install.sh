@@ -25,7 +25,6 @@ function generate_extension_bashrc()
 
 function link2bashprofile()
 {
-    echo "Installing bash environment..."
     if [ ! -f ~/.bash_profile ]; then
         touch ~/.bash_profile
     fi
@@ -43,7 +42,7 @@ function link2bashprofile()
         touch $OUTPUT/.installed
     fi
 
-    echo "Install bash environment complete"
+    echo "linked extension bashrc to bash_profile complete"
 }
 
 # 0. add title
