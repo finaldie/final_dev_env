@@ -10,10 +10,6 @@ alias sl='svn log --limit 10'
 alias rm='rm -r'
 alias cp='cp -R'
 
-# git
-alias gl='git log --stat --graph --source'
-alias gst='git status && git stash list'
-
 # sha1
 alias sha1check='openssl dgst -sha1 -hmac '
 
