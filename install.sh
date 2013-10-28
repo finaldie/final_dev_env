@@ -9,6 +9,10 @@ extension_bashrc=ext.bashrc
 extension_bashrc_tmp=.ext.bashrc
 extension_bashrc_backup=ext.bashrc.bak
 
+temp_extension=$envtop/$output/$extension_bashrc_tmp
+final_extension=$envtop/$output/$extension_bashrc
+backup_extension=$envtop/$output/$extension_bashrc_backup
+
 function generate_extension_bashrc()
 {
     bashrc_file=$1
@@ -32,10 +36,11 @@ function link2bashprofile()
     # set up, so we won't link it again
     if [ ! -f $envtop/$output/.installed ]; then
         # add a title
-        echo "\n# The following lines from final_dev_env" >> ~/.bash_profile
+        echo "" >> ~/.bash_profile
+        echo "# The following lines from final_dev_env" >> ~/.bash_profile
         echo "export FENVTOP=$envtop" >> ~/.bash_profile
 
-        cat $envtop/$output/$extension_bashrc >> ~/.bash_profile
+        generate_extension_bashrc $final_extension ~/.bash_profile
         touch $envtop/$output/.installed
     fi
 
@@ -50,20 +55,19 @@ if [ ! -d $output ]; then
     mkdir $output
 fi
 
+export FENVTOP=$envtop
+
 # 1. generate the temp extension bashrc
-temp_extension=$envtop/$output/$extension_bashrc_tmp
 for subdir in $subdirs
 do
     if [ -f $subdir/$sub_extension ]; then
         echo "Enter $subdir"
-        generate_extension_bashrc $subdir/$sub_extension $temp_extension
+        generate_extension_bashrc $envtop/$subdir/$sub_extension $temp_extension
         echo "Exit $subdir"
     fi
 done
 
 # 2. create or update extension bashrc
-final_extension=$envtop/$output/$extension_bashrc
-backup_extension=$envtop/$output/$extension_bashrc_backup
 if [ ! -f $final_extension ]; then
     mv $temp_extension $final_extension
 else
