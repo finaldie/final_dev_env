@@ -1,9 +1,0 @@
-#!/bin/bash
-
-modules="bash git"
-
-output=output
-backup=backup
-
-OUTPUT=$FENVTOP/$output
-BACKUP=$FENVTOP/$output/$backup

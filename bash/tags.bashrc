@@ -4,7 +4,7 @@
 alias buildc_tags='ctags -R -I __THROW --sort=yes --c-kinds=+p --fields=+liaS --extra=+q'
 alias buildcpp_tags='ctags -R --sort=yes --c++-kinds=+p --fields=+liaS --extra=+q'
 
-tags_folder='/var/tags'
+tags_folder='/tmp/tags'
 function build_localsys_tags() {
     echo "generate local include tags..."
     if [ ! -d $tags_folder ]; then

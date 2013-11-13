@@ -11,8 +11,7 @@ First click `Fork` Button, then clone the code from your own repository and inst
 ```c
 git clone git@github.com:$yourname/final_dev_env.git fenv
 cd fenv
-./install.sh
+make
 ```
 
-Note: After installing, you need to re-login<br>
-Note: The extension bashrc will append to `~/.bash_profile`
+Note: After installing, you may need append some instructions into your shell profile, and then to re-login<br>
