@@ -10,6 +10,6 @@ backup:
 revert:
 
 clean:
-	cd $(topdir)/$(USER_ENV) && rm -rf $(files)
+	cd $(topdir)/$(USER_ENV) && rm -rf $(files);
 
 .PHONY: all clean backup revert

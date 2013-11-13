@@ -38,11 +38,11 @@ zsh:
 revert:
 	@for module in $(MODULES); \
 	do \
-		echo "[$$module] Reverting...";
+		echo "[$$module] Reverting..."; \
 		$(MAKE) -s -C $$module topdir=$(topdir) XDG_HOME=$(xdg_home) revert; \
 	done;
 
-clean:
+clean: revert
 	@for module in $(MODULES); \
 	do \
 		echo "[$$module] Clean..."; \
