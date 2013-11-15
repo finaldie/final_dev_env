@@ -3,13 +3,12 @@ include $(topdir)/common/Makefile.common
 files := common.bashrc tags.bashrc
 
 all:
-	cp $(files) $(topdir)/$(USER_ENV);
-
-backup:
-
-revert:
+	cp $(files) $(topdir)/$(USER_ENV)/$(BASH_OUT);
 
 clean:
-	cd $(topdir)/$(USER_ENV) && rm -rf $(files);
+	cd $(topdir)/$(USER_ENV)/$(BASH_OUT) && rm -rf $(files);
 
-.PHONY: all clean backup revert
+notes:
+
+
+.PHONY: all clean

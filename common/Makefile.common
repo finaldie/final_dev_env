@@ -4,3 +4,5 @@ BACKUP := backup
 MODULES := bash git
 BASH_SUFFIX := bashrc
 ZSH_SUFFIX := zshrc
+BASH_OUT := bash
+ZSH_OUT := zsh
