@@ -32,6 +32,9 @@ if v:version >= 702
   au InsertEnter * let w:m2=matchadd('WhitespaceEOL', '\s\+\%#\@<!$', -1)
   au InsertLeave * call matchdelete(w:m2)
   au InsertLeave * let w:m1=matchadd('WhitespaceEOL', '\s\+$', -1)
+
+  " clear all match when leave buffer
+  autocmd BufWinLeave * call clearmatches()
 else
   au BufRead,BufNewFile * syntax match LongLine /\%>80v.\+/
   au InsertEnter * syntax match WhitespaceEOL /\s\+\%#\@<!$/
@@ -41,6 +44,14 @@ endif
 if exists('+colorcolumn')
     set colorcolumn=80
 endif
+
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
 
 " Enable filetype detection
 filetype on
@@ -52,6 +63,10 @@ augroup csrc
   autocmd FileType *      set nocindent smartindent
   autocmd FileType c,cpp  set cindent
 augroup END
+
+" display of space error for C programming language
+let c_space_errors = 1
+
 " Set a few indentation parameters. See the VIM help for cinoptions-values for
 " details.  These aren't absolute rules; they're just an approximation of
 " common style in LLVM source.
@@ -76,8 +91,8 @@ autocmd FileType make set noexpandtab
 " Delete trailing whitespace and tabs at the end of each line
 command! DeleteTrailingWs :%s/\s\+$//
 
-" Convert all tab characters to two spaces
-command! Untab :%s/\t/  /g
+" Convert all tab characters to 4 spaces
+command! Untab :%s/\t/    /g
 
 " Enable syntax highlighting for LLVM files. To use, copy
 " utils/vim/llvm.vim to ~/.vim/syntax .
@@ -106,8 +121,10 @@ set incsearch
 set ruler
 set hlsearch
 set nu
-"set list
-
+set backspace=indent,eol,start
+set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+set t_Co=256
+:set listchars=tab:>-
 
 " Clang code-completion support. This is somewhat experimental!
 
