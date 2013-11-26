@@ -106,7 +106,7 @@ set incsearch
 set ruler
 set hlsearch
 set nu
-set list
+"set list
 
 
 " Clang code-completion support. This is somewhat experimental!
