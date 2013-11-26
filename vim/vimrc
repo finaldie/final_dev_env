@@ -38,6 +38,10 @@ else
   au InsertLeave * syntax match WhitespaceEOL /\s\+$/
 endif
 
+if exists('+colorcolumn')
+    set colorcolumn=80
+endif
+
 " Enable filetype detection
 filetype on
 
