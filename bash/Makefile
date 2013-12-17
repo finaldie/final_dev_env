@@ -8,6 +8,7 @@ all: export_env_home
 
 export_env_home:
 	echo "export FENV_HOME=$(topdir)/$(USER_ENV)" > $(env_homerc)
+	echo "export FENV_GIT=$(topdir)" >> $(env_homerc)
 	mv $(env_homerc) $(topdir)/$(USER_ENV)/$(BASH_OUT)
 
 clean:
