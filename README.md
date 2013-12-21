@@ -3,7 +3,6 @@ The project is Basic Development Environment, including bashrc, vimrc/plugins, g
 This environment is very simple, clean and very easy to manage.
 
 # How to Install
-----------------
 
 ## Step 1 - Clone and Deploy
 First click `Fork` Button, then clone the code from your own repository and install it
