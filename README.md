@@ -14,6 +14,7 @@ First click `Fork` Button, then clone the code from your own repository and inst
 ```c
 git clone git@github.com:$yourname/final_dev_env.git fenv
 cd fenv
+git submodule update --init
 make
 ```
 
