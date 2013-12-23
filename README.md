@@ -49,7 +49,7 @@ For who also install the [YouCompleteMe][2], to complete this plugin's installat
 Now, your development environment is ready, any question/problem please file an issue here. If you also like it, please `Star` it.
 
 # Contribution
-If you have more suggestion or recommendation, it's great to send a pull request instead only open a issue.
+If you have more suggestions or recommendations, it's great to send a pull request.
 
 # References
 ## Vim Plugins
