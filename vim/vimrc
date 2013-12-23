@@ -31,4 +31,3 @@ source $FENV_HOME/vim/ctrlp.vimrc
 filetype plugin indent on
 
 source $FENV_HOME/vim/generic.vimrc
-

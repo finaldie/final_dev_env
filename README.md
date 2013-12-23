@@ -1,6 +1,11 @@
 # Fenv
-The project is Basic Development Environment, including bashrc, vimrc/plugins, gitconfig, etc.
-This environment is very simple, clean and very easy to manage.
+The project is Basic Development Environment, including:
+* bashrc
+* vimrc, plugins
+* gitconfig
+* ...
+
+This environment is very simple, clean and easy to manage.
 
 # How to Install
 
@@ -24,6 +29,10 @@ make
 * Copy this into your own ~/.bash_profile
 * Restart Bash
 
+**NOTE:** After that, the two global environment variables already there:
+* FENV_HOME - All the bashrcs, git config and vim plugins here
+* FENV_GIT - the place of this repository in your computer
+
 ## Step 3 - Install Vim Plugins
 All the vim plugins is managed by [Vundle][1], so you need to install them for the first time
 
@@ -36,6 +45,30 @@ For who also install the [YouCompleteMe][2], to complete this plugin's installat
 
 **NOTE:** If you are a Mac User, please download the lastest [MacVim][3].
 
+## Step 5 - Enjoy
+Now, your development environment is ready, any question/problem please file an issue here. If you also like it, please `Star` it.
+
+# Contribution
+If you have more suggestion or recommendation, it's great to send a pull request instead only open a issue.
+
+# References
+## Vim Plugins
+The following are the total plugins in here:
+* [NERDTree][4]
+* [powerline][5]
+* [taglist][6]
+* [YouCompleteMe][2]
+* [syntastic][7]
+* [easymotion][8]
+* [CtrlP][9]
+
 [1]: https://github.com/gmarik/vundle
 [2]: https://github.com/Valloric/YouCompleteMe?source=cc
 [3]: https://github.com/b4winckler/macvim/releases
+[4]: https://github.com/scrooloose/nerdtree
+[5]: https://github.com/Lokaltog/powerline
+[6]: https://github.com/vim-scripts/taglist.vim
+[7]: https://github.com/scrooloose/syntastic
+[8]: https://github.com/Lokaltog/vim-easymotion
+[9]: https://github.com/kien/ctrlp.vim
+[10]: https://github.com/altercation/solarized
