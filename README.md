@@ -22,7 +22,7 @@ make
 * After `make`, you will see the following text:
 
     ```bash
-    f [ -f /path/to/fenv/user_env/all.bashrc ]; then
+    if [ -f /path/to/fenv/user_env/all.bashrc ]; then
         . /path/to/fenv/user_env/all.bashrc
     fi
     ```
