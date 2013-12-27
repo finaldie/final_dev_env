@@ -14,4 +14,11 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 
 " load identifiers from tags
-"let g:ycm_collect_identifiers_from_tags_files = 1
+" let g:ycm_collect_identifiers_from_tags_files = 1
+
+" When you encounter crash or some strange bugs, turn on the 2 settings
+" let g:ycm_server_use_vim_stdout = 1
+" let g:ycm_server_log_level = 'debug'
+
+" If you want to change the python interpreter, change the value below
+" let g:ycm_path_to_python_interpreter = '/usr/bin/python'
