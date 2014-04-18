@@ -39,6 +39,9 @@ All the vim plugins is managed by [Vundle][1], so you need to install them for t
 
 * Run `vim +BundleInstall +qall`
 
+**NOTE:** You also can open vim and run `:BundleInstall` for the first time
+**NOTE:** For updating plugins, you can run `:BundleUpdate` to update all your plugins
+
 ## Step 4 - Special Plugin
 For who also install the [YouCompleteMe][2], to complete this plugin's installation step:
 * go to its folder `$FENV_HOME/vim/YouCompleteMe`
