@@ -40,3 +40,7 @@ set autolist
 function tcp_status() {
     netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
 }
+
+# ulimit
+# generate coredump file with unlimited size
+ulimit -c unlimited
