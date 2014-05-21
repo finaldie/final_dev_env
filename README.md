@@ -37,15 +37,19 @@ make
 ## Step 3 - Install Vim Plugins
 All the vim plugins is managed by [Vundle][1], so you need to install them for the first time
 
-* Run `vim +BundleInstall +qall`
+* Run `vim +PluginInstall +qall`
 
-**NOTE:** You also can open vim and run `:BundleInstall` for the first time<br>
-**NOTE:** For updating plugins, you can run `:BundleUpdate` to update all your plugins
+**NOTE:** You also can open vim and run `:PluginInstall` for the first time<br>
+**NOTE:** For updating plugins, you can run `:PluginUpdate` to update all your plugins
 
 ## Step 4 - Special Plugin
 For who also install the [YouCompleteMe][2], to complete this plugin's installation step:
 * go to its folder `$FENV_HOME/vim/YouCompleteMe`
 * Run `./install.sh --clang-completer`
+
+### Using System Clang
+* go to its folder `$FENV_HOME/vim/YouCompleteMe`
+* Run `./install.sh --clang-completer --system-libclang`
 
 **NOTE:** If you are a Mac User, please download the lastest [MacVim][3].
 
@@ -62,7 +66,6 @@ The following are the total plugins in here:
 * [powerline][5]
 * [taglist][6]
 * [YouCompleteMe][2]
-* [syntastic][7]
 * [easymotion][8]
 * [CtrlP][9]
 
@@ -72,7 +75,6 @@ The following are the total plugins in here:
 [4]: https://github.com/scrooloose/nerdtree
 [5]: https://github.com/Lokaltog/powerline
 [6]: https://github.com/vim-scripts/taglist.vim
-[7]: https://github.com/scrooloose/syntastic
 [8]: https://github.com/Lokaltog/vim-easymotion
 [9]: https://github.com/kien/ctrlp.vim
 [10]: https://github.com/altercation/solarized

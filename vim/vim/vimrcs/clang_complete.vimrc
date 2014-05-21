@@ -1,5 +1,5 @@
 
-Bundle 'Rip-Rip/clang_complete'
+Plugin 'Rip-Rip/clang_complete'
 
 " Clang code-completion support. This is somewhat experimental!
 

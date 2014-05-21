@@ -1,4 +1,4 @@
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',

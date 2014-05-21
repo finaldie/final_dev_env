@@ -1,6 +1,6 @@
 
 
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 
 " NERDTree
 let NERDTreeCaseSensitiveSort=0

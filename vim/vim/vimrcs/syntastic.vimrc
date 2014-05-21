@@ -1,2 +1,0 @@
-
-Bundle 'scrooloose/syntastic'
