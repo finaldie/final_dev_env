@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ## ctags
-alias buildc_tags='ctags -R -I __THROW --sort=yes --c-kinds=+p --fields=+liaS --extra=+q'
-alias buildcpp_tags='ctags -R --sort=yes --c++-kinds=+p --fields=+liaS --extra=+q'
+alias buildc_tags='ctags -R -I __THROW --sort=yes --c-kinds=+p --fields=+liaS --extra=+q -f .tags'
+alias buildcpp_tags='ctags -R --sort=yes --c++-kinds=+p --fields=+liaS --extra=+q -f .tags'
 
 tags_folder='/tmp/tags'
 function build_localsys_tags() {
@@ -32,7 +32,8 @@ function buildsys_tags() {
 
 function build_cscope() {
     find $1 -name "*.h" -o -name "*.c" -o -name "*.*pp" -o -name "*.m" -o -name "*.hh" -o -name "*.cc" > cscope.files
-    cscope -Rbkq -i cscope.files -f cscope.out
+    cscope -Rbkq -i cscope.files -f .cscope.out
+    rm -f cscope.files
 }
 
 function build_tags() {
@@ -46,7 +47,7 @@ function build_tags() {
 }
 
 function cleanall_tags() {
-    rm -f cscope.* tags
+    rm -f .cscope.* .tags
     rm -f types_c.taghl
     echo "clean all tags done!"
 }

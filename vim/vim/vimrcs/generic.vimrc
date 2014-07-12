@@ -117,4 +117,4 @@ set encoding=utf-8
 "set listchars=tab:>-
 
 " load tags
-set tags+=./tags;,tags;
+set tags+=./.tags;,.tags;

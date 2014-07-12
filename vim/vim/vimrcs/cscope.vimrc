@@ -20,11 +20,11 @@ if has('cscope')
         "cs add cscope.out
         "cs add ~/.vim/tags/stl_cscope/cscope.out
         "cs add ~/.vim/tags/sys_cscope/cscope.out
-        cs add cscope.out
-        cs add ../cscope.out
-        cs add ../../cscope.out
-        cs add ../../../cscope.out
-        cs add ../../../../cscope.out
+        cs add .cscope.out
+        cs add ../.cscope.out
+        cs add ../../.cscope.out
+        cs add ../../../.cscope.out
+        cs add ../../../../.cscope.out
     "endif
 
     nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>

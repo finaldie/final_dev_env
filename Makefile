@@ -17,7 +17,10 @@ install:
 	done;
 
 bash:
-	@cd $(topdir)/$(USER_ENV) && cat $(BASH_OUT)/*.$(BASH_SUFFIX) > all.$(BASH_SUFFIX);
+	@cd $(topdir)/$(USER_ENV) && echo "" > all.$(BASH_SUFFIX) && \
+	    for bashrc in `ls $(BASH_OUT) | grep .$(BASH_SUFFIX)`; do \
+		echo "source $(topdir)/$(USER_ENV)/$(BASH_OUT)/$$bashrc" >> all.$(BASH_SUFFIX); \
+	    done;
 	@echo "=========================================================";
 	@echo "*   Install Complete, Please Read the Following Notes   *";
 	@echo "=========================================================";
