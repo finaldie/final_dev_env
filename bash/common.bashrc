@@ -44,3 +44,6 @@ function tcp_status() {
 # ulimit
 # generate coredump file with unlimited size
 ulimit -c unlimited
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
