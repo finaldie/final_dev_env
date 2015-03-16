@@ -13,6 +13,7 @@
     co = checkout
     br = branch
     last = log -1 HEAD -p
+    grep = grep --color -n
     svndiff = !git-svn-diff
     vimdiff = "!GIT_PAGER=" GIT_EXTERNAL_DIFF="git_vim_diff git diff "
     tree = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(green)(%ad %ar)%C(reset) %C(bold blue)%cn -%C(reset) %C(white)%s%C(reset) %C(yellow)%d%C(reset)' --abbrev-commit --date=short

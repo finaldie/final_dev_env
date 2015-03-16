@@ -48,6 +48,7 @@ For who also install the [YouCompleteMe][2], to complete this plugin's installat
 * Run `./install.sh --clang-completer`
 
 ### Using System Clang
+If you are using Mac, use system clang will be a better solution<br>
 * go to its folder `$FENV_HOME/vim/YouCompleteMe`
 * Run `./install.sh --clang-completer --system-libclang`
 
@@ -55,6 +56,20 @@ For who also install the [YouCompleteMe][2], to complete this plugin's installat
 
 ## Step 5 - Enjoy
 Now, your development environment is ready, any question/problem please file an issue here. If you also like it, please `Star` it.
+
+## Furture Read
+### Update Vim Plugins
+If you only want to update your vim plugins, just run the following in your shell:
+```
+bash$ vim +PluginInstall +qall
+```
+
+### Update all scripts/configs
+```
+make
+```
+
+**NOTES:** This won't break your vim plugins, only re-deploy your scripts/configs
 
 # Contribution
 If you have more suggestions or recommendations, it's great to send a pull request.
