@@ -22,3 +22,6 @@ nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 
 " If you want to change the python interpreter, change the value below
 " let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+
+" For enable autocomplete for Java
+let g:EclimCompletionMethod = 'omnifunc'
