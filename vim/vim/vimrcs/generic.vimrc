@@ -115,6 +115,7 @@ set ic
 set encoding=utf-8
 "set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 "set listchars=tab:>-
+set synmaxcol=120
 
 " load tags
 set tags+=./.tags;,.tags;
