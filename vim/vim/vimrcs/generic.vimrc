@@ -63,6 +63,7 @@ set smarttab
 " Highlight syntax in programming languages
 syntax on
 syntax enable
+set synmaxcol=120
 
 " LLVM Makefiles can have names such as Makefile.rules or TEST.nightly.Makefile,
 " so it's important to categorize them as such.
@@ -115,7 +116,6 @@ set ic
 set encoding=utf-8
 "set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 "set listchars=tab:>-
-set synmaxcol=120
 
 " load tags
 set tags+=./.tags;,.tags;
