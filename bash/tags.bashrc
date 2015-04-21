@@ -31,7 +31,7 @@ function buildsys_tags() {
 }
 
 function build_cscope() {
-    find $1 -name "*.h" -o -name "*.c" -o -name "*.*pp" -o -name "*.m" -o -name "*.hh" -o -name "*.cc" > cscope.files
+    find $1 -name "*.h" -o -name "*.c" -o -name "*.*pp" -o -name "*.m" -o -name "*.hh" -o -name "*.cc" -o -name "*.java" > cscope.files
     cscope -Rbkq -i cscope.files -f .cscope.out
     rm -f cscope.files
 }
