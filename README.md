@@ -61,7 +61,7 @@ Now, your development environment is ready, any question/problem please file an 
 ### Update Vim Plugins
 If you only want to update your vim plugins, just run the following in your shell:
 ```
-bash$ vim +PluginInstall +qall
+bash$ vim +PluginUpdate +qall
 ```
 
 ### Update all scripts/configs
