@@ -50,7 +50,7 @@ For who also install the [YouCompleteMe][2], to complete this plugin's installat
 ### Using System Clang
 If you are using Mac, use system clang will be a better solution<br>
 * go to its folder `$FENV_HOME/vim/YouCompleteMe`
-* Run `./install.sh --clang-completer --system-libclang`
+* Run `./install.py --clang-completer --system-libclang`
 
 **NOTE:** If you are a Mac User, please download the lastest [MacVim][3].
 
