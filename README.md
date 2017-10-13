@@ -45,7 +45,7 @@ All the vim plugins is managed by [Vundle][1], so you need to install them for t
 ## Step 4 - Special Plugin
 For who also install the [YouCompleteMe][2], to complete this plugin's installation step:
 * go to its folder `$FENV_HOME/vim/YouCompleteMe`
-* Run `./install.sh --clang-completer`
+* Run `./install.py --clang-completer`
 
 ### Using System Clang
 If you are using Mac, use system clang will be a better solution<br>
