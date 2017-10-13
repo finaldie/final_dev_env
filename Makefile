@@ -3,6 +3,8 @@ include common/Makefile.common
 topdir := $(shell pwd)
 xdg_home := $(topdir)/$(USER_ENV)
 
+DOCKER_NAME := finaldie/dev
+
 all: prepare install bash zsh notes
 
 prepare:
@@ -43,6 +45,9 @@ notes:
 		$(MAKE) -s -C $$module topdir=$(topdir) XDG_HOME=$(xdg_home) notes; \
 	done;
 
+docker:
+	@docker build -t $(DOCKER_NAME) -f ./docker/Dockerfile .
+
 clean:
 	@for module in $(MODULES); \
 	do \
@@ -51,4 +56,5 @@ clean:
 	done;
 	@rm -rf $(USER_ENV)
 
-.PHONY: all clean install bash zsh
+.PHONY: all clean install bash zsh docker
+

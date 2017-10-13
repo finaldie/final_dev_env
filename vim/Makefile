@@ -25,7 +25,7 @@ notes:
 	@echo ""
 	@echo "=======================VIM NOTE=========================="
 	@echo "please open vim, and run :PluginInstall to complete the plugin's installation"
-	@echo "after that, run cd $(topdir)/$(USER_ENV)/vim/YouCompleteMe && ./install.sh --clang-completer"
-	@echo "or ./install.sh --clang-completer --system-libclang"
+	@echo "after that, run cd $(topdir)/$(USER_ENV)/vim/YouCompleteMe && ./install.py --clang-completer"
+	@echo "or ./install.py --clang-completer --system-libclang"
 
 .PHONY: all clean notes clang
