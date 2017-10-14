@@ -46,7 +46,7 @@ notes:
 	done;
 
 docker:
-	@docker build -t $(DOCKER_NAME) -f ./docker/Dockerfile .
+	@docker build --rm -t $(DOCKER_NAME) -f ./docker/Dockerfile .
 
 clean:
 	@for module in $(MODULES); \
