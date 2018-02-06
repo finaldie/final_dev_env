@@ -7,7 +7,26 @@ The project is Basic Development Environment, including:
 
 This environment is very simple, clean and easy to manage.
 
+# All-in-one Docker Image
+Besides go through the `Installation` steps, the eaisest way to use this env is pulling the docker image, and start it directly:
+## Pull Docker Image
+```console
+docker pull finaldie/dev
+```
+## Start
+From the project you want to jump in the dev environment, then type:
+```console
+docker run -it --rm -v `pwd`:/workspace finaldie/dev
+```
+Then, we enter the dev environment with all the scripts we want.
+
+**Notes:** Configure above into `.bash_profile` would save a lot time in the future.
+```console
+alias dev='docker run -it --rm -v `pwd`:/workspace finaldie/dev'
+```
+
 # How to Install
+If we want to build it from scratch, follow the step 1 to 4 :)
 
 ## Step 1 - Clone and Deploy
 First click `Fork` Button, then clone the code from your own repository and install it
@@ -54,7 +73,7 @@ If you are using Mac, use system clang will be a better solution<br>
 
 **NOTE:** If you are a Mac User, please download the lastest [MacVim][3].
 
-## Step 5 - Enjoy
+## Enjoy
 Now, your development environment is ready, any question/problem please file an issue here. If you also like it, please `Star` it.
 
 ## Furture Read
