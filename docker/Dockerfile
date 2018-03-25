@@ -1,6 +1,5 @@
 # Based on ubuntu 16.04 image
-#FROM ubuntu:16.04
-FROM ubuntu:17.10
+FROM ubuntu:16.04
 
 VOLUME /workspace
 WORKDIR /workspace
@@ -13,6 +12,7 @@ RUN set -ex; \
         strace \
         ltrace \
         telnet \
+        iproute2 \
         netcat-openbsd \
         expect \
         net-tools \
