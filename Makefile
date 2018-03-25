@@ -24,7 +24,7 @@ bash:
 		echo "source $(topdir)/$(USER_ENV)/$(BASH_OUT)/$$bashrc" >> all.$(BASH_SUFFIX); \
 	    done;
 	@echo "=========================================================";
-	@echo "*   Install Complete, Please Read the Following Notes   *";
+	@echo "*   Install Complete, Please Read The Following Notes   *";
 	@echo "=========================================================";
 	@echo "";
 	@echo "========================BASH NOTE========================";

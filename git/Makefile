@@ -24,7 +24,7 @@ clean:
 
 notes:
 	echo "=======================GIT NOTE==========================";
-	echo "If your git DO NOT support to use XDG_CONFIG_HOME env variable";
+	echo "If your git DOES NOT support to use XDG_CONFIG_HOME env variable";
 	echo "you need to copy $(topdir)/$(USER_ENV)/$(git_folder)/$(git_config) to $(HOME)/.gitconfig";
 	echo "or create a link point to $(topdir)/$(USER_ENV)/$(git_folder)/$(git_config)";
 	echo "";

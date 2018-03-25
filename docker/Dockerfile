@@ -1,5 +1,6 @@
 # Based on ubuntu 16.04 image
-FROM ubuntu:16.04
+#FROM ubuntu:16.04
+FROM ubuntu:17.10
 
 VOLUME /workspace
 WORKDIR /workspace
@@ -8,11 +9,23 @@ WORKDIR /workspace
 RUN set -ex; \
     deps=' \
         git \
-        vim \
+        lsof \
+        strace \
+        ltrace \
+        telnet \
+        netcat-openbsd \
+        expect \
+        net-tools \
+        psmisc \
         curl \
         exuberant-ctags \
         cscope \
         build-essential \
+        libclang-dev \
+        gdb \
+        valgrind \
+        autoconf \
+        ncurses-dev \
         cmake \
         python-dev \
         python3-dev \
@@ -20,6 +33,17 @@ RUN set -ex; \
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \
     && rm -rf /var/lib/apt/lists/*
+
+# Install vim
+RUN set -ex; \
+    git clone git://github.com/vim/vim.git /vim \
+    && cd /vim \
+    && ./configure --enable-python3interp=yes \
+                   --with-python3-config-dir=`python3-config --configdir` \
+    && make \
+    && make install \
+    && cd \
+    && rm -rf /vim
 
 COPY ./docker/bash_profile /root/.bash_profile
 COPY ./ /build
@@ -33,7 +57,7 @@ RUN set -ex; \
     && mv /build/user_env/all.bashrc.new /build/user_env/all.bashrc
 
 RUN set -ex; \
-    /build/user_env/vim/YouCompleteMe/install.py --clang-completer
+    python3 /build/user_env/vim/YouCompleteMe/install.py --clang-completer --system-libclang
 
 # Entrypoint
 CMD ["/bin/bash"]
