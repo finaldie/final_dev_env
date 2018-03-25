@@ -4,6 +4,9 @@ FROM ubuntu:16.04
 VOLUME /workspace
 WORKDIR /workspace
 
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+
 # Install all the dependencies
 RUN set -ex; \
     deps=' \
