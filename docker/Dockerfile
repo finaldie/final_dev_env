@@ -1,11 +1,14 @@
 # Based on ubuntu 16.04 image
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 VOLUME /workspace
 WORKDIR /workspace
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
+
+ENV TZ=America/Los_Angeles
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Install all the dependencies
 RUN set -ex; \
