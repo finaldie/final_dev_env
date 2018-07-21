@@ -1,4 +1,4 @@
-# Based on ubuntu 16.04 image
+# Based on ubuntu 18.04 image
 FROM ubuntu:18.04
 
 VOLUME /workspace
@@ -33,8 +33,9 @@ RUN set -ex; \
         autoconf \
         ncurses-dev \
         cmake \
-        python-dev \
         python3-dev \
+        tree \
+        dnsutils \
     ';\
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \

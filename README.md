@@ -110,5 +110,5 @@ The following are the total plugins in here:
 [5]: https://github.com/Lokaltog/powerline
 [6]: https://github.com/vim-scripts/taglist.vim
 [8]: https://github.com/Lokaltog/vim-easymotion
-[9]: https://github.com/kien/ctrlp.vim
+[9]: https://github.com/ctrlpvim/ctrlp.vim
 [10]: https://github.com/altercation/solarized
