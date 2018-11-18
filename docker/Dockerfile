@@ -64,7 +64,7 @@ RUN set -ex; \
     && mv /build/user_env/all.bashrc.new /build/user_env/all.bashrc
 
 RUN set -ex; \
-    python3 /build/user_env/vim/YouCompleteMe/install.py --clang-completer --system-libclang
+    python3 /build/user_env/vim/YouCompleteMe/install.py --clang-completer
 
 # Entrypoint
 CMD ["/bin/bash"]
