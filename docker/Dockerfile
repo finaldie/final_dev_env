@@ -35,6 +35,7 @@ RUN set -ex; \
         cmake \
         python3-dev \
         tree \
+        less \
         dnsutils \
     ';\
     apt-get update && apt-get install -y --no-install-recommends \
