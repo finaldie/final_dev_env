@@ -17,6 +17,7 @@ RUN set -ex; \
         lsof \
         strace \
         ltrace \
+        pstack \
         telnet \
         iproute2 \
         netcat-openbsd \
