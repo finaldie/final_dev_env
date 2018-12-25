@@ -75,8 +75,14 @@ RUN set -ex; \
     && cat /build/user_env/all.bashrc | sed '/^$/d' | awk -F '/' '{print $NF}' | awk '{printf "source /build/user_env/bash/%s\n", $1}' > /build/user_env/all.bashrc.new \
     && mv /build/user_env/all.bashrc.new /build/user_env/all.bashrc
 
+# Install YouCompleteMe
 RUN set -ex; \
     python3 /build/user_env/vim/YouCompleteMe/install.py --clang-completer
+
+# Install LanguageClient-neovim
+RUN set -ex; \
+    cd /build/user_env/vim/LanguageClient-neovim \
+    && bash ./install.sh
 
 # Entrypoint
 CMD ["/bin/bash"]

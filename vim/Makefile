@@ -26,6 +26,6 @@ notes:
 	@echo "=======================VIM NOTE=========================="
 	@echo "1. Run 'vim +PluginInstall +qall' to complete the plugin's installation"
 	@echo "2. Run 'cd $(topdir)/$(USER_ENV)/vim/YouCompleteMe && ./install.py --clang-completer'"
-	@echo "    or './install.py --clang-completer --system-libclang'"
+	@echo "3. Run 'cd $(topdir)/$(USER_ENV)/vim/LanguageClient-neovim && bash ./install.sh'"
 
 .PHONY: all clean notes clang
