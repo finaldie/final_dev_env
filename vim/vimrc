@@ -32,6 +32,7 @@ source $FENV_HOME/vim/clang_format.vimrc
 source $FENV_HOME/vim/listtoggle.vimrc
 source $FENV_HOME/vim/fugitive.vimrc
 source $FENV_HOME/vim/gutentags.vimrc
+source $FENV_HOME/vim/languageclient.vimrc
 
 call vundle#end()
 filetype plugin indent on

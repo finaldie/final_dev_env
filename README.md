@@ -104,6 +104,7 @@ The following are the total plugins in here:
 * [CtrlP][9]
 * [Fugitive][12]
 * [Gutentags][13]
+* [Languageclient-neovim][15]
 
 [1]: https://github.com/gmarik/vundle
 [2]: https://github.com/Valloric/YouCompleteMe
@@ -118,4 +119,5 @@ The following are the total plugins in here:
 [12]: https://github.com/tpope/vim-fugitive
 [13]: https://github.com/ludovicchabant/vim-gutentags
 [14]: https://github.com/majutsushi/tagbar
+[15]: https://github.com/autozimu/languageclient-neovim
 
