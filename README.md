@@ -67,7 +67,7 @@ For who also install the [YouCompleteMe][2], to complete this plugin's installat
 * Run `./install.py --clang-completer`
 
 ### Using System Clang
-If you are using Mac, use system clang will be a better solution<br>
+If in Mac, use system clang sometimes may be a solution, but not recommended<br>
 * go to its folder `$FENV_HOME/vim/YouCompleteMe`
 * Run `./install.py --clang-completer --system-libclang`
 
@@ -97,18 +97,22 @@ If you have more suggestions or recommendations, it's great to send a pull reque
 ## Vim Plugins
 The following are the total plugins in here:
 * [NERDTree][4]
-* [powerline][5]
-* [taglist][6]
+* [Airline][11]
+* [Taglist][6]
 * [YouCompleteMe][2]
-* [easymotion][8]
+* [Easymotion][8]
 * [CtrlP][9]
+* [Fugitive][12]
 
 [1]: https://github.com/gmarik/vundle
-[2]: https://github.com/Valloric/YouCompleteMe?source=cc
+[2]: https://github.com/Valloric/YouCompleteMe
 [3]: https://github.com/b4winckler/macvim/releases
 [4]: https://github.com/scrooloose/nerdtree
 [5]: https://github.com/Lokaltog/powerline
 [6]: https://github.com/vim-scripts/taglist.vim
-[8]: https://github.com/Lokaltog/vim-easymotion
+[8]: https://github.com/easymotion/vim-easymotion
 [9]: https://github.com/ctrlpvim/ctrlp.vim
 [10]: https://github.com/altercation/solarized
+[11]: https://github.com/vim-airline/vim-airline
+[12]: https://github.com/tpope/vim-fugitive
+
