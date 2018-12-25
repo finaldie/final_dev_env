@@ -28,7 +28,6 @@ RUN set -ex; \
         exuberant-ctags \
         cscope \
         build-essential \
-        libclang-dev \
         gdb \
         valgrind \
         autoconf \
