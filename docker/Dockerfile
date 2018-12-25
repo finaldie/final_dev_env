@@ -33,15 +33,24 @@ RUN set -ex; \
         autoconf \
         ncurses-dev \
         cmake \
-        python3-dev \
         tree \
         less \
         dnsutils \
         fonts-powerline \
+        python3-dev \
+        python3-pip \
+        python3-setuptools \
+        python3-wheel \
     ';\
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && pip3 install \
+        pylint \
+        PyYAML \
+        pympler \
+        WebOb \
+        dnslib
 
 # Install vim
 RUN set -ex; \
@@ -49,7 +58,7 @@ RUN set -ex; \
     && cd /vim \
     && ./configure --enable-python3interp=yes \
                    --with-python3-config-dir=`python3-config --configdir` \
-                   --with-features=big \
+                   --with-features=huge \
     && make -j8 \
     && make install \
     && cd \
