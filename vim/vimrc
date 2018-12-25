@@ -22,7 +22,8 @@ call vundle#begin("$FENV_HOME/vim/")
 source $FENV_HOME/vim/nerdtree.vimrc
 "source $FENV_HOME/vim/powerline.vimrc
 source $FENV_HOME/vim/airline.vimrc
-source $FENV_HOME/vim/taglist.vimrc
+"source $FENV_HOME/vim/taglist.vimrc
+source $FENV_HOME/vim/tagbar.vimrc
 source $FENV_HOME/vim/cscope.vimrc
 source $FENV_HOME/vim/youcompleteme.vimrc
 source $FENV_HOME/vim/easymotion.vimrc
@@ -30,6 +31,7 @@ source $FENV_HOME/vim/ctrlp.vimrc
 source $FENV_HOME/vim/clang_format.vimrc
 source $FENV_HOME/vim/listtoggle.vimrc
 source $FENV_HOME/vim/fugitive.vimrc
+source $FENV_HOME/vim/gutentags.vimrc
 
 call vundle#end()
 filetype plugin indent on

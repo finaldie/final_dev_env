@@ -98,11 +98,12 @@ If you have more suggestions or recommendations, it's great to send a pull reque
 The following are the total plugins in here:
 * [NERDTree][4]
 * [Airline][11]
-* [Taglist][6]
+* [Tagbar][14]
 * [YouCompleteMe][2]
 * [Easymotion][8]
 * [CtrlP][9]
 * [Fugitive][12]
+* [Gutentags][13]
 
 [1]: https://github.com/gmarik/vundle
 [2]: https://github.com/Valloric/YouCompleteMe
@@ -115,4 +116,6 @@ The following are the total plugins in here:
 [10]: https://github.com/altercation/solarized
 [11]: https://github.com/vim-airline/vim-airline
 [12]: https://github.com/tpope/vim-fugitive
+[13]: https://github.com/ludovicchabant/vim-gutentags
+[14]: https://github.com/majutsushi/tagbar
 
