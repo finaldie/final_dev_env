@@ -20,7 +20,8 @@ set rtp+=$FENV_GIT/vim/vim/vundle/
 call vundle#begin("$FENV_HOME/vim/")
 
 source $FENV_HOME/vim/nerdtree.vimrc
-source $FENV_HOME/vim/powerline.vimrc
+"source $FENV_HOME/vim/powerline.vimrc
+source $FENV_HOME/vim/airline.vimrc
 source $FENV_HOME/vim/taglist.vimrc
 source $FENV_HOME/vim/cscope.vimrc
 source $FENV_HOME/vim/youcompleteme.vimrc

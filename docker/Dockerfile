@@ -37,6 +37,7 @@ RUN set -ex; \
         tree \
         less \
         dnsutils \
+        fonts-powerline \
     ';\
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \
@@ -48,7 +49,8 @@ RUN set -ex; \
     && cd /vim \
     && ./configure --enable-python3interp=yes \
                    --with-python3-config-dir=`python3-config --configdir` \
-    && make \
+                   --with-features=big \
+    && make -j8 \
     && make install \
     && cd \
     && rm -rf /vim
