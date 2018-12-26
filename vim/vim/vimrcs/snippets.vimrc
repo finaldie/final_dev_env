@@ -1,0 +1,2 @@
+Plugin 'honza/vim-snippets'
+

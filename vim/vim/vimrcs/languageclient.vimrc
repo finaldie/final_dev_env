@@ -10,7 +10,7 @@ let g:LanguageClient_autoStart = 1
 
 "" Client side shortcuts
 function SetLSPShortcuts()
-  nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
+  nnoremap <leader>ld :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
   nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
   nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
   nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>

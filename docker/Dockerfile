@@ -10,7 +10,7 @@ ENV LC_ALL C.UTF-8
 ENV TZ=America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# Install all the dependencies
+# Install all base dependencies
 RUN set -ex; \
     deps=' \
         git \
@@ -50,9 +50,18 @@ RUN set -ex; \
         PyYAML \
         pympler \
         WebOb \
-        dnslib \
-        # pynvim is part of neovim/vim8 deoplete.nvim plugin
-        pynvim
+        dnslib
+
+# Compile and Install latest jemalloc
+RUN set -ex; \
+    git clone --branch 5.1.0 --depth 1 --recurse-submodules -j8 \
+    git://github.com/jemalloc/jemalloc.git /jemalloc \
+    && cd /jemalloc \
+    && ./autogen.sh \
+    && make -j8 \
+    && make install_bin install_include install_lib \
+    && cd \
+    && rm -rf /jemalloc
 
 # Install vim
 RUN set -ex; \
@@ -88,6 +97,16 @@ RUN set -ex; \
     && rm -rf /neovim \
     && apt-get purge -y --auto-remove $deps
 
+# Install vim/neovim plugin/dependencies
+RUN set -ex; \
+    pip3 install \
+        # pynvim is part of neovim/vim8 deoplete.nvim plugin
+        pynvim \
+        # python linters
+        flake8 \
+        pylint
+
+# Copy files and fix bashrcs
 COPY ./docker/bash_profile /root/.bash_profile
 COPY ./ /build
 
