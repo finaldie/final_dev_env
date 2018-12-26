@@ -50,11 +50,13 @@ RUN set -ex; \
         PyYAML \
         pympler \
         WebOb \
-        dnslib
+        dnslib \
+        # pynvim is part of neovim/vim8 deoplete.nvim plugin
+        pynvim
 
 # Install vim
 RUN set -ex; \
-    git clone git://github.com/vim/vim.git /vim \
+    git clone --depth 1 --recurse-submodules -j8 git://github.com/vim/vim.git /vim \
     && cd /vim \
     && ./configure --enable-python3interp=yes \
                    --with-python3-config-dir=`python3-config --configdir` \
@@ -63,6 +65,28 @@ RUN set -ex; \
     && make install \
     && cd \
     && rm -rf /vim
+
+# Install neovim
+RUN set -ex; \
+    deps=' \
+        ninja-build \
+        gettext \
+        libtool \
+        libtool-bin \
+        automake \
+        pkg-config \
+        unzip
+    '; \
+    && apt-get update && apt-get install -y --no-install-recommends \
+        $deps \
+    && rm -rf /var/lib/apt/lists/* \
+    && git clone --branch v0.3.1 --depth 1 --recurse-submodules -j8 git://github.com/neovim/neovim.git /neovim \
+    && cd /neovim \
+    && make CMAKE_BUILD_TYPE=Release -j8 \
+    && make install \
+    && cd \
+    && rm -rf /neovim \
+    && apt-get purge -y --auto-remove $deps \
 
 COPY ./docker/bash_profile /root/.bash_profile
 COPY ./ /build
