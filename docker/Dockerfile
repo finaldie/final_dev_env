@@ -75,8 +75,8 @@ RUN set -ex; \
         libtool-bin \
         automake \
         pkg-config \
-        unzip
-    '; \
+        unzip \
+    ';\
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \
     && rm -rf /var/lib/apt/lists/* \
@@ -86,7 +86,7 @@ RUN set -ex; \
     && make install \
     && cd \
     && rm -rf /neovim \
-    && apt-get purge -y --auto-remove $deps \
+    && apt-get purge -y --auto-remove $deps
 
 COPY ./docker/bash_profile /root/.bash_profile
 COPY ./ /build
