@@ -105,6 +105,7 @@ The following are the total plugins in here:
 * [Fugitive][12]
 * [Gutentags][13]
 * [Languageclient-neovim][15]
+* [Deoplete][16]
 
 [1]: https://github.com/gmarik/vundle
 [2]: https://github.com/Valloric/YouCompleteMe
@@ -120,4 +121,5 @@ The following are the total plugins in here:
 [13]: https://github.com/ludovicchabant/vim-gutentags
 [14]: https://github.com/majutsushi/tagbar
 [15]: https://github.com/autozimu/languageclient-neovim
+[16]: https://github.com/Shougo/deoplete.nvim
 
