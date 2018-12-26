@@ -77,7 +77,7 @@ RUN set -ex; \
         pkg-config \
         unzip
     '; \
-    && apt-get update && apt-get install -y --no-install-recommends \
+    apt-get update && apt-get install -y --no-install-recommends \
         $deps \
     && rm -rf /var/lib/apt/lists/* \
     && git clone --branch v0.3.1 --depth 1 --recurse-submodules -j8 git://github.com/neovim/neovim.git /neovim \
