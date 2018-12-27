@@ -136,6 +136,11 @@ RUN set -ex; \
     cd /build/user_env/vim/LanguageClient-neovim \
     && bash ./install.sh
 
+# Post-Install
+RUN set -ex; \
+    # Finish the last step of deoplete.nvim if needed
+    nvim -c :UpdateRemotePlugins -es
+
 # Entrypoint
 CMD ["/bin/bash"]
 
