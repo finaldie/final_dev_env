@@ -106,10 +106,7 @@ RUN set -ex; \
         \
         # Language Servers
         ## Python lang server
-        python-language-server[all] \
-        pyls-mypy \
-        pyls-isort \
-        pyls-black \
+        python-language-server[yapf] \
         \
         # Linters
         ## python linters

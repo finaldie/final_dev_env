@@ -29,8 +29,9 @@ let g:ale_completion_enabled = 0
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
 
+" E.g. 'python': ['flake8', 'pylint'],
 let g:ale_linters = {
-\   'python': ['flake8', 'pylint'],
+\   'python': ['flake8'],
 \}
 
 "" ----------------- Disable warnings -----------------

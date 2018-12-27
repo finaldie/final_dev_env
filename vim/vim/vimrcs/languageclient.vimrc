@@ -33,9 +33,10 @@ augroup END
 ""            errors. TODO: Re-evaluate newer version later
 ""  - Python: palantir/python-language-server
 
-let g:LanguageClient_serverCommands = {
 "  \ 'c': ['clangd-6.0'],
 "  \ 'cpp': ['clangd-6.0'],
+
+let g:LanguageClient_serverCommands = {
   \ 'python': ['pyls'],
   \ }
 
