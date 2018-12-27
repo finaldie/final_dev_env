@@ -31,8 +31,11 @@ augroup END
 "" Backends
 ""  - Clang6: Cannot customize 'include' path which causes a lot of undefined
 ""            errors. TODO: Re-evaluate newer version later
-"let g:LanguageClient_serverCommands = {
+""  - Python: palantir/python-language-server
+
+let g:LanguageClient_serverCommands = {
 "  \ 'c': ['clangd-6.0'],
 "  \ 'cpp': ['clangd-6.0'],
-"  \ }
+  \ 'python': ['pyls'],
+  \ }
 

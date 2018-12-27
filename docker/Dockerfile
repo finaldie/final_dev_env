@@ -100,9 +100,19 @@ RUN set -ex; \
 # Install vim/neovim plugin/dependencies
 RUN set -ex; \
     pip3 install \
-        # pynvim is part of neovim/vim8 deoplete.nvim plugin
+        # Plugin dependencies
+        ## pynvim is part of neovim/vim8 deoplete.nvim plugin
         pynvim \
-        # python linters
+        \
+        # Language Servers
+        ## Python lang server
+        python-language-server[all] \
+        pyls-mypy \
+        pyls-isort \
+        pyls-black \
+        \
+        # Linters
+        ## python linters
         flake8 \
         pylint
 
