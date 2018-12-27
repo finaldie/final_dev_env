@@ -106,7 +106,9 @@ RUN set -ex; \
         \
         # Language Servers
         ## Python lang server
-        python-language-server[yapf] \
+        python-language-server \
+        yapf \
+        rope \
         \
         # Linters
         ## python linters

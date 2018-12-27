@@ -31,7 +31,7 @@ let g:ale_linters_explicit = 1
 
 " E.g. 'python': ['flake8', 'pylint'],
 let g:ale_linters = {
-\   'python': ['flake8'],
+\   'python': ['flake8', 'pylint'],
 \}
 
 "" ----------------- Disable warnings -----------------
