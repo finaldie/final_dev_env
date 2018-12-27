@@ -138,7 +138,7 @@ RUN set -ex; \
 
 # Post-Install
 RUN set -ex; \
-    # Finish the last step of deoplete.nvim if needed
+    # Finish the last step of deoplete.nvim for neovim if needed
     nvim -c :UpdateRemotePlugins -es
 
 # Entrypoint
