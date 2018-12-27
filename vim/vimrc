@@ -24,8 +24,15 @@ source $FENV_HOME/vim/airline.vimrc
 " source $FENV_HOME/vim/powerline.vimrc
 
 "" -------------- Common Plugins --------------
-" git wrapper
+" git wrapper for status bar
 source $FENV_HOME/vim/fugitive.vimrc
+
+" git in-file differ
+source $FENV_HOME/vim/gitgutter.vimrc
+
+" surrounder
+source $FENV_HOME/vim/surround.vimrc
+
 source $FENV_HOME/vim/nerdtree.vimrc
 source $FENV_HOME/vim/tagbar.vimrc
 " source $FENV_HOME/vim/taglist.vimrc
@@ -43,9 +50,6 @@ source $FENV_HOME/vim/deoplete.vimrc
 "" -------------- Code Related ----------------
 " LSP client
 source $FENV_HOME/vim/languageclient.vimrc
-
-" Formatter
-source $FENV_HOME/vim/clang_format.vimrc
 
 " Code completion for C/C++/Python
 source $FENV_HOME/vim/youcompleteme.vimrc

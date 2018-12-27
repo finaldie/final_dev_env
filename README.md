@@ -7,6 +7,28 @@ The project is Basic Development Environment, including:
 
 This environment is very simple, clean and easy to manage.
 
+## Vim Plugins
+The following are the total plugins in here:
+* Common Plugins
+  * [scrooloose/NERDTree][4]
+  * [easymotion/vim-easymotion][8]
+  * [majutsushi/tagbar][14]
+  * [ludovicchabant/vim-gutentags][13]
+  * [ctrlpvim/ctrlp.vim][9]
+  * [tpope/vim-surround][20]
+* Status Bar
+  * [vim-airline/vim-airline][11]
+* Git
+  * [tpope/vim-fugitive][12]
+  * [airblade/vim-gitgutter][21]
+* Coding
+  * [Valloric/YouCompleteMe][2]
+  * [autozimu/languageclient-neovim][15]
+  * [honza/vim-snippets][17]
+  * [w0rp/ale][18]
+* Omnifunc Management
+  * [Shougo/deoplete.nvim][16]
+
 # All-in-one Docker Image
 Besides go through the `Installation` steps, the eaisest way to use this env is pulling the docker image, and start it directly:
 ## Pull Docker Image
@@ -90,22 +112,13 @@ make
 
 **NOTES:** This won't break your vim plugins, only re-deploy your scripts/configs
 
+### Install Powerline-Font
+To give a better experience, install [SourceCodePro](19) font for the terminal. <br>
+Download it and install it in the laptop, and configure it from the terminal settings.
+
 # Contribution
 If you have more suggestions or recommendations, it's great to send a pull request.
 
-# References
-## Vim Plugins
-The following are the total plugins in here:
-* [NERDTree][4]
-* [Airline][11]
-* [Tagbar][14]
-* [YouCompleteMe][2]
-* [Easymotion][8]
-* [CtrlP][9]
-* [Fugitive][12]
-* [Gutentags][13]
-* [Languageclient-neovim][15]
-* [Deoplete][16]
 
 [1]: https://github.com/gmarik/vundle
 [2]: https://github.com/Valloric/YouCompleteMe
@@ -122,4 +135,9 @@ The following are the total plugins in here:
 [14]: https://github.com/majutsushi/tagbar
 [15]: https://github.com/autozimu/languageclient-neovim
 [16]: https://github.com/Shougo/deoplete.nvim
+[17]: https://github.com/honza/vim-snippets
+[18]: https://github.com/w0rp/ale
+[19]: https://github.com/powerline/fonts/tree/master/SourceCodePro
 
+[20]: https://github.com/tpope/vim-surround
+[21]: https://github.com/airblade/vim-gitgutter
