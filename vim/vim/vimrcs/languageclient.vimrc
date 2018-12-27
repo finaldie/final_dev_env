@@ -24,7 +24,7 @@ endfunction()
 
 augroup LSP
   autocmd!
-  autocmd FileType cpp,c,py call SetLSPShortcuts()
+  autocmd FileType cpp,c,python call SetLSPShortcuts()
 augroup END
 
 """
