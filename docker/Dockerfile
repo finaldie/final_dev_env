@@ -29,6 +29,7 @@ RUN set -ex; \
         cscope \
         build-essential \
         gdb \
+        bear \
         valgrind \
         autoconf \
         ncurses-dev \
