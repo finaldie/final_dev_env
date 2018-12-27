@@ -25,6 +25,7 @@ RUN set -ex; \
         net-tools \
         psmisc \
         curl \
+        wget \
         exuberant-ctags \
         cscope \
         build-essential \
@@ -120,6 +121,20 @@ RUN set -ex; \
 COPY ./docker/bash_profile /root/.bash_profile
 COPY ./ /build
 
+# Install Clang/LLVM pre-built toolchains:
+#  - Install bin: clang-7, clangd, clang-tidy, clang-format, lld -> /usr/local/bin/
+#  - Install includes: lib/clang -> /usr/local/lib/clang
+#  - Install libs: libclang.so -> /usr/local/lib/
+#  - Install share: clang-format.py -> /usr/local/share/clang/
+# Notes, the pre-built bin/lib/includes should be already downloaded
+COPY 
+
+# Create symbol links
+RUN set -ex; \
+    cd /usr/local/bin \
+    && ln -s clang-7 clang \
+    && ln -s clang clang++ \
+
 RUN set -ex; \
     cat /root/.bash_profile >> /root/.bashrc \
     && sed -i 's:export FENV_HOME=.*:export FENV_HOME=/build/user_env:' /build/user_env/bash/env_home.bashrc \
@@ -140,7 +155,7 @@ RUN set -ex; \
 # Post-Install
 RUN set -ex; \
     # Finish the last step of deoplete.nvim for neovim if needed
-    nvim -c :UpdateRemotePlugins -es
+    nvim +UpdateRemotePlugins -es
 
 # Entrypoint
 CMD ["/bin/bash"]

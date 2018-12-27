@@ -10,7 +10,7 @@ let g:ale_open_list = 1
 " Set this if you want to.
 " This can be useful if you are combining ALE with
 " some other plugin which sets quickfix errors, etc.
-let g:ale_keep_list_window_open = 1
+"let g:ale_keep_list_window_open = 1
 
 "let g:ale_list_vertical = 1
 
@@ -29,9 +29,17 @@ let g:ale_completion_enabled = 0
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
 
+"let g:ale_c_parse_compile_commands = 1
+let g:ale_c_parse_makefile = 1
+
 " E.g. 'python': ['flake8', 'pylint'],
+" Notes: for filetype c and cpp, if 'parse_makefile' doesn't work well,
+" needs to generate compile_commands.json and switch to
+" 'parse_compile_commands' to try again
 let g:ale_linters = {
 \   'python': ['flake8', 'pylint'],
+\   'c': ['clang-tidy'],
+\   'cpp': ['clang-tidy'],
 \}
 
 "" ----------------- Disable warnings -----------------
@@ -50,9 +58,12 @@ let g:ale_fix_on_save = 1
 "
 "let g:ale_fixers = {
 "\   'python': ['autopep8', 'yapf'],
+"\   'c': ['clang-format'],
+"\   'cpp': ['clang-format'],
 "\}
 
-let g:ale_fixers = {}
+let g:ale_fixers = {
+\}
 
 "" References
 " Python linters: https://github.com/vintasoftware/python-linters-and-code-analysis

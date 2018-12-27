@@ -61,6 +61,9 @@ source $FENV_HOME/vim/snippets.vimrc
 " Code Linter
 source $FENV_HOME/vim/linter.vimrc
 
+" Code Formatter
+source $FENV_HOME/vim/clang_format.vimrc
+
 call vundle#end()
 filetype plugin indent on
 
