@@ -30,14 +30,17 @@ augroup END
 """
 "" Backends
 ""  - Clang6: Cannot customize 'include' path which causes a lot of undefined
-""            errors. TODO: Re-evaluate newer version later
-""  - Python: palantir/python-language-server
+""            errors. TODO: Re-evaluate the 'compile_commands.json'
+""  - Python: palantir/python-language-server. Current problem is, it's not
+""            that fast, disable it for now since the lint part is handled by
+""            ALE. In next, consider to create a ls-settings.json to disable
+""            those lint functionality from pyls
 
 "  \ 'c': ['clangd-6.0'],
 "  \ 'cpp': ['clangd-6.0'],
+"  \ 'python': ['pyls'],
 
 let g:LanguageClient_serverCommands = {
-  \ 'python': ['pyls'],
   \ }
 
 "let g:LanguageClient_loadSettings = 1
