@@ -25,3 +25,7 @@ nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 
 " For enable autocomplete for Java
 let g:EclimCompletionMethod = 'omnifunc'
+
+" To disable using 'tab' to select items, since 'tab' is mainly for other
+" purpose, like snippets
+let g:ycm_key_list_select_completion = []
