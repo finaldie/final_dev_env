@@ -1,5 +1,5 @@
 
-Plugin 'vim-scripts/taglist.vim'
+Plug 'vim-scripts/taglist.vim'
 
 let Tlist_Show__One_File=1
 let Tlist_Exit_OnlyWindow=1

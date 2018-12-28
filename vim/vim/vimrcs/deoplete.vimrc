@@ -1,8 +1,8 @@
-Plugin 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim'
 
 if !has('nvim')
-    Plugin 'roxma/nvim-yarp'
-    Plugin 'roxma/vim-hug-neovim-rpc'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
 let g:deoplete#enable_at_startup = 1

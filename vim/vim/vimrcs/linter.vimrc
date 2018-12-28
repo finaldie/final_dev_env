@@ -1,4 +1,4 @@
-Plugin 'w0rp/ale'
+Plug 'w0rp/ale'
 
 "" ----------------- Message Window -------------------
 " Write this in your vimrc file

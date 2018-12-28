@@ -1,4 +1,4 @@
-Plugin 'autozimu/LanguageClient-neovim'
+Plug 'autozimu/LanguageClient-neovim'
 
 "" https://github.com/autozimu/LanguageClient-neovim
 

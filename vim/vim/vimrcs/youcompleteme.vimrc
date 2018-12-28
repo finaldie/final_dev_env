@@ -1,5 +1,5 @@
 
-Plugin 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 
 " global/fallback ycm_extra_conf
 let g:ycm_global_ycm_extra_conf = $FENV_HOME.'/vim/ycm_extra_conf.py'

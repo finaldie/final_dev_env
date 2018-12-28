@@ -1,4 +1,4 @@
-Plugin 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 
 "" Auto re-generate tags
 "" https://github.com/ludovicchabant/vim-gutentags
