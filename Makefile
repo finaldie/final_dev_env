@@ -45,7 +45,10 @@ notes:
 		$(MAKE) -s -C $$module topdir=$(topdir) XDG_HOME=$(xdg_home) notes; \
 	done;
 
-docker:
+clang-prebuilt:
+	$(MAKE) -C docker clang7
+
+docker: clang-prebuilt
 	@docker build --rm -t $(DOCKER_NAME) -f ./docker/Dockerfile .
 
 clean:
