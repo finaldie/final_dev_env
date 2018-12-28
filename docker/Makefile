@@ -12,15 +12,15 @@ CLANG7_PREBUILT := clang7-prebuilt
 clang7: clang7-install
 
 clang7-download:
-	test -d $(CLANG7_DOWNLOAD) || ( \
-	    mkdir -p $(CLANG7_DOWNLOAD) \
-	    && cd $(CLANG7_DOWNLOAD)
-	    && wget $(CLANG7_URL) \
-	    && tar -xf $(CLANG7_TAR) \
-	    );
+	if [ ! -d $(CLANG7_DOWNLOAD) ]; then \
+	    mkdir -p $(CLANG7_DOWNLOAD) && \
+	    cd $(CLANG7_DOWNLOAD) && \
+	    wget $(CLANG7_URL) && \
+	    tar -xf $(CLANG7_TAR); \
+	fi
 
 clang7-install: clang7-download
-	test -d $(CLANG7_PREBUILT) || ( \
+	if [ ! -d $(CLANG7_PREBUILT) ]; then \
 	    mkdir -p $(CLANG7_PREBUILT)/bin \
 	    && mkdir -p $(CLANG7_PREBUILT)/lib \
 	    && mkdir -p $(CLANG7_PREBUILT)/share/clang \
@@ -32,5 +32,6 @@ clang7-install: clang7-download
 	    && cp -R $(CLANG7_DOWNLOAD)/$(CLANG7_NAME)/lib/clang $(CLANG7_PREBUILT)/lib/clang \
 	    && cp -R $(CLANG7_DOWNLOAD)/$(CLANG7_NAME)/lib/libclang.so.7 $(CLANG7_PREBUILT)/lib \
 	    && cp -R $(CLANG7_DOWNLOAD)/$(CLANG7_NAME)/share/clang/clang-format.py $(CLANG7_PREBUILT)/share/clang \
-	    );
+	    ; \
+	fi
 
