@@ -119,35 +119,31 @@ RUN set -ex; \
 
 # Copy files and fix bashrcs
 COPY ./docker/bash_profile /root/.bash_profile
-COPY ./ /build
+COPY ./user_env /build/user_env
 
-# Install Clang/LLVM pre-built toolchains:
+## Install Clang/LLVM pre-built toolchains:
 #  - Install bin: clang-7, clangd, clang-tidy, clang-format, lld -> /usr/local/bin/
 #  - Install includes: lib/clang -> /usr/local/lib/clang
 #  - Install libs: libclang.so.7 -> /usr/local/lib/
 #  - Install share: clang-format.py -> /usr/local/share/clang/
 # Notes, the pre-built bin/lib/includes should be already downloaded
 # Create symbol links
+
+# Install bins
+COPY ./docker/clang7-prebuilt/bin/* /usr/local/bin/
+
+# Install includes
+COPY ./docker/clang7-prebuilt/lib/clang /usr/local/lib/clang/
+
+# Install libs
+COPY ./docker/clang7-prebuilt/lib/libclang.so.7 /usr/local/lib/
+
+# Install share
+COPY ./docker/clang7-prebuilt/share/clang/* /usr/local/share/clang/
+
+# Create symbol links
 RUN set -ex; \
-    # Install bins
-    cd /build/docker/clang7-prebuilt/bin \
-    && cp clang-7 clangd clang-tidy clang-format lld /usr/local/bin \
-    \
-    # Install includes
-    && cd /build/docker/clang7-prebuilt/lib \
-    && cp -R clang /usr/local/lib/clang \
-    \
-    # Install libs
-    && cd /build/docker/clang7-prebuilt/lib \
-    && cp libclang.so.7 /usr/local/lib \
-    \
-    # Install share
-    && cd /build/docker/clang7-prebuilt/share \
-    && mkdir -p /usr/local/share/clang \
-    && cp -R clang/clang-format.py /usr/local/share/clang/clang-format.py \
-    \
-    # Create symbol links
-    && cd /usr/local/bin \
+    cd /usr/local/bin \
     && ln -s clang-7 clang \
     && ln -s clang clang++ \
     && ln -s lld ld.lld \
@@ -155,7 +151,12 @@ RUN set -ex; \
     && ln -s lld lld-link \
     && ln -s lld wasm-ld \
     && cd /usr/local/lib \
-    && ln -s libclang.so.7 libclang.so
+    && ln -s libclang.so.7 libclang.so \
+    \
+    # Verification
+    && ls -l /usr/local/bin \
+    && ls -l /usr/local/lib \
+    && ls -l /usr/local/share
 
 RUN set -ex; \
     cat /root/.bash_profile >> /root/.bashrc \

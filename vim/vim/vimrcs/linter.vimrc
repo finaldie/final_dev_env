@@ -38,8 +38,8 @@ let g:ale_c_parse_makefile = 1
 " 'parse_compile_commands' to try again
 let g:ale_linters = {
 \   'python': ['flake8', 'pylint'],
-\   'c': ['clang-tidy'],
-\   'cpp': ['clang-tidy'],
+\   'c': ['clangtidy'],
+\   'cpp': ['clangtidy'],
 \}
 
 "" ----------------- Disable warnings -----------------
