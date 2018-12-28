@@ -167,11 +167,11 @@ RUN set -ex; \
 
 # Install YouCompleteMe
 RUN set -ex; \
-    python3 /build/user_env/vim/YouCompleteMe/install.py --clang-completer
+    python3 /build/user_env/vim/plugged/YouCompleteMe/install.py --clang-completer
 
 # Install LanguageClient-neovim
 RUN set -ex; \
-    cd /build/user_env/vim/LanguageClient-neovim \
+    cd /build/user_env/vim/plugged/LanguageClient-neovim \
     && bash ./install.sh
 
 # Post-Install
