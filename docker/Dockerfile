@@ -132,17 +132,21 @@ RUN set -ex; \
     # Install bins
     cd /build/docker/clang7-prebuilt/bin \
     && cp clang-7 clangd clang-tidy clang-format lld /usr/local/bin \
+    \
     # Install includes
     && cd /build/docker/clang7-prebuilt/lib \
     && cp -R clang /usr/local/lib/clang \
+    \
     # Install libs
     && cd /build/docker/clang7-prebuilt/lib \
     && cp libclang.so.7 /usr/local/lib \
+    \
     # Install share
     && cd /build/docker/clang7-prebuilt/share \
-    && cp clang/clang-format.py /usr/local/share/clang/clang-format.py \
+    && cp -R clang/clang-format.py /usr/local/share/clang/clang-format.py \
+    \
     # Create symbol links
-    cd /usr/local/bin \
+    && cd /usr/local/bin \
     && ln -s clang-7 clang \
     && ln -s clang clang++ \
     && ln -s lld ld.lld \
