@@ -103,7 +103,7 @@ RUN set -ex; \
 RUN set -ex; \
     pip3 install \
         # Plugin dependencies
-        ## pynvim is part of neovim/vim8 deoplete.nvim plugin
+        ## pynvim is part of neovim/vim8 deoplete.nvim plugin as neovim py client
         pynvim \
         \
         # Language Servers
@@ -143,6 +143,7 @@ RUN set -ex; \
     \
     # Install share
     && cd /build/docker/clang7-prebuilt/share \
+    && mkdir -p /usr/local/share/clang \
     && cp -R clang/clang-format.py /usr/local/share/clang/clang-format.py \
     \
     # Create symbol links
