@@ -1,3 +1,6 @@
 [submodule "vim/vim/vundle"]
 	path = vim/vim/vundle
 	url = git://github.com/gmarik/vundle.git
+[submodule "vim/vim/vim-plug"]
+	path = vim/vim/vim-plug
+	url = git://github.com/junegunn/vim-plug.git
