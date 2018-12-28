@@ -1,6 +1,6 @@
 
 
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 
 " NERDTree
 let NERDTreeCaseSensitiveSort=0

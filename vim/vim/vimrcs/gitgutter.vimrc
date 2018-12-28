@@ -1,5 +1,5 @@
 " Git in-file differ
-Plug 'vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
 "" Link: https://github.com/airblade/vim-gitgutter
 

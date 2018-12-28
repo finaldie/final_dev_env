@@ -15,8 +15,8 @@ set nocompatible
 
 " plugins which managed by vim-plug
 
-set rtp+=$FENV_GIT/vim/vim/vim-plug/
-call plug#begin('$FENV_HOME/vim/')
+set rtp+=$FENV_HOME/vim
+call plug#begin('$FENV_HOME/vim/plugged')
 
 "" -------------- Status Bar ------------------
 source $FENV_HOME/vim/airline.vimrc
