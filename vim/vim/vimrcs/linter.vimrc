@@ -32,6 +32,27 @@ let g:ale_linters_explicit = 1
 "let g:ale_c_parse_compile_commands = 1
 let g:ale_c_parse_makefile = 1
 
+" clangtidy linter checks (Comment out by using default clang-analyzer-*)
+let g:ale_c_clangtidy_checks = [
+\   'clang-analyzer-*',
+\   'google-*',
+\   'cppcoreguidelines-*',
+\   'modernize-*',
+\   'performance-*',
+\   'portability-*',
+\   'readability-*'
+\]
+
+let g:ale_cpp_clangtidy_checks = [
+\   'clang-analyzer-*',
+\   'google-*',
+\   'cppcoreguidelines-*',
+\   'modernize-*',
+\   'performance-*',
+\   'portability-*',
+\   'readability-*'
+\]
+
 " E.g. 'python': ['flake8', 'pylint'],
 " Notes: for filetype c and cpp, if 'parse_makefile' doesn't work well,
 " needs to generate compile_commands.json and switch to
