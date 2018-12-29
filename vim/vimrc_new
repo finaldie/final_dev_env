@@ -42,6 +42,7 @@ source $FENV_HOME/vim/gutentags.vimrc
 source $FENV_HOME/vim/cscope.vimrc
 source $FENV_HOME/vim/easymotion.vimrc
 source $FENV_HOME/vim/ctrlp.vimrc
+source $FENV_HOME/vim/fzf.vimrc
 
 "" -------------- Omnifunc Management ---------
 source $FENV_HOME/vim/deoplete.vimrc
@@ -49,6 +50,7 @@ source $FENV_HOME/vim/deoplete.vimrc
 "" -------------- Code Related ----------------
 " LSP client
 source $FENV_HOME/vim/languageclient.vimrc
+source $FENV_HOME/vim/vim_lsp.vimrc
 
 " Code completion for C/C++/Python
 source $FENV_HOME/vim/youcompleteme.vimrc

@@ -36,9 +36,24 @@ augroup END
 ""            ALE. In next, consider to create a ls-settings.json to disable
 ""            those lint functionality from pyls
 
-"  \ 'c': ['clangd-6.0'],
-"  \ 'cpp': ['clangd-6.0'],
-"  \ 'python': ['pyls'],
+" For Python server pyls
+""  \ 'python': ['pyls'],
+"
+" For C/C++ server clangd
+"  \ 'c': ['clangd'],
+"  \ 'cpp': ['clangd'],
+"
+" For C/C++ server cquery
+"  \ 'c': ['/usr/local/bin/cquery',
+"  \   '--log-file=/tmp/cq.log',
+"  \   '--init={"cacheDirectory":"/var/cquery/"}'],"
+"  \ 'cpp': ['/usr/local/bin/cquery',
+"  \   '--log-file=/tmp/cq.log',
+"  \   '--init={"cacheDirectory":"/var/cquery/"}'],"
+"
+" For C/C++ server ccls
+"  \ 'c': ['/usr/local/bin/ccls', '--log-file=/tmp/cc.log'],
+"  \ 'cpp': ['/usr/local/bin/ccls', '--log-file=/tmp/cc.log'],
 
 let g:LanguageClient_serverCommands = {
   \ }

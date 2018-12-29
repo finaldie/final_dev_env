@@ -14,6 +14,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN set -ex; \
     deps=' \
         git \
+        tmux \
         lsof \
         strace \
         ltrace \
@@ -52,30 +53,32 @@ RUN set -ex; \
         PyYAML \
         pympler \
         WebOb \
-        dnslib
+        dnslib \
+    # Create Building folder
+    && mkdir /build
 
 # Compile and Install latest jemalloc
 RUN set -ex; \
     git clone --branch 5.1.0 --depth 1 --recurse-submodules -j8 \
-    git://github.com/jemalloc/jemalloc.git /jemalloc \
-    && cd /jemalloc \
+        git://github.com/jemalloc/jemalloc.git /build/jemalloc \
+    && cd /build/jemalloc \
     && ./autogen.sh \
     && make -j8 \
     && make install_bin install_include install_lib \
     && cd \
-    && rm -rf /jemalloc
+    && rm -rf /build/jemalloc
 
 # Install vim
 RUN set -ex; \
-    git clone --depth 1 --recurse-submodules -j8 git://github.com/vim/vim.git /vim \
-    && cd /vim \
+    git clone --depth 1 --recurse-submodules -j8 git://github.com/vim/vim.git /build/vim \
+    && cd /build/vim \
     && ./configure --enable-python3interp=yes \
                    --with-python3-config-dir=`python3-config --configdir` \
                    --with-features=huge \
     && make -j8 \
     && make install \
     && cd \
-    && rm -rf /vim
+    && rm -rf /build/vim
 
 # Install neovim
 RUN set -ex; \
@@ -91,12 +94,13 @@ RUN set -ex; \
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \
     && rm -rf /var/lib/apt/lists/* \
-    && git clone --branch v0.3.1 --depth 1 --recurse-submodules -j8 git://github.com/neovim/neovim.git /neovim \
-    && cd /neovim \
+    && git clone --branch v0.3.1 --depth 1 --recurse-submodules -j8 \
+        git://github.com/neovim/neovim.git /build/neovim \
+    && cd /build/neovim \
     && make CMAKE_BUILD_TYPE=Release -j8 \
     && make install \
     && cd \
-    && rm -rf /neovim \
+    && rm -rf /build/neovim \
     && apt-get purge -y --auto-remove $deps
 
 # Install vim/neovim plugin/dependencies
@@ -128,17 +132,9 @@ COPY ./user_env /build/user_env
 #  - Install share: clang-format.py -> /usr/local/share/clang/
 # Notes, the pre-built bin/lib/includes should be already downloaded
 # Create symbol links
-
-# Install bins
 COPY ./docker/clang7-prebuilt/bin/* /usr/local/bin/
-
-# Install includes
 COPY ./docker/clang7-prebuilt/lib/clang /usr/local/lib/clang/
-
-# Install libs
 COPY ./docker/clang7-prebuilt/lib/libclang.so.7 /usr/local/lib/
-
-# Install share
 COPY ./docker/clang7-prebuilt/share/clang/* /usr/local/share/clang/
 
 # Create symbol links
@@ -158,6 +154,7 @@ RUN set -ex; \
     && ls -l /usr/local/lib \
     && ls -l /usr/local/share
 
+# Fix bash variables
 RUN set -ex; \
     cat /root/.bash_profile >> /root/.bashrc \
     && sed -i 's:export FENV_HOME=.*:export FENV_HOME=/build/user_env:' /build/user_env/bash/env_home.bashrc \
@@ -166,19 +163,61 @@ RUN set -ex; \
     && cat /build/user_env/all.bashrc | sed '/^$/d' | awk -F '/' '{print $NF}' | awk '{printf "source /build/user_env/bash/%s\n", $1}' > /build/user_env/all.bashrc.new \
     && mv /build/user_env/all.bashrc.new /build/user_env/all.bashrc
 
-# Install YouCompleteMe
+#  Install Tools
+## Install YouCompleteMe
 RUN set -ex; \
     python3 /build/user_env/vim/plugged/YouCompleteMe/install.py --clang-completer
 
-# Install LanguageClient-neovim
+## Install LanguageClient-neovim
 RUN set -ex; \
     cd /build/user_env/vim/plugged/LanguageClient-neovim \
     && bash ./install.sh
 
+## Install fzf command line tool
+RUN set -ex;
+    git clone --branch 0.17.5 --depth 1 --recurse-submodules -j8 \
+        git://github.com/junegunn/fzf.git /build/fzf \
+    && cd /build/fzf \
+    && ./install --all
+
+## Install cquery
+RUN set -ex;
+    git clone --depth 1 --recurse-submodules -j8 \
+        git://github.com/cquery-project/cquery.git /build/cquery \
+    && cd /build/cquery \
+    && mkdir build \
+    && cd build \
+    && cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=release \
+    && cmake --build . \
+    && cmake --build . --target install \
+    # Install cquery into usr local
+    && cp /build/cquery/build/release/bin/cquery /usr/local/bin \
+    # Remove cquery build folder
+    && cd / \
+    && rm -rf /build/cquery
+
+## Install ccls
+RUN set -ex;
+    deps=' \
+        zlib1g-dev \
+    ';\
+    apt-get update && apt-get install -y --no-install-recommends \
+        $deps \
+    && rm -rf /var/lib/apt/lists/* \
+    && git clone --depth 1 --recurse-submodules -j8 \
+        git://github.com/MaskRay/ccls.git /build/ccls \
+    && cd /build/ccls \
+    && cmake -H. -BRelease \
+    && cmake --build Release \
+    && cp /build/ccls/Release/ccls /usr/local/bin \
+    && cd / \
+    && rm -rf /build/ccls \
+    && apt-get purge -y --auto-remove $deps
+
 # Post-Install
 RUN set -ex; \
     # Finish the last step of deoplete.nvim for neovim if needed
-    nvim +UpdateRemotePlugins -es
+    nvim +UpdateRemotePlugins +qall
 
 # Entrypoint
 CMD ["/bin/bash"]
