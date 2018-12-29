@@ -3,8 +3,34 @@ Plug 'prabirshrestha/vim-lsp'
 
 "" Github: https://github.com/prabirshrestha/vim-lsp
 
+"" Short-Cuts
+function SetVimLSPShortcuts()
+  nnoremap <leader><leader>ld :LspDefinition<CR>
+  nnoremap <leader><leader>lr :LspRename<CR>
+  nnoremap <leader><leader>lf :LspDocumentFormat<CR>
+  nnoremap <leader><leader>lt :LspTypeDefinition<CR>
+  nnoremap <leader><leader>lx :LspReferences<CR>
+  nnoremap <leader><leader>lh :LspHover<CR>
+  nnoremap <leader><leader>ls :LspDocumentSymbol<CR>
+  nnoremap <leader><leader>lw :LspWorkspaceSymbol<CR>  " Search/Show workspace symbol
+endfunction()
+
+"" No shortcut commands
+" :LspCodeAction     Gets a list of possible commands that can be applied to a file so it can be fixed (quick fix)
+" :LspDocumentDiagnostics Get current document diagnostics information
+" :LspDocumentRangeFormat Format document selection
+" :LspImplementation      Show implementation of interface
+" :LspNextError           Jump to next error
+" :LspPreviousError       Jump to previous error
+" :LspStatus              Show the status of the language server
+
+augroup VimLSP_config
+  autocmd!
+  autocmd FileType * call SetVimLSPShortcuts()
+augroup END
+
 "" Global settings
-" enable signs
+"  Enable signs
 let g:lsp_signs_enabled = 1
 
 " enable echo under cursor when in normal mode
@@ -19,20 +45,20 @@ let g:lsp_diagnostics_echo_cursor = 1
 "let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('~/vim-lsp.log')
 
-" for asyncomplete.vim log
+" For asyncomplete.vim log
 "let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 
 "" LSP Servers
 "" ------------------ Python lsp server ---------------------
 "if executable('pyls')
-"    " pip install python-language-server
+"    " pip3 install python-language-server
 "    au User lsp_setup call lsp#register_server({
 "        \ 'name': 'pyls',
 "        \ 'cmd': {server_info->['pyls']},
 "        \ 'whitelist': ['python'],
 "        \ })
 "endif
-"
+
 "if executable('clangd')
 "    au User lsp_setup call lsp#register_server({
 "        \ 'name': 'clangd',
@@ -45,7 +71,7 @@ let g:lsp_diagnostics_echo_cursor = 1
 "    autocmd FileType objc setlocal omnifunc=lsp#complete
 "    autocmd FileType objcpp setlocal omnifunc=lsp#complete
 "endif
-"
+
 "if executable('ccls')
 "   au User lsp_setup call lsp#register_server({
 "      \ 'name': 'ccls',
@@ -55,7 +81,7 @@ let g:lsp_diagnostics_echo_cursor = 1
 "      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
 "      \ })
 "endif
-"
+
 "if executable('cquery')
 "   au User lsp_setup call lsp#register_server({
 "      \ 'name': 'cquery',
