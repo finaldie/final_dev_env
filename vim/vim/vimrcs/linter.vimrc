@@ -61,8 +61,8 @@ nmap <F8> <Plug>(ale_fix)
 "
 "let g:ale_fixers = {
 "\   'python': ['autopep8', 'yapf'],
-"\   'c': ['clang-format'],
-"\   'cpp': ['clang-format'],
+"\   'c': ['clang-format', 'clangtidy'],
+"\   'cpp': ['clang-format', 'clangtidy'],
 "\}
 
 let g:ale_fixers = {
