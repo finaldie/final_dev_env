@@ -44,6 +44,13 @@ notes:
 	do \
 		$(MAKE) -s -C $$module topdir=$(topdir) XDG_HOME=$(xdg_home) notes; \
 	done;
+	@echo ""
+	@echo "========================LAST NOTE========================";
+	@echo "Install commands tools to make the life eaiser"
+	@echo "Recommend tools: fzf, plantuml"
+	@echo ""
+	@echo "Have fun :)"
+	@echo ""
 
 clang-prebuilt:
 	$(MAKE) -C docker clang7
