@@ -207,7 +207,9 @@ RUN set -ex; \
     && git clone --depth 1 --recurse-submodules -j8 \
         git://github.com/MaskRay/ccls.git /build/ccls \
     && cd /build/ccls \
-    && cmake -H. -BRelease \
+    && cmake -H. -BRelease -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_LINKER=/usr/local/bin/lld \
+    # Hack cmake internal clang path
+    && sed -i 's|Clang_EXECUTABLE:FILEPATH=.*|Clang_EXECUTABLE:FILEPATH=/usr/local/bin/clang|' Release/CMakeCache.txt \
     && cmake --build Release \
     && cp /build/ccls/Release/ccls /usr/local/bin \
     && cd / \
