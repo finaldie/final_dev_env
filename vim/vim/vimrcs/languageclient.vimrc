@@ -46,10 +46,10 @@ augroup END
 " For C/C++ server cquery
 "  \ 'c': ['/usr/local/bin/cquery',
 "  \   '--log-file=/tmp/cq.log',
-"  \   '--init={"cacheDirectory":"/var/cquery/"}'],"
+"  \   '--init={"cacheDirectory":"/var/cquery/"}'],
 "  \ 'cpp': ['/usr/local/bin/cquery',
 "  \   '--log-file=/tmp/cq.log',
-"  \   '--init={"cacheDirectory":"/var/cquery/"}'],"
+"  \   '--init={"cacheDirectory":"/var/cquery/"}'],
 "
 " For C/C++ server ccls
 "  \ 'c': ['/usr/local/bin/ccls', '--log-file=/tmp/cc.log'],
