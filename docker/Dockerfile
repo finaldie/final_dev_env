@@ -207,7 +207,7 @@ RUN set -ex; \
     && git clone --depth 1 --recurse-submodules -j8 \
         git://github.com/MaskRay/ccls.git /build/ccls \
     && cd /build/ccls \
-    && cmake -H. -BRelease \
+    && cmake -G 'Ninja' -H. -BRelease \
     && cmake --build Release \
     && cp /build/ccls/Release/ccls /usr/local/bin \
     && cd / \
