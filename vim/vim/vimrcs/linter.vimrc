@@ -61,10 +61,12 @@ nmap <F8> <Plug>(ale_fix)
 "
 "let g:ale_fixers = {
 "\   'python': ['autopep8', 'yapf'],
-"\   'c': ['clang-format', 'clangtidy'],
-"\   'cpp': ['clang-format', 'clangtidy'],
+"\   'c': ['clang-format'],
+"\   'cpp': ['clang-format'],
 "\}
 
+" Fixers. Notes: For a single language, the item order should be: fixer first
+" then formatter
 let g:ale_fixers = {
 \   'python': ['yapf'],
 \   'c': ['clang-format'],
