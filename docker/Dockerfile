@@ -174,14 +174,14 @@ RUN set -ex; \
     && bash ./install.sh
 
 ## Install fzf command line tool
-RUN set -ex;
+RUN set -ex; \
     git clone --branch 0.17.5 --depth 1 --recurse-submodules -j8 \
         git://github.com/junegunn/fzf.git /build/fzf \
     && cd /build/fzf \
     && ./install --all
 
 ## Install cquery
-RUN set -ex;
+RUN set -ex; \
     git clone --depth 1 --recurse-submodules -j8 \
         git://github.com/cquery-project/cquery.git /build/cquery \
     && cd /build/cquery \
@@ -197,7 +197,7 @@ RUN set -ex;
     && rm -rf /build/cquery
 
 ## Install ccls
-RUN set -ex;
+RUN set -ex; \
     deps=' \
         zlib1g-dev \
     ';\
