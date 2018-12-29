@@ -48,7 +48,10 @@ let b:ale_warn_about_trailing_whitespace = 0
 
 "" ----------------- Fixers ---------------------------
 " Set this variable to 1 to fix files when you save them.
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
+
+" short-cut to manual trigger the fixers
+nmap <F8> <Plug>(ale_fix)
 
 " Examples
 "let g:ale_fixers = {
@@ -63,6 +66,9 @@ let g:ale_fix_on_save = 1
 "\}
 
 let g:ale_fixers = {
+\   'python': ['yapf'],
+\   'c': ['clang-format'],
+\   'cpp': ['clang-format'],
 \}
 
 "" References
