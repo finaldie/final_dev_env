@@ -35,6 +35,7 @@ RUN set -ex; \
         valgrind \
         autoconf \
         ncurses-dev \
+        libyaml-dev \
         cmake \
         tree \
         less \
@@ -67,6 +68,34 @@ RUN set -ex; \
     && make install_bin install_include install_lib \
     && cd \
     && rm -rf /build/jemalloc
+
+# Compile and Install protobuf
+RUN set -ex; \
+    git clone --branch v3.6.1 --depth 1 --recurse-submodules -j8 \
+        git@github.com:protocolbuffers/protobuf.git /build/protobuf \
+    # Build c++ protobuf
+    && cd /build/protobuf \
+    && ./autogen.sh && ./configure --enable-static=no \
+    && make -j8 \
+    \
+    # Build python protobuf
+    && cd /build/protobuf/python \
+    && export LD_LIBRARY_PATH=../src/.libs \
+    && python3 setup.py build --cpp_implementation \
+    \
+    # Install c++ protobuf
+    && cd /build/protobuf \
+    && make install \
+    && (ldconfig || true) \
+    \
+    # Install python protobuf
+    && cd /build/protobuf/python \
+    && export LD_LIBRARY_PATH=../src/.libs \
+    && python3 setup.py install --cpp_implementation \
+    \
+    # Clean up
+    && cd \
+    && rm -rf /build/protobuf
 
 # Install vim
 RUN set -ex; \
