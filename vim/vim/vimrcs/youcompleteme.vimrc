@@ -7,11 +7,19 @@ let g:ycm_global_ycm_extra_conf = $FENV_HOME.'/vim/share/ycm_extra_conf.py'
 " shutdown the confirmation every time you open a file
 let g:ycm_confirm_extra_conf = 0
 
-" jump to definition
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" Short-cuts
+function SetYCMShortcuts()
+  " jump to definition
+  nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-" compile code immediately
-nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+  " compile code immediately
+  nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+endfunction()
+
+augroup YCM_config
+  autocmd!
+  autocmd FileType * call SetYCMShortcuts()
+augroup END
 
 " load identifiers from tags
 " let g:ycm_collect_identifiers_from_tags_files = 1
@@ -21,10 +29,14 @@ nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 " let g:ycm_server_log_level = 'debug'
 
 " If you want to change the python interpreter, change the value below
-" let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+" let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
 
-" For enable autocomplete for Java
-let g:EclimCompletionMethod = 'omnifunc'
+" Disable Eclim to prevent any potential conflict
+let g:EclimFileTypeValidate = 0
+" let g:EclimCompletionMethod = 'omnifunc'
+
+" Prevent conflict with syntastic plugin
+let g:syntastic_java_checkers = []
 
 " To disable using 'tab' to select items, since 'tab' is mainly for other
 " purpose, like snippets
