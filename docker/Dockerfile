@@ -238,6 +238,8 @@ RUN set -ex; \
         shellcheck \
         # Install json linter
         jq \
+        # Install xmllint
+        libxml2-utils \
     ';\
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \
@@ -246,6 +248,8 @@ RUN set -ex; \
     npm install yarn --global \
     && yarn global add prettier \
     && yarn global add jsonlint \
+    && npm install --global write-good \
+    && npm install --global alex \
     rm -rf /var/lib/apt/lists/*
 
 # Install python3 vim/neovim plugin/dependencies

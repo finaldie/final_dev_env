@@ -63,7 +63,9 @@ let g:ale_linters = {
 \   'cpp': ['clangtidy'],
 \   'sh': ['shellcheck'],
 \   'yaml': ['yamllint'],
+\   'markdown': ['alex', 'write-good'],
 \   'json': ['jsonlint'],
+\   'xml': ['xmllint'],
 \}
 
 "" ----------------- Disable warnings -----------------
@@ -98,6 +100,7 @@ let g:ale_fixers = {
 \   'yaml': ['prettier'],
 \   'markdown': ['prettier'],
 \   'json': ['jq', 'prettier'],
+\   'xml': ['xmllint'],
 \}
 
 "" References
