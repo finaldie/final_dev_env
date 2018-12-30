@@ -63,6 +63,7 @@ let g:ale_linters = {
 \   'cpp': ['clangtidy'],
 \   'sh': ['shellcheck'],
 \   'yaml': ['yamllint'],
+\   'json': ['jsonlint'],
 \}
 
 "" ----------------- Disable warnings -----------------

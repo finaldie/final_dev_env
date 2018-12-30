@@ -244,7 +244,8 @@ RUN set -ex; \
     '; \
     # Install js pkg manager yarn
     npm install yarn --global \
-    yarn global add prettier \
+    && yarn global add prettier \
+    && yarn global add jsonlint \
     rm -rf /var/lib/apt/lists/*
 
 # Install python3 vim/neovim plugin/dependencies
