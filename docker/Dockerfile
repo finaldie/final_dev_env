@@ -246,10 +246,14 @@ RUN set -ex; \
     '; \
     # Install js pkg manager yarn
     npm install yarn --global \
+    # Install formatter
     && yarn global add prettier \
     && yarn global add jsonlint \
+    # Install natural language writing helper (lint)
     && npm install --global write-good \
     && npm install --global alex \
+    # Install html lint
+    && npm install --global htmlhint \
     rm -rf /var/lib/apt/lists/*
 
 # Install python3 vim/neovim plugin/dependencies
