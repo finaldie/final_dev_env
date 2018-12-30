@@ -17,6 +17,7 @@ ENV PROTOBUF_VERION v3.6.1
 ENV NEOVIM_VERSION v0.3.1
 ENV NODEJS_VERSION v10.15.0
 ENV JAVA_VERSION openjdk-11-jdk
+ENV CLANG_VERSION 7
 
 # Install all base dependencies
 RUN set -ex; \
@@ -75,27 +76,29 @@ RUN set -ex; \
 #  - Install share: clang-format.py -> /usr/local/share/clang/
 # Notes, the pre-built bin/lib/includes should be already downloaded
 # Create symbol links
-COPY ./docker/clang7-prebuilt/bin/* /usr/local/bin/
-COPY ./docker/clang7-prebuilt/lib/clang /usr/local/lib/clang/
-COPY ./docker/clang7-prebuilt/lib/libclang.so.7 /usr/local/lib/
-COPY ./docker/clang7-prebuilt/share/clang/* /usr/local/share/clang/
+COPY ./docker/clang${CLANG_VERSION}-prebuilt/bin/* /usr/local/bin/
+COPY ./docker/clang${CLANG_VERSION}-prebuilt/lib/clang /usr/local/lib/clang/
+COPY ./docker/clang${CLANG_VERSION}-prebuilt/lib/libclang.so.${CLANG_VERSION} /usr/local/lib/
+COPY ./docker/clang${CLANG_VERSION}-prebuilt/share/clang/* /usr/local/share/clang/
 
 # Create symbol links
 RUN set -ex; \
     cd /usr/local/bin \
-    && ln -s clang-7 clang \
+    && ln -s clang-${CLANG_VERSION} clang \
     && ln -s clang clang++ \
     && ln -s lld ld.lld \
     && ln -s lld ld64.lld \
     && ln -s lld lld-link \
     && ln -s lld wasm-ld \
     && cd /usr/local/lib \
-    && ln -s libclang.so.7 libclang.so \
+    && ln -s libclang.so.${CLANG_VERSION} libclang.so \
     \
     # Verification
     && ls -l /usr/local/bin \
     && ls -l /usr/local/lib \
-    && ls -l /usr/local/share
+    && ls -l /usr/local/share \
+    && clang --version \
+    && clang++ --version
 
 ## Install fzf command line tool
 RUN set -ex; \
@@ -129,12 +132,11 @@ RUN set -ex; \
 
 # Install openJDK
 RUN set -ex; \
-    deps=' \
-        $JAVA_VERSION \
-    ';\
     apt-get update && apt-get install -y --no-install-recommends \
-        $deps \
-    && rm -rf /var/lib/apt/lists/*
+        $JAVA_VERSION \
+    && rm -rf /var/lib/apt/lists/* \
+    && java --version \
+    && javac --version
 
 # Compile and Install protobuf
 RUN set -ex; \
@@ -225,7 +227,13 @@ RUN set -ex; \
 #  Install Language Servers
 ## Install cquery
 RUN set -ex; \
-    git clone --depth 1 --recurse-submodules -j8 \
+    deps=' \
+        libtinfo5 \
+    ';\
+    apt-get update && apt-get install -y --no-install-recommends \
+        $deps \
+    && rm -rf /var/lib/apt/lists/* \
+    && git clone --depth 1 --recurse-submodules -j8 \
         git://github.com/cquery-project/cquery.git /build/cquery \
     && cd /build/cquery \
     && mkdir build \
@@ -264,6 +272,10 @@ RUN set -ex; \
     python3 /build/user_env/vim/plugged/YouCompleteMe/install.py \
         --clang-completer --ts-completer --java-completer
 
+## Install bash-language-server
+RUN set -ex; \
+    npm i -g bash-language-server
+
 # Install linters and fixers/formatters
 RUN set -ex; \
     deps=' \
@@ -278,7 +290,7 @@ RUN set -ex; \
         $deps \
     '; \
     # Install formatter
-    && yarn global add prettier \
+    yarn global add prettier \
     \
     && yarn global add jsonlint \
     \

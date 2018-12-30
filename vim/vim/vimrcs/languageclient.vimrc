@@ -91,6 +91,9 @@ augroup END
 " For C/C++ server ccls
 "  \ 'c': ['/usr/local/bin/ccls', '--log-file=/tmp/cc.log'],
 "  \ 'cpp': ['/usr/local/bin/ccls', '--log-file=/tmp/cc.log'],
+"
+" For Bash server
+"  \ 'sh': ['bash-language-server', 'start']
 
 let g:LanguageClient_serverCommands = {
   \ }
