@@ -10,7 +10,20 @@ let g:ycm_confirm_extra_conf = 0
 " Short-cuts
 function SetYCMShortcuts()
   " jump to definition
-  nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+  nnoremap <leader>jd  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+  nnoremap <leader>gt  :YcmCompleter GoTo<CR>
+  nnoremap <leader>gtt :YcmCompleter GoToImprecise<CR>
+  nnoremap <leader>gr  :YcmCompleter GoToReferences<CR>
+  nnoremap <leader>h   :YcmCompleter GetType<CR>
+  nnoremap <leader>hh  :YcmCompleter GetTypeImprecise<CR>
+  nnoremap <leader>gp  :YcmCompleter GetParent<CR>
+  nnoremap <leader>gd  :YcmCompleter GetDoc<CR>
+  nnoremap <leader>gdd :YcmCompleter GetDocImprecise<CR>
+
+  nnoremap <leader>fi  :YcmCompleter FixIt<CR>
+  nnoremap <leader>rn  :YcmCompleter RefactorRename<CR>
+  nnoremap <leader>fm  :YcmCompleter Format<CR>
+  nnoremap <leader>oi  :YcmCompleter OrganizeImports<CR>
 
   " compile code immediately
   nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
