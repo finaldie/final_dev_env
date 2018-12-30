@@ -53,6 +53,8 @@ let g:ale_cpp_clangtidy_checks = [
 \   'readability-*'
 \]
 
+let g:ale_javascript_eslint_suppress_missing_config = 1
+
 " E.g. 'python': ['flake8', 'pylint'],
 " Notes: for filetype c and cpp, if 'parse_makefile' doesn't work well,
 " needs to generate compile_commands.json and switch to
