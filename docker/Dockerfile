@@ -236,6 +236,8 @@ RUN set -ex; \
         npm \
         # Install shell linter
         shellcheck \
+        # Install json linter
+        jq \
     ';\
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \

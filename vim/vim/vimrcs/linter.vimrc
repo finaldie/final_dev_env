@@ -96,6 +96,7 @@ let g:ale_fixers = {
 \   'cpp': ['clang-format'],
 \   'yaml': ['prettier'],
 \   'markdown': ['prettier'],
+\   'json': ['jq', 'prettier'],
 \}
 
 "" References
