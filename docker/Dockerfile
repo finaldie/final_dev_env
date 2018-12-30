@@ -34,6 +34,8 @@ RUN set -ex; \
         bear \
         valgrind \
         autoconf \
+        automake \
+        libtool \
         ncurses-dev \
         libyaml-dev \
         cmake \
@@ -58,6 +60,35 @@ RUN set -ex; \
     # Create Building folder
     && mkdir /build
 
+## Install Clang/LLVM pre-built toolchains:
+#  - Install bin: clang-7, clangd, clang-tidy, clang-format, lld -> /usr/local/bin/
+#  - Install includes: lib/clang -> /usr/local/lib/clang
+#  - Install libs: libclang.so.7 -> /usr/local/lib/
+#  - Install share: clang-format.py -> /usr/local/share/clang/
+# Notes, the pre-built bin/lib/includes should be already downloaded
+# Create symbol links
+COPY ./docker/clang7-prebuilt/bin/* /usr/local/bin/
+COPY ./docker/clang7-prebuilt/lib/clang /usr/local/lib/clang/
+COPY ./docker/clang7-prebuilt/lib/libclang.so.7 /usr/local/lib/
+COPY ./docker/clang7-prebuilt/share/clang/* /usr/local/share/clang/
+
+# Create symbol links
+RUN set -ex; \
+    cd /usr/local/bin \
+    && ln -s clang-7 clang \
+    && ln -s clang clang++ \
+    && ln -s lld ld.lld \
+    && ln -s lld ld64.lld \
+    && ln -s lld lld-link \
+    && ln -s lld wasm-ld \
+    && cd /usr/local/lib \
+    && ln -s libclang.so.7 libclang.so \
+    \
+    # Verification
+    && ls -l /usr/local/bin \
+    && ls -l /usr/local/lib \
+    && ls -l /usr/local/share
+
 # Compile and Install latest jemalloc
 RUN set -ex; \
     git clone --branch 5.1.0 --depth 1 --recurse-submodules -j8 \
@@ -72,10 +103,11 @@ RUN set -ex; \
 # Compile and Install protobuf
 RUN set -ex; \
     git clone --branch v3.6.1 --depth 1 --recurse-submodules -j8 \
-        git@github.com:protocolbuffers/protobuf.git /build/protobuf \
+        git://github.com/protocolbuffers/protobuf.git /build/protobuf \
     # Build c++ protobuf
     && cd /build/protobuf \
-    && ./autogen.sh && ./configure --enable-static=no \
+    && ./autogen.sh \
+    && ./configure --enable-static=no \
     && make -j8 \
     \
     # Build python protobuf
@@ -114,7 +146,6 @@ RUN set -ex; \
     deps=' \
         ninja-build \
         gettext \
-        libtool \
         libtool-bin \
         automake \
         pkg-config \
@@ -153,35 +184,6 @@ RUN set -ex; \
 # Copy files and fix bashrcs
 COPY ./docker/bash_profile /root/.bash_profile
 COPY ./user_env /build/user_env
-
-## Install Clang/LLVM pre-built toolchains:
-#  - Install bin: clang-7, clangd, clang-tidy, clang-format, lld -> /usr/local/bin/
-#  - Install includes: lib/clang -> /usr/local/lib/clang
-#  - Install libs: libclang.so.7 -> /usr/local/lib/
-#  - Install share: clang-format.py -> /usr/local/share/clang/
-# Notes, the pre-built bin/lib/includes should be already downloaded
-# Create symbol links
-COPY ./docker/clang7-prebuilt/bin/* /usr/local/bin/
-COPY ./docker/clang7-prebuilt/lib/clang /usr/local/lib/clang/
-COPY ./docker/clang7-prebuilt/lib/libclang.so.7 /usr/local/lib/
-COPY ./docker/clang7-prebuilt/share/clang/* /usr/local/share/clang/
-
-# Create symbol links
-RUN set -ex; \
-    cd /usr/local/bin \
-    && ln -s clang-7 clang \
-    && ln -s clang clang++ \
-    && ln -s lld ld.lld \
-    && ln -s lld ld64.lld \
-    && ln -s lld lld-link \
-    && ln -s lld wasm-ld \
-    && cd /usr/local/lib \
-    && ln -s libclang.so.7 libclang.so \
-    \
-    # Verification
-    && ls -l /usr/local/bin \
-    && ls -l /usr/local/lib \
-    && ls -l /usr/local/share
 
 # Fix bash variables
 RUN set -ex; \
