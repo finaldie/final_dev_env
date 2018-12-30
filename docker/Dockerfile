@@ -247,6 +247,17 @@ RUN set -ex; \
     && rm -rf /build/ccls \
     && apt-get purge -y --auto-remove $deps
 
+## Install bash linter - shellcheck
+RUN set -ex; \
+    deps=' \
+        shellcheck \
+    ';\
+    apt-get update && apt-get install -y --no-install-recommends \
+        $deps \
+    '; \
+    rm -rf /var/lib/apt/lists/*
+
+
 # Post-Install
 RUN set -ex; \
     # Finish the last step of deoplete.nvim for neovim if needed
