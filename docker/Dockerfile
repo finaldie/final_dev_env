@@ -1,5 +1,5 @@
 # Based on ubuntu 18.04 image
-FROM ubuntu:18.04
+FROM ubuntu:18.10
 
 VOLUME /workspace
 WORKDIR /workspace
@@ -11,11 +11,10 @@ ENV TZ=America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Package Versions
-ENV FZF_VERION 0.17.05
+ENV FZF_VERION 0.17.5
 ENV JEMALLOC_VERSION 5.1.0
 ENV PROTOBUF_VERION v3.6.1
 ENV NEOVIM_VERSION v0.3.1
-ENV NVM_DOWNLOAD_URL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh
 ENV NODEJS_VERSION v10.15.0
 ENV JAVA_VERSION openjdk-11-jdk
 
@@ -116,13 +115,16 @@ RUN set -ex; \
     && cd \
     && rm -rf /build/jemalloc
 
-# Install node version manager before install node.js and npm
+# Install node version manager (n) before install node.js and npm
 RUN set -ex; \
-    curl -o- $NVM_DOWNLOAD_URL | bash
-
-RUN set -ex; \
+    git clone git://github.com/tj/n.git /build/n \
+    && cd /build/n \
+    && make install \
     # Install node.js, npm and yarn
-    nvm install $NODEJS_VERSION --latest-npm \
+    && n lts \
+    && curl -0 -L https://npmjs.com/install.sh | sh \
+    && node -v \
+    && npm -v \
     && npm install yarn --global
 
 # Install openJDK
@@ -132,8 +134,7 @@ RUN set -ex; \
     ';\
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \
-    '; \
-    rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 # Compile and Install protobuf
 RUN set -ex; \
