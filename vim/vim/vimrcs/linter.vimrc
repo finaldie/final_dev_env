@@ -61,6 +61,8 @@ let g:ale_linters = {
 \   'python': ['flake8', 'pylint'],
 \   'c': ['clangtidy'],
 \   'cpp': ['clangtidy'],
+\   'sh': ['shellcheck'],
+\   'yaml': ['yamllint'],
 \}
 
 "" ----------------- Disable warnings -----------------
@@ -92,7 +94,6 @@ let g:ale_fixers = {
 \   'python': ['yapf'],
 \   'c': ['clang-format'],
 \   'cpp': ['clang-format'],
-\   'sh': ['shellcheck'],
 \}
 
 "" References

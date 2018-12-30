@@ -163,24 +163,6 @@ RUN set -ex; \
     && rm -rf /build/neovim \
     && apt-get purge -y --auto-remove $deps
 
-# Install vim/neovim plugin/dependencies
-RUN set -ex; \
-    pip3 install \
-        # Plugin dependencies
-        ## pynvim is part of neovim/vim8 deoplete.nvim plugin as neovim py client
-        pynvim \
-        \
-        # Language Servers
-        ## Python lang server
-        python-language-server \
-        yapf \
-        rope \
-        \
-        # Linters
-        ## python linters
-        flake8 \
-        pylint
-
 # Copy files and fix bashrcs
 COPY ./docker/bash_profile /root/.bash_profile
 COPY ./user_env /build/user_env
@@ -194,7 +176,7 @@ RUN set -ex; \
     && cat /build/user_env/all.bashrc | sed '/^$/d' | awk -F '/' '{print $NF}' | awk '{printf "source /build/user_env/bash/%s\n", $1}' > /build/user_env/all.bashrc.new \
     && mv /build/user_env/all.bashrc.new /build/user_env/all.bashrc
 
-#  Install Tools
+#  Install Language Servers
 ## Install YouCompleteMe
 RUN set -ex; \
     python3 /build/user_env/vim/plugged/YouCompleteMe/install.py --clang-completer
@@ -247,7 +229,7 @@ RUN set -ex; \
     && rm -rf /build/ccls \
     && apt-get purge -y --auto-remove $deps
 
-## Install bash linter - shellcheck
+# Install linters and fixers/formatters
 RUN set -ex; \
     deps=' \
         shellcheck \
@@ -257,6 +239,26 @@ RUN set -ex; \
     '; \
     rm -rf /var/lib/apt/lists/*
 
+# Install python3 vim/neovim plugin/dependencies
+RUN set -ex; \
+    pip3 install \
+        # Plugin dependencies
+        ## pynvim is part of neovim/vim8 deoplete.nvim plugin as neovim py client
+        pynvim \
+        \
+        # Language Servers
+        ## Python lang server
+        python-language-server \
+        yapf \
+        rope \
+        \
+        # Linters
+        ## python linters
+        flake8 \
+        pylint \
+        \
+        ## yaml linter
+        yamllint
 
 # Post-Install
 RUN set -ex; \
