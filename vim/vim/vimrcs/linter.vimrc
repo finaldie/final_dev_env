@@ -94,6 +94,8 @@ let g:ale_fixers = {
 \   'python': ['yapf'],
 \   'c': ['clang-format'],
 \   'cpp': ['clang-format'],
+\   'yaml': ['prettier'],
+\   'markdown': ['prettier'],
 \}
 
 "" References

@@ -232,11 +232,17 @@ RUN set -ex; \
 # Install linters and fixers/formatters
 RUN set -ex; \
     deps=' \
+        # Install node.js package manager
+        npm \
+        # Install shell linter
         shellcheck \
     ';\
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \
     '; \
+    # Install js pkg manager yarn
+    npm install yarn --global \
+    yarn global add prettier \
     rm -rf /var/lib/apt/lists/*
 
 # Install python3 vim/neovim plugin/dependencies
