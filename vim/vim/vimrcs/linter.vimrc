@@ -67,6 +67,7 @@ let g:ale_linters = {
 \   'json': ['jsonlint'],
 \   'xml': ['xmllint'],
 \   'html': ['htmlhint', 'alex', 'write-good'],
+\   'javascript': ['eslint'],
 \}
 
 "" ----------------- Disable warnings -----------------
@@ -103,6 +104,7 @@ let g:ale_fixers = {
 \   'json': ['jq', 'prettier'],
 \   'xml': ['xmllint'],
 \   'html': ['prettier'],
+\   'javascript': ['prettier', 'eslint'],
 \}
 
 "" References

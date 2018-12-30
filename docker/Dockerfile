@@ -10,6 +10,15 @@ ENV LC_ALL C.UTF-8
 ENV TZ=America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+# Package Versions
+ENV FZF_VERION 0.17.05
+ENV JEMALLOC_VERSION 5.1.0
+ENV PROTOBUF_VERION v3.6.1
+ENV NEOVIM_VERSION v0.3.1
+ENV NVM_DOWNLOAD_URL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh
+ENV NODEJS_VERSION v10.15.0
+ENV JAVA_VERSION openjdk-11-jdk
+
 # Install all base dependencies
 RUN set -ex; \
     deps=' \
@@ -89,9 +98,16 @@ RUN set -ex; \
     && ls -l /usr/local/lib \
     && ls -l /usr/local/share
 
+## Install fzf command line tool
+RUN set -ex; \
+    git clone --branch $FZF_VERION --depth 1 --recurse-submodules -j8 \
+        git://github.com/junegunn/fzf.git /build/fzf \
+    && cd /build/fzf \
+    && ./install --all
+
 # Compile and Install latest jemalloc
 RUN set -ex; \
-    git clone --branch 5.1.0 --depth 1 --recurse-submodules -j8 \
+    git clone --branch $JEMALLOC_VERSION --depth 1 --recurse-submodules -j8 \
         git://github.com/jemalloc/jemalloc.git /build/jemalloc \
     && cd /build/jemalloc \
     && ./autogen.sh \
@@ -100,9 +116,28 @@ RUN set -ex; \
     && cd \
     && rm -rf /build/jemalloc
 
+# Install node version manager before install node.js and npm
+RUN set -ex; \
+    curl -o- $NVM_DOWNLOAD_URL | bash
+
+RUN set -ex; \
+    # Install node.js, npm and yarn
+    nvm install $NODEJS_VERSION --latest-npm \
+    && npm install yarn --global
+
+# Install openJDK
+RUN set -ex; \
+    deps=' \
+        $JAVA_VERSION \
+    ';\
+    apt-get update && apt-get install -y --no-install-recommends \
+        $deps \
+    '; \
+    rm -rf /var/lib/apt/lists/*
+
 # Compile and Install protobuf
 RUN set -ex; \
-    git clone --branch v3.6.1 --depth 1 --recurse-submodules -j8 \
+    git clone --branch $PROTOBUF_VERION --depth 1 --recurse-submodules -j8 \
         git://github.com/protocolbuffers/protobuf.git /build/protobuf \
     # Build c++ protobuf
     && cd /build/protobuf \
@@ -131,7 +166,8 @@ RUN set -ex; \
 
 # Install vim
 RUN set -ex; \
-    git clone --depth 1 --recurse-submodules -j8 git://github.com/vim/vim.git /build/vim \
+    git clone --depth 1 --recurse-submodules -j8 \
+        git://github.com/vim/vim.git /build/vim \
     && cd /build/vim \
     && ./configure --enable-python3interp=yes \
                    --with-python3-config-dir=`python3-config --configdir` \
@@ -154,7 +190,7 @@ RUN set -ex; \
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \
     && rm -rf /var/lib/apt/lists/* \
-    && git clone --branch v0.3.1 --depth 1 --recurse-submodules -j8 \
+    && git clone --branch $NEOVIM_VERSION --depth 1 --recurse-submodules -j8 \
         git://github.com/neovim/neovim.git /build/neovim \
     && cd /build/neovim \
     && make CMAKE_BUILD_TYPE=Release -j8 \
@@ -170,29 +206,22 @@ COPY ./user_env /build/user_env
 # Fix bash variables
 RUN set -ex; \
     cat /root/.bash_profile >> /root/.bashrc \
-    && sed -i 's:export FENV_HOME=.*:export FENV_HOME=/build/user_env:' /build/user_env/bash/env_home.bashrc \
-    && sed -i 's:export FENV_GIT=.*:export FENV_GIT=/build:' /build/user_env/bash/env_home.bashrc \
-    && sed -i 's:export XDG_CONFIG_HOME=.*:export XDG_CONFIG_HOME=/build/user_env:' /build/user_env/bash/export_xdg_home.bashrc \
-    && cat /build/user_env/all.bashrc | sed '/^$/d' | awk -F '/' '{print $NF}' | awk '{printf "source /build/user_env/bash/%s\n", $1}' > /build/user_env/all.bashrc.new \
+    && sed -i 's:export FENV_HOME=.*:export FENV_HOME=/build/user_env:' \
+        /build/user_env/bash/env_home.bashrc \
+    && sed -i 's:export FENV_GIT=.*:export FENV_GIT=/build:' \
+        /build/user_env/bash/env_home.bashrc \
+    && sed -i 's:export XDG_CONFIG_HOME=.*:export XDG_CONFIG_HOME=/build/user_env:' \
+        /build/user_env/bash/export_xdg_home.bashrc \
+    && cat /build/user_env/all.bashrc | sed '/^$/d' | awk -F '/' '{print $NF}' \
+        | awk '{printf "source /build/user_env/bash/%s\n", $1}' > /build/user_env/all.bashrc.new \
     && mv /build/user_env/all.bashrc.new /build/user_env/all.bashrc
-
-#  Install Language Servers
-## Install YouCompleteMe
-RUN set -ex; \
-    python3 /build/user_env/vim/plugged/YouCompleteMe/install.py --clang-completer
 
 ## Install LanguageClient-neovim
 RUN set -ex; \
     cd /build/user_env/vim/plugged/LanguageClient-neovim \
     && bash ./install.sh
 
-## Install fzf command line tool
-RUN set -ex; \
-    git clone --branch 0.17.5 --depth 1 --recurse-submodules -j8 \
-        git://github.com/junegunn/fzf.git /build/fzf \
-    && cd /build/fzf \
-    && ./install --all
-
+#  Install Language Servers
 ## Install cquery
 RUN set -ex; \
     git clone --depth 1 --recurse-submodules -j8 \
@@ -229,14 +258,17 @@ RUN set -ex; \
     && rm -rf /build/ccls \
     && apt-get purge -y --auto-remove $deps
 
+## Install YouCompleteMe: Enable C/C++, JavaScript/TypeScript and Java
+RUN set -ex; \
+    python3 /build/user_env/vim/plugged/YouCompleteMe/install.py \
+        --clang-completer --ts-completer --java-completer
+
 # Install linters and fixers/formatters
 RUN set -ex; \
     deps=' \
-        # Install node.js package manager
-        npm \
         # Install shell linter
         shellcheck \
-        # Install json linter
+        # Install json formatter
         jq \
         # Install xmllint
         libxml2-utils \
@@ -244,16 +276,21 @@ RUN set -ex; \
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \
     '; \
-    # Install js pkg manager yarn
-    npm install yarn --global \
     # Install formatter
     && yarn global add prettier \
+    \
     && yarn global add jsonlint \
+    \
     # Install natural language writing helper (lint)
     && npm install --global write-good \
     && npm install --global alex \
+    \
     # Install html lint
     && npm install --global htmlhint \
+    \
+    # Install javascript lint
+    && npm install --global eslint \
+    \
     rm -rf /var/lib/apt/lists/*
 
 # Install python3 vim/neovim plugin/dependencies
