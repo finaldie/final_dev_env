@@ -1,5 +1,7 @@
 FROM ubuntu:18.10
 
+ENV DEBIAN_FRONTEND noninteractive
+
 VOLUME /workspace
 WORKDIR /workspace
 
@@ -14,10 +16,11 @@ ENV FZF_VERION 0.17.5
 ENV JEMALLOC_VERSION 5.1.0
 ENV PROTOBUF_VERION v3.6.1
 ENV NEOVIM_VERSION v0.3.2
+ENV CLANG_VERSION 7
+
 ENV JAVA_APT_VERSION openjdk-11-jdk
 ENV JAVA_PKG_VERSION openjdk-11.0.1
 ENV JAVA_DOWNLOAD_URL https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz
-ENV CLANG_VERSION 7
 
 # -----------------------------------------------------------------------------
 #                          Install Base Dependencies
@@ -65,33 +68,14 @@ RUN set -ex; \
         # Other basic dev package
         libtinfo5 \
         zlib1g-dev \
-    ';\
-    apt-get update && apt-get install -y --no-install-recommends \
-        $deps \
-    && rm -rf /var/lib/apt/lists/*
-
-# Create Building folder
-RUN set -ex; \
-    mkdir /build
-
-# -----------------------------------------------------------------------------
-#                          Install Compilers
-# -----------------------------------------------------------------------------
-# ------------------------ GCC and Build ToolChain ----------------------------
-RUN set -ex; \
-    deps=' \
+        \
+        # gcc
         build-essential \
         gdb \
         bear \
         valgrind \
-    ';\
-    apt-get update && apt-get install -y --no-install-recommends \
-        $deps \
-    && rm -rf /var/lib/apt/lists/*
-
-# ------------------------ Python3 --------------------------------------------
-RUN set -ex; \
-    deps=' \
+        \
+        # python3
         python3-dev \
         python3-pip \
         python3-setuptools \
@@ -100,12 +84,39 @@ RUN set -ex; \
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \
     && rm -rf /var/lib/apt/lists/* \
+    \
+    # python3 basic libraries
     && pip3 install \
         PyYAML \
         pympler \
         WebOb \
-        dnslib
+        dnslib \
+    \
+    && mkdir /build
 
+# -----------------------------------------------------------------------------
+#                          Install Fenv Plugins
+# -----------------------------------------------------------------------------
+# Copy files and fix bashrcs
+COPY ./docker/bash_profile /root/.bash_profile
+COPY ./user_env /build/user_env
+
+# Fix bash variables
+RUN set -ex; \
+    cat /root/.bash_profile >> /root/.bashrc \
+    && sed -i 's:export FENV_HOME=.*:export FENV_HOME=/build/user_env:' \
+        /build/user_env/bash/env_home.bashrc \
+    && sed -i 's:export FENV_GIT=.*:export FENV_GIT=/build:' \
+        /build/user_env/bash/env_home.bashrc \
+    && sed -i 's:export XDG_CONFIG_HOME=.*:export XDG_CONFIG_HOME=/build/user_env:' \
+        /build/user_env/bash/export_xdg_home.bashrc \
+    && cat /build/user_env/all.bashrc | sed '/^$/d' | awk -F '/' '{print $NF}' \
+        | awk '{printf "source /build/user_env/bash/%s\n", $1}' > /build/user_env/all.bashrc.new \
+    && mv /build/user_env/all.bashrc.new /build/user_env/all.bashrc
+
+# -----------------------------------------------------------------------------
+#                          Install Compilers
+# -----------------------------------------------------------------------------
 # ------------------------ Clang/LLVM pre-built -------------------------------
 #  - Install bin: clang-7, clangd, clang-tidy, clang-format, lld -> /usr/local/bin/
 #  - Install includes: lib/clang -> /usr/local/lib/clang
@@ -155,9 +166,11 @@ RUN set -ex; \
     mkdir -p /build/jdk \
     && cd /build/jdk \
     && wget $JAVA_DOWNLOAD_URL \
-    && tar -zxf ${JAVA_PKG_VERSION}_linux-x64_bin.tar.gz --directory /usr/lib/jvm \
-    && ln -s /usr/lib/jvm/bin/java /usr/local/bin/java \
-    && ln -s /usr/lib/jvm/bin/javac /usr/local/bin/javac \
+    && mkdir -p /usr/local/lib/jvm \
+    && tar -zxf ${JAVA_PKG_VERSION}_linux-x64_bin.tar.gz --directory /usr/local/lib/jvm \
+    && cd /usr/local/bin \
+    && ln -s /usr/local/lib/jvm/bin/java java \
+    && ln -s /usr/local/lib/jvm/bin/javac javac \
     \
     # Verification
     && java --version \
@@ -250,27 +263,6 @@ RUN set -ex; \
     && make install \
     && cd \
     && rm -rf /build/neovim
-
-
-# -----------------------------------------------------------------------------
-#                          Install Fenv Plugins
-# -----------------------------------------------------------------------------
-# Copy files and fix bashrcs
-COPY ./docker/bash_profile /root/.bash_profile
-COPY ./user_env /build/user_env
-
-# Fix bash variables
-RUN set -ex; \
-    cat /root/.bash_profile >> /root/.bashrc \
-    && sed -i 's:export FENV_HOME=.*:export FENV_HOME=/build/user_env:' \
-        /build/user_env/bash/env_home.bashrc \
-    && sed -i 's:export FENV_GIT=.*:export FENV_GIT=/build:' \
-        /build/user_env/bash/env_home.bashrc \
-    && sed -i 's:export XDG_CONFIG_HOME=.*:export XDG_CONFIG_HOME=/build/user_env:' \
-        /build/user_env/bash/export_xdg_home.bashrc \
-    && cat /build/user_env/all.bashrc | sed '/^$/d' | awk -F '/' '{print $NF}' \
-        | awk '{printf "source /build/user_env/bash/%s\n", $1}' > /build/user_env/all.bashrc.new \
-    && mv /build/user_env/all.bashrc.new /build/user_env/all.bashrc
 
 # -----------------------------------------------------------------------------
 #                          Post-Install/Fix Plugin Dependencies
