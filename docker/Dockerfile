@@ -13,15 +13,22 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 ENV FZF_VERION 0.17.5
 ENV JEMALLOC_VERSION 5.1.0
 ENV PROTOBUF_VERION v3.6.1
-ENV NEOVIM_VERSION v0.3.1
-ENV JAVA_VERSION openjdk-11-jdk
+ENV NEOVIM_VERSION v0.3.2
+ENV JAVA_APT_VERSION openjdk-11-jdk
+ENV JAVA_PKG_VERSION openjdk-11.0.1
+ENV JAVA_DOWNLOAD_URL https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz
 ENV CLANG_VERSION 7
 
 # -----------------------------------------------------------------------------
 #                          Install Base Dependencies
 # -----------------------------------------------------------------------------
 RUN set -ex; \
+    apt-get update && apt-get install -y --no-install-recommends apt-utils \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN set -ex; \
     deps=' \
+        # Basic tools
         git \
         tmux \
         lsof \
@@ -43,6 +50,21 @@ RUN set -ex; \
         tree \
         less \
         dnsutils \
+        unzip \
+        \
+        # Building toolchain
+        ninja-build \
+        gettext \
+        libtool-bin \
+        pkg-config \
+        autoconf \
+        automake \
+        libtool \
+        cmake \
+        \
+        # Other basic dev package
+        libtinfo5 \
+        zlib1g-dev \
     ';\
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \
@@ -62,10 +84,6 @@ RUN set -ex; \
         gdb \
         bear \
         valgrind \
-        autoconf \
-        automake \
-        libtool \
-        cmake \
     ';\
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \
@@ -134,11 +152,20 @@ RUN set -ex; \
 
 # ------------------------ OpenJDK --------------------------------------------
 RUN set -ex; \
-    apt-get update && apt-get install -y --no-install-recommends \
-        $JAVA_VERSION \
-    && rm -rf /var/lib/apt/lists/* \
+    mkdir -p /build/jdk \
+    && cd /build/jdk \
+    && wget $JAVA_DOWNLOAD_URL \
+    && tar -zxf ${JAVA_PKG_VERSION}_linux-x64_bin.tar.gz --directory /usr/lib/jvm \
+    && ln -s /usr/lib/jvm/bin/java /usr/local/bin/java \
+    && ln -s /usr/lib/jvm/bin/javac /usr/local/bin/javac \
+    \
+    # Verification
     && java --version \
-    && javac --version
+    && javac --version \
+    \
+    # Clean up
+    && cd / \
+    && rm -rf /build/jdk
 
 # -----------------------------------------------------------------------------
 #                          Install Libraries/Tools
@@ -195,7 +222,11 @@ RUN set -ex; \
 # -----------------------------------------------------------------------------
 # ------------------------ VIM ------------------------------------------------
 RUN set -ex; \
-    git clone --depth 1 --recurse-submodules -j8 \
+    # Env
+    which python3 \
+    \
+    # Build
+    && git clone --depth 1 --recurse-submodules -j8 \
         git://github.com/vim/vim.git /build/vim \
     && cd /build/vim \
     && ./configure --enable-python3interp=yes \
@@ -208,25 +239,17 @@ RUN set -ex; \
 
 # ------------------------ NEOVIM ---------------------------------------------
 RUN set -ex; \
-    deps=' \
-        ninja-build \
-        gettext \
-        libtool-bin \
-        automake \
-        pkg-config \
-        unzip \
-    ';\
-    apt-get update && apt-get install -y --no-install-recommends \
-        $deps \
-    && rm -rf /var/lib/apt/lists/* \
+    # Env
+    which python3 \
+    \
+    # Build
     && git clone --branch $NEOVIM_VERSION --depth 1 --recurse-submodules -j8 \
         git://github.com/neovim/neovim.git /build/neovim \
     && cd /build/neovim \
     && make CMAKE_BUILD_TYPE=Release -j8 \
     && make install \
     && cd \
-    && rm -rf /build/neovim \
-    && apt-get purge -y --auto-remove $deps
+    && rm -rf /build/neovim
 
 
 # -----------------------------------------------------------------------------
@@ -268,36 +291,24 @@ RUN set -ex; \
 #                          Install Language Servers
 # -----------------------------------------------------------------------------
 # ------------------------ cquery (C/C++) -------------------------------------
-RUN set -ex; \
-    deps=' \
-        libtinfo5 \
-    ';\
-    apt-get update && apt-get install -y --no-install-recommends \
-        $deps \
-    && rm -rf /var/lib/apt/lists/* \
-    && git clone --depth 1 --recurse-submodules -j8 \
-        git://github.com/cquery-project/cquery.git /build/cquery \
-    && cd /build/cquery \
-    && mkdir build \
-    && cd build \
-    && cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=release \
-    && cmake --build . \
-    && cmake --build . --target install \
-    # Install cquery into usr local
-    && cp /build/cquery/build/release/bin/cquery /usr/local/bin \
-    # Remove cquery build folder
-    && cd / \
-    && rm -rf /build/cquery
+#RUN set -ex; \
+#    git clone --depth 1 --recurse-submodules -j8 \
+#        git://github.com/cquery-project/cquery.git /build/cquery \
+#    && cd /build/cquery \
+#    && mkdir build \
+#    && cd build \
+#    && cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=release \
+#    && cmake --build . \
+#    && cmake --build . --target install \
+#    # Install cquery into usr local
+#    && cp /build/cquery/build/release/bin/cquery /usr/local/bin \
+#    # Remove cquery build folder
+#    && cd / \
+#    && rm -rf /build/cquery
 
 # ------------------------ ccls (C/C++) ---------------------------------------
 RUN set -ex; \
-    deps=' \
-        zlib1g-dev \
-    ';\
-    apt-get update && apt-get install -y --no-install-recommends \
-        $deps \
-    && rm -rf /var/lib/apt/lists/* \
-    && git clone --depth 1 --recurse-submodules -j8 \
+    git clone --depth 1 --recurse-submodules -j8 \
         git://github.com/MaskRay/ccls.git /build/ccls \
     && cd /build/ccls \
     && cmake -H. -BRelease -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_LINKER=/usr/local/bin/lld \
@@ -306,8 +317,7 @@ RUN set -ex; \
     && cmake --build Release \
     && cp /build/ccls/Release/ccls /usr/local/bin \
     && cd / \
-    && rm -rf /build/ccls \
-    && apt-get purge -y --auto-remove $deps
+    && rm -rf /build/ccls
 
 # -------- YouCompleteMe: Enable C/C++, JavaScript/TypeScript and Java --------
 RUN set -ex; \
