@@ -274,7 +274,7 @@ RUN set -ex; \
 
 ## Install bash-language-server
 RUN set -ex; \
-    npm i -g bash-language-server
+    npm i -g --unsafe-perm bash-language-server
 
 # Install linters and fixers/formatters
 RUN set -ex; \
@@ -288,9 +288,8 @@ RUN set -ex; \
     ';\
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \
-    '; \
     # Install formatter
-    yarn global add prettier \
+    && yarn global add prettier \
     \
     && yarn global add jsonlint \
     \
@@ -304,7 +303,7 @@ RUN set -ex; \
     # Install javascript lint
     && npm install --global eslint \
     \
-    rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 # Install python3 vim/neovim plugin/dependencies
 RUN set -ex; \
