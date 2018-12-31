@@ -1,4 +1,3 @@
-# Based on ubuntu 18.04 image
 FROM ubuntu:18.10
 
 VOLUME /workspace
@@ -15,11 +14,12 @@ ENV FZF_VERION 0.17.5
 ENV JEMALLOC_VERSION 5.1.0
 ENV PROTOBUF_VERION v3.6.1
 ENV NEOVIM_VERSION v0.3.1
-ENV NODEJS_VERSION v10.15.0
 ENV JAVA_VERSION openjdk-11-jdk
 ENV CLANG_VERSION 7
 
-# Install all base dependencies
+# -----------------------------------------------------------------------------
+#                          Install Base Dependencies
+# -----------------------------------------------------------------------------
 RUN set -ex; \
     deps=' \
         git \
@@ -69,6 +69,9 @@ RUN set -ex; \
     # Create Building folder
     && mkdir /build
 
+# -----------------------------------------------------------------------------
+#                          Install Compilers
+# -----------------------------------------------------------------------------
 ## Install Clang/LLVM pre-built toolchains:
 #  - Install bin: clang-7, clangd, clang-tidy, clang-format, lld -> /usr/local/bin/
 #  - Install includes: lib/clang -> /usr/local/lib/clang
@@ -100,6 +103,30 @@ RUN set -ex; \
     && clang --version \
     && clang++ --version
 
+# Install nodejs version manager (n) before install node.js and npm
+RUN set -ex; \
+    git clone git://github.com/tj/n.git /build/n \
+    && cd /build/n \
+    && make install \
+    # Install node.js, npm and yarn
+    && n lts \
+    && curl -0 -L https://npmjs.com/install.sh | sh \
+    && node -v \
+    && npm -v \
+    && npm install yarn --global \
+    && rm -rf /build/n
+
+# Install openJDK
+RUN set -ex; \
+    apt-get update && apt-get install -y --no-install-recommends \
+        $JAVA_VERSION \
+    && rm -rf /var/lib/apt/lists/* \
+    && java --version \
+    && javac --version
+
+# -----------------------------------------------------------------------------
+#                          Install Libraries/Tools
+# -----------------------------------------------------------------------------
 ## Install fzf command line tool
 RUN set -ex; \
     git clone --branch $FZF_VERION --depth 1 --recurse-submodules -j8 \
@@ -117,26 +144,6 @@ RUN set -ex; \
     && make install_bin install_include install_lib \
     && cd \
     && rm -rf /build/jemalloc
-
-# Install node version manager (n) before install node.js and npm
-RUN set -ex; \
-    git clone git://github.com/tj/n.git /build/n \
-    && cd /build/n \
-    && make install \
-    # Install node.js, npm and yarn
-    && n lts \
-    && curl -0 -L https://npmjs.com/install.sh | sh \
-    && node -v \
-    && npm -v \
-    && npm install yarn --global
-
-# Install openJDK
-RUN set -ex; \
-    apt-get update && apt-get install -y --no-install-recommends \
-        $JAVA_VERSION \
-    && rm -rf /var/lib/apt/lists/* \
-    && java --version \
-    && javac --version
 
 # Compile and Install protobuf
 RUN set -ex; \
@@ -167,6 +174,9 @@ RUN set -ex; \
     && cd \
     && rm -rf /build/protobuf
 
+# -----------------------------------------------------------------------------
+#                          Install Editors
+# -----------------------------------------------------------------------------
 # Install vim
 RUN set -ex; \
     git clone --depth 1 --recurse-submodules -j8 \
@@ -202,6 +212,10 @@ RUN set -ex; \
     && rm -rf /build/neovim \
     && apt-get purge -y --auto-remove $deps
 
+
+# -----------------------------------------------------------------------------
+#                          Install Fenv Plugins
+# -----------------------------------------------------------------------------
 # Copy files and fix bashrcs
 COPY ./docker/bash_profile /root/.bash_profile
 COPY ./user_env /build/user_env
@@ -219,13 +233,25 @@ RUN set -ex; \
         | awk '{printf "source /build/user_env/bash/%s\n", $1}' > /build/user_env/all.bashrc.new \
     && mv /build/user_env/all.bashrc.new /build/user_env/all.bashrc
 
-## Install LanguageClient-neovim
+# -----------------------------------------------------------------------------
+#                          Post-Install/Fix Plugin Dependencies
+# -----------------------------------------------------------------------------
+## Post-Install LanguageClient-neovim
 RUN set -ex; \
     cd /build/user_env/vim/plugged/LanguageClient-neovim \
     && bash ./install.sh
 
-#  Install Language Servers
-## Install cquery
+## Post-Install deoplete.nvim
+RUN set -ex; \
+    pip3 install \
+        pynvim \
+    # Finish the last step of deoplete.nvim for neovim if needed
+    && nvim +UpdateRemotePlugins +qall
+
+# -----------------------------------------------------------------------------
+#                          Install Language Servers
+# -----------------------------------------------------------------------------
+## Install cquery (C/C++)
 RUN set -ex; \
     deps=' \
         libtinfo5 \
@@ -247,7 +273,7 @@ RUN set -ex; \
     && cd / \
     && rm -rf /build/cquery
 
-## Install ccls
+## Install ccls (C/C++)
 RUN set -ex; \
     deps=' \
         zlib1g-dev \
@@ -276,60 +302,114 @@ RUN set -ex; \
 RUN set -ex; \
     npm i -g --unsafe-perm bash-language-server
 
-# Install linters and fixers/formatters
+## Install python-language-server (pyls)
+RUN set -ex; \
+    pip3 install \
+        python-language-server
+
+# -----------------------------------------------------------------------------
+#                          Install Language Linters
+# -----------------------------------------------------------------------------
+# ------------------------ Python3 --------------------------------------------
+RUN set -ex; \
+    pip3 install \
+        flake8 \
+        pylint
+
+# ------------------------ Bash -----------------------------------------------
 RUN set -ex; \
     deps=' \
-        # Install shell linter
         shellcheck \
-        # Install json formatter
-        jq \
-        # Install xmllint
+    ';\
+    apt-get update && apt-get install -y --no-install-recommends \
+        $deps \
+    && rm -rf /var/lib/apt/lists/*
+
+# ------------------------ YAML -----------------------------------------------
+RUN set -ex; \
+    pip3 install \
+        yamllint
+
+# ------------------------ MarkDown -------------------------------------------
+RUN set -ex; \
+    npm install --global write-good \
+    && npm install --global alex
+
+# ------------------------ JSON -----------------------------------------------
+RUN set -ex; \
+    yarn global add jsonlint
+
+# ------------------------ XML ------------------------------------------------
+RUN set -ex; \
+    deps=' \
         libxml2-utils \
     ';\
     apt-get update && apt-get install -y --no-install-recommends \
         $deps \
-    # Install formatter
-    && yarn global add prettier \
-    \
-    && yarn global add jsonlint \
-    \
-    # Install natural language writing helper (lint)
-    && npm install --global write-good \
-    && npm install --global alex \
-    \
-    # Install html lint
-    && npm install --global htmlhint \
-    \
-    # Install javascript lint
-    && npm install --global eslint \
-    \
     && rm -rf /var/lib/apt/lists/*
 
-# Install python3 vim/neovim plugin/dependencies
+# ------------------------ HTML -----------------------------------------------
+RUN set -ex; \
+    # natural language
+    npm install --global write-good \
+    && npm install --global alex \
+    \
+    # html syntax lint
+    && npm install --global htmlhint
+
+# ------------------------ JavaScript -----------------------------------------
+RUN set -ex; \
+    npm install --global eslint
+
+# -----------------------------------------------------------------------------
+#                          Install Language Fixers/Formatters
+# -----------------------------------------------------------------------------
+# ------------------------ Python3 --------------------------------------------
 RUN set -ex; \
     pip3 install \
-        # Plugin dependencies
-        ## pynvim is part of neovim/vim8 deoplete.nvim plugin as neovim py client
-        pynvim \
-        \
-        # Language Servers
-        ## Python lang server
-        python-language-server \
+        # code formatting (preferred over autopep8)
         yapf \
-        rope \
-        \
-        # Linters
-        ## python linters
-        flake8 \
-        pylint \
-        \
-        ## yaml linter
-        yamllint
+        # Completions and renaming
+        rope
 
-# Post-Install
+# ------------------------ YAML -----------------------------------------------
 RUN set -ex; \
-    # Finish the last step of deoplete.nvim for neovim if needed
-    nvim +UpdateRemotePlugins +qall
+    yarn global add prettier
+
+# ------------------------ MarkDown -------------------------------------------
+RUN set -ex; \
+    yarn global add prettier
+
+# ------------------------ JSON -----------------------------------------------
+RUN set -ex; \
+    deps=' \
+        # Install json formatter
+        jq \
+    ';\
+    apt-get update && apt-get install -y --no-install-recommends \
+        $deps \
+    && rm -rf /var/lib/apt/lists/* \
+    \
+    && yarn global add prettier
+
+# ------------------------ XML ------------------------------------------------
+RUN set -ex; \
+    deps=' \
+        libxml2-utils \
+    ';\
+    apt-get update && apt-get install -y --no-install-recommends \
+        $deps \
+    && rm -rf /var/lib/apt/lists/*
+
+# ------------------------ HTML -----------------------------------------------
+RUN set -ex; \
+    yarn global add prettier
+
+# ------------------------ JavaScript -----------------------------------------
+RUN set -ex; \
+    yarn global add prettier \
+    && npm install --global eslint
+
 
 # Entrypoint
 CMD ["/bin/bash"]

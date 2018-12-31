@@ -60,9 +60,9 @@ let g:ale_javascript_eslint_suppress_missing_config = 1
 " needs to generate compile_commands.json and switch to
 " 'parse_compile_commands' to try again
 let g:ale_linters = {
-\   'python': ['flake8', 'pylint'],
 \   'c': ['clangtidy'],
 \   'cpp': ['clangtidy'],
+\   'python': ['flake8', 'pylint'],
 \   'sh': ['shellcheck'],
 \   'yaml': ['yamllint'],
 \   'markdown': ['alex', 'write-good'],
@@ -98,9 +98,9 @@ nmap <F8> <Plug>(ale_fix)
 " Fixers. Notes: For a single language, the item order should be: fixer first
 " then formatter
 let g:ale_fixers = {
-\   'python': ['yapf'],
 \   'c': ['clang-format'],
 \   'cpp': ['clang-format'],
+\   'python': ['yapf'],
 \   'yaml': ['prettier'],
 \   'markdown': ['prettier'],
 \   'json': ['jq', 'prettier'],
