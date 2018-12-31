@@ -1,7 +1,5 @@
 FROM ubuntu:18.10
 
-ENV DEBIAN_FRONTEND noninteractive
-
 VOLUME /workspace
 WORKDIR /workspace
 
@@ -19,16 +17,12 @@ ENV NEOVIM_VERSION v0.3.2
 ENV CLANG_VERSION 7
 
 ENV JAVA_APT_VERSION openjdk-11-jdk
-ENV JAVA_PKG_VERSION openjdk-11.0.1
+ENV JAVA_PKG_VERSION jdk-11.0.1
 ENV JAVA_DOWNLOAD_URL https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz
 
 # -----------------------------------------------------------------------------
 #                          Install Base Dependencies
 # -----------------------------------------------------------------------------
-RUN set -ex; \
-    apt-get update && apt-get install -y --no-install-recommends apt-utils \
-    && rm -rf /var/lib/apt/lists/*
-
 RUN set -ex; \
     deps=' \
         # Basic tools
@@ -91,6 +85,8 @@ RUN set -ex; \
         pympler \
         WebOb \
         dnslib \
+        pynvim \
+        neovim \
     \
     && mkdir /build
 
@@ -167,12 +163,17 @@ RUN set -ex; \
     && cd /build/jdk \
     && wget $JAVA_DOWNLOAD_URL \
     && mkdir -p /usr/local/lib/jvm \
-    && tar -zxf ${JAVA_PKG_VERSION}_linux-x64_bin.tar.gz --directory /usr/local/lib/jvm \
+    && tar -zxf open${JAVA_PKG_VERSION}_linux-x64_bin.tar.gz --directory /usr/local/lib/jvm \
     && cd /usr/local/bin \
-    && ln -s /usr/local/lib/jvm/bin/java java \
-    && ln -s /usr/local/lib/jvm/bin/javac javac \
+    && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/java java \
+    && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/javac javac \
     \
     # Verification
+    && echo $PATH \
+    && ls -l /usr/local/lib/jvm \
+    && ls -l /usr/local/lib/jvm/${JAVA_PKG_VERSION} \
+    && ls -l /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin \
+    && ls -l /usr/local/bin \
     && java --version \
     && javac --version \
     \
@@ -272,12 +273,8 @@ RUN set -ex; \
     cd /build/user_env/vim/plugged/LanguageClient-neovim \
     && bash ./install.sh
 
-## Post-Install deoplete.nvim
 RUN set -ex; \
-    pip3 install \
-        pynvim \
-    # Finish the last step of deoplete.nvim for neovim if needed
-    && nvim --headless +UpdateRemotePlugins +qall &> /dev/null
+    nvim --headless +UpdateRemotePlugins +qall
 
 # -----------------------------------------------------------------------------
 #                          Install Language Servers

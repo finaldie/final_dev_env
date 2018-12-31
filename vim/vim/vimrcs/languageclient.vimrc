@@ -74,7 +74,7 @@ augroup END
 ""  - ccls: A fork of cquery with std=c++17 support, less code, less crash
 
 " For Python server pyls
-""  \ 'python': ['pyls'],
+"  \ 'python': ['pyls'],
 "
 " For C/C++ server clangd
 "  \ 'c': ['clangd'],
