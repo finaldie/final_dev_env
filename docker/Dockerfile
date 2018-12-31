@@ -262,7 +262,7 @@ RUN set -ex; \
     pip3 install \
         pynvim \
     # Finish the last step of deoplete.nvim for neovim if needed
-    && nvim +UpdateRemotePlugins +qall
+    && nvim --headless +UpdateRemotePlugins +qall &> /dev/null
 
 # -----------------------------------------------------------------------------
 #                          Install Language Servers
