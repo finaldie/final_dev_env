@@ -38,6 +38,26 @@ RUN set -ex; \
         wget \
         exuberant-ctags \
         cscope \
+        ncurses-dev \
+        libyaml-dev \
+        tree \
+        less \
+        dnsutils \
+    ';\
+    apt-get update && apt-get install -y --no-install-recommends \
+        $deps \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create Building folder
+RUN set -ex; \
+    mkdir /build
+
+# -----------------------------------------------------------------------------
+#                          Install Compilers
+# -----------------------------------------------------------------------------
+# ------------------------ GCC and Build ToolChain ----------------------------
+RUN set -ex; \
+    deps=' \
         build-essential \
         gdb \
         bear \
@@ -45,13 +65,15 @@ RUN set -ex; \
         autoconf \
         automake \
         libtool \
-        ncurses-dev \
-        libyaml-dev \
         cmake \
-        tree \
-        less \
-        dnsutils \
-        fonts-powerline \
+    ';\
+    apt-get update && apt-get install -y --no-install-recommends \
+        $deps \
+    && rm -rf /var/lib/apt/lists/*
+
+# ------------------------ Python3 --------------------------------------------
+RUN set -ex; \
+    deps=' \
         python3-dev \
         python3-pip \
         python3-setuptools \
@@ -61,18 +83,12 @@ RUN set -ex; \
         $deps \
     && rm -rf /var/lib/apt/lists/* \
     && pip3 install \
-        pylint \
         PyYAML \
         pympler \
         WebOb \
-        dnslib \
-    # Create Building folder
-    && mkdir /build
+        dnslib
 
-# -----------------------------------------------------------------------------
-#                          Install Compilers
-# -----------------------------------------------------------------------------
-## Install Clang/LLVM pre-built toolchains:
+# ------------------------ Clang/LLVM pre-built -------------------------------
 #  - Install bin: clang-7, clangd, clang-tidy, clang-format, lld -> /usr/local/bin/
 #  - Install includes: lib/clang -> /usr/local/lib/clang
 #  - Install libs: libclang.so.7 -> /usr/local/lib/
@@ -103,7 +119,7 @@ RUN set -ex; \
     && clang --version \
     && clang++ --version
 
-# Install nodejs version manager (n) before install node.js and npm
+# ------------------------ Nodejs ---------------------------------------------
 RUN set -ex; \
     git clone git://github.com/tj/n.git /build/n \
     && cd /build/n \
@@ -116,7 +132,7 @@ RUN set -ex; \
     && npm install yarn --global \
     && rm -rf /build/n
 
-# Install openJDK
+# ------------------------ OpenJDK --------------------------------------------
 RUN set -ex; \
     apt-get update && apt-get install -y --no-install-recommends \
         $JAVA_VERSION \
@@ -127,14 +143,14 @@ RUN set -ex; \
 # -----------------------------------------------------------------------------
 #                          Install Libraries/Tools
 # -----------------------------------------------------------------------------
-## Install fzf command line tool
+# ------------------------ command line tool: fzf -----------------------------
 RUN set -ex; \
     git clone --branch $FZF_VERION --depth 1 --recurse-submodules -j8 \
         git://github.com/junegunn/fzf.git /build/fzf \
     && cd /build/fzf \
     && ./install --all
 
-# Compile and Install latest jemalloc
+# ------------------------ Jemalloc -------------------------------------------
 RUN set -ex; \
     git clone --branch $JEMALLOC_VERSION --depth 1 --recurse-submodules -j8 \
         git://github.com/jemalloc/jemalloc.git /build/jemalloc \
@@ -145,7 +161,7 @@ RUN set -ex; \
     && cd \
     && rm -rf /build/jemalloc
 
-# Compile and Install protobuf
+# ------------------------ Protobuf -------------------------------------------
 RUN set -ex; \
     git clone --branch $PROTOBUF_VERION --depth 1 --recurse-submodules -j8 \
         git://github.com/protocolbuffers/protobuf.git /build/protobuf \
@@ -177,7 +193,7 @@ RUN set -ex; \
 # -----------------------------------------------------------------------------
 #                          Install Editors
 # -----------------------------------------------------------------------------
-# Install vim
+# ------------------------ VIM ------------------------------------------------
 RUN set -ex; \
     git clone --depth 1 --recurse-submodules -j8 \
         git://github.com/vim/vim.git /build/vim \
@@ -190,7 +206,7 @@ RUN set -ex; \
     && cd \
     && rm -rf /build/vim
 
-# Install neovim
+# ------------------------ NEOVIM ---------------------------------------------
 RUN set -ex; \
     deps=' \
         ninja-build \
@@ -251,7 +267,7 @@ RUN set -ex; \
 # -----------------------------------------------------------------------------
 #                          Install Language Servers
 # -----------------------------------------------------------------------------
-## Install cquery (C/C++)
+# ------------------------ cquery (C/C++) -------------------------------------
 RUN set -ex; \
     deps=' \
         libtinfo5 \
@@ -273,7 +289,7 @@ RUN set -ex; \
     && cd / \
     && rm -rf /build/cquery
 
-## Install ccls (C/C++)
+# ------------------------ ccls (C/C++) ---------------------------------------
 RUN set -ex; \
     deps=' \
         zlib1g-dev \
@@ -293,16 +309,16 @@ RUN set -ex; \
     && rm -rf /build/ccls \
     && apt-get purge -y --auto-remove $deps
 
-## Install YouCompleteMe: Enable C/C++, JavaScript/TypeScript and Java
+# -------- YouCompleteMe: Enable C/C++, JavaScript/TypeScript and Java --------
 RUN set -ex; \
     python3 /build/user_env/vim/plugged/YouCompleteMe/install.py \
         --clang-completer --ts-completer --java-completer
 
-## Install bash-language-server
+# ------------------------ Bash ---------------------------------------
 RUN set -ex; \
     npm i -g --unsafe-perm bash-language-server
 
-## Install python-language-server (pyls)
+# ------------------------ Python (pyls) --------------------------------------
 RUN set -ex; \
     pip3 install \
         python-language-server
