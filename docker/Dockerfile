@@ -62,6 +62,7 @@ RUN set -ex; \
         # Other basic dev package
         libtinfo5 \
         zlib1g-dev \
+        libc-ares-dev \
         \
         # gcc
         build-essential \
@@ -209,7 +210,7 @@ RUN set -ex; \
     # Build c++ protobuf
     && cd /build/protobuf \
     && ./autogen.sh \
-    && ./configure --enable-static=no \
+    && ./configure \
     && make -j8 \
     \
     # Build python protobuf
@@ -280,20 +281,20 @@ RUN set -ex; \
 #                          Install Language Servers
 # -----------------------------------------------------------------------------
 # ------------------------ cquery (C/C++) -------------------------------------
-#RUN set -ex; \
-#    git clone --depth 1 --recurse-submodules -j8 \
-#        git://github.com/cquery-project/cquery.git /build/cquery \
-#    && cd /build/cquery \
-#    && mkdir build \
-#    && cd build \
-#    && cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=release \
-#    && cmake --build . \
-#    && cmake --build . --target install \
-#    # Install cquery into usr local
-#    && cp /build/cquery/build/release/bin/cquery /usr/local/bin \
-#    # Remove cquery build folder
-#    && cd / \
-#    && rm -rf /build/cquery
+RUN set -ex; \
+    git clone --depth 1 --recurse-submodules -j8 \
+        git://github.com/cquery-project/cquery.git /build/cquery \
+    && cd /build/cquery \
+    && mkdir build \
+    && cd build \
+    && cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=release \
+    && cmake --build . \
+    && cmake --build . --target install \
+    # Install cquery into usr local
+    && cp /build/cquery/build/release/bin/cquery /usr/local/bin \
+    # Remove cquery build folder
+    && cd / \
+    && rm -rf /build/cquery
 
 # ------------------------ ccls (C/C++) ---------------------------------------
 RUN set -ex; \

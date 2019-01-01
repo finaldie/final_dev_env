@@ -62,7 +62,7 @@ let g:ale_javascript_eslint_suppress_missing_config = 1
 let g:ale_linters = {
 \   'c': ['clangtidy'],
 \   'cpp': ['clangtidy'],
-\   'python': ['flake8', 'pylint'],
+\   'python': ['flake8'],
 \   'sh': ['shellcheck'],
 \   'yaml': ['yamllint'],
 \   'markdown': ['alex', 'write-good'],
@@ -100,7 +100,7 @@ nmap <F8> <Plug>(ale_fix)
 let g:ale_fixers = {
 \   'c': ['clang-format'],
 \   'cpp': ['clang-format'],
-\   'python': ['yapf'],
+\   'python': ['isort', 'yapf'],
 \   'yaml': ['prettier'],
 \   'markdown': ['prettier'],
 \   'json': ['jq', 'prettier'],
