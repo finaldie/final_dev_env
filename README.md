@@ -37,29 +37,31 @@ The following are the total plugins in here:
 
 ## Code Linters
 
-| Language | Linter |
-| C/C++ | clangtidy |
-| Python | flake8, pylint |
-| Bash | shellcheck |
-| YAML | yamllint |
-|Markdown | alex, write-good |
-|Json | jsonlint |
-|XML | xmllint |
-|HTML | htmllint, alex, write-good|
-|Javascript | eslint |
+| Language   | Linter                     |
+| ---------- | -------------------------- |
+| C/C++      | clangtidy                  |
+| Python     | flake8, pylint             |
+| Bash       | shellcheck                 |
+| YAML       | yamllint                   |
+| Markdown   | alex, write-good           |
+| Json       | jsonlint                   |
+| XML        | xmllint                    |
+| HTML       | htmllint, alex, write-good |
+| Javascript | eslint                     |
 
 ## Code Fixers/Formatters
 
-| Language | Fixers/Formatters |
-| C/C++ | clang-format |
-| Python | isort, yapf |
-| Bash | N/A |
-| YAML | prettier |
-|Markdown | prettier |
-|Json | jq, prettier |
-|XML | xmllint |
-|HTML | prettier|
-|Javascript | prettier, eslint |
+| Language   | Fixers/Formatters |
+| ---------- | ----------------- |
+| C/C++      | clang-format      |
+| Python     | isort, yapf       |
+| Bash       | N/A               |
+| YAML       | prettier          |
+| Markdown   | prettier          |
+| Json       | jq, prettier      |
+| XML        | xmllint           |
+| HTML       | prettier          |
+| Javascript | prettier, eslint  |
 
 # All-in-one Docker Image
 
