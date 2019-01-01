@@ -35,6 +35,16 @@ The following are the total plugins in here:
 - Omnifunc Management
   - [Shougo/deoplete.nvim][16]
 
+## Code Browsing/Completion
+
+| Language   | Language Server                               |
+| ---------- | --------------------------------------------- |
+| C/C++      | YouCompleteMe(libclang), cquery, clangd, ccls |
+| Python     | YouCompleteMe(jedi), pyls                     |
+| Java       | YouCompleteMe(eclipse-jdt)                    |
+| Javascript | YouCompleteMe(tsserver)                       |
+| Bash       | bash-language-server                          |
+
 ## Code Linters
 
 | Language   | Linter                     |
