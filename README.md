@@ -75,7 +75,7 @@ The following are the total plugins in here:
 
 # All-in-one Docker Image
 
-Besides go through the `Installation` steps, the eaisest way to use this environment is pulling the docker image, and start it directly:
+Besides go through the `Installation` steps, the eaisest way to use this environment is pulling the [Docker Image][23], and start it directly:
 
 ## Pull Docker Image
 
@@ -211,3 +211,4 @@ If you have more suggestions or recommendations, it's great to send a pull reque
 [20]: https://github.com/tpope/vim-surround
 [21]: https://github.com/airblade/vim-gitgutter
 [22]: https://github.com/junegunn/vim-plug
+[23]: https://cloud.docker.com/u/finaldie/repository/docker/finaldie/dev
