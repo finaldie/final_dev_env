@@ -1,6 +1,6 @@
 include $(topdir)/common/Makefile.common
 
-files := common.bashrc tags.bashrc
+files := common.bashrc tags.bashrc linux.bashrc
 env_homerc := env_home.bashrc
 
 all: export_env_home
