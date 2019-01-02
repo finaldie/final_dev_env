@@ -139,7 +139,7 @@ RUN set -ex; \
     && cd /usr/local/lib \
     && ln -s libclang.so.${CLANG_VERSION} libclang.so \
     # libgomp is used by Clang Polly Optimzer
-    && ln -s libgomp.so libomp.so \
+    && ln -s libomp.so libgomp.so \
     \
     # Verification
     && ls -l /usr/local/bin \
