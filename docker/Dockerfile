@@ -124,6 +124,7 @@ RUN set -ex; \
 COPY ./docker/clang${CLANG_VERSION}-prebuilt/bin/* /usr/local/bin/
 COPY ./docker/clang${CLANG_VERSION}-prebuilt/lib/clang /usr/local/lib/clang/
 COPY ./docker/clang${CLANG_VERSION}-prebuilt/lib/libclang.so.${CLANG_VERSION} /usr/local/lib/
+COPY ./docker/clang${CLANG_VERSION}-prebuilt/lib/libomp.so /usr/local/lib/
 COPY ./docker/clang${CLANG_VERSION}-prebuilt/share/clang/* /usr/local/share/clang/
 
 # Create symbol links
@@ -137,6 +138,8 @@ RUN set -ex; \
     && ln -s lld wasm-ld \
     && cd /usr/local/lib \
     && ln -s libclang.so.${CLANG_VERSION} libclang.so \
+    # libgomp is used by Clang Polly Optimzer
+    && ln -s libgomp.so libomp.so \
     \
     # Verification
     && ls -l /usr/local/bin \

@@ -31,6 +31,7 @@ clang7-install: clang7-download
 	    && cp -R $(CLANG7_DOWNLOAD)/$(CLANG7_NAME)/bin/lld $(CLANG7_PREBUILT)/bin \
 	    && cp -R $(CLANG7_DOWNLOAD)/$(CLANG7_NAME)/lib/clang $(CLANG7_PREBUILT)/lib/clang \
 	    && cp -R $(CLANG7_DOWNLOAD)/$(CLANG7_NAME)/lib/libclang.so.7 $(CLANG7_PREBUILT)/lib \
+	    && cp -R $(CLANG7_DOWNLOAD)/$(CLANG7_NAME)/lib/libomp.so $(CLANG7_PREBUILT)/lib \
 	    && cp -R $(CLANG7_DOWNLOAD)/$(CLANG7_NAME)/share/clang/clang-format.py $(CLANG7_PREBUILT)/share/clang \
 	    ; \
 	fi
