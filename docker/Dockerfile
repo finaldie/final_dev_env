@@ -13,12 +13,14 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 ENV FZF_VERION 0.17.5
 ENV JEMALLOC_VERSION 5.1.0
 ENV PROTOBUF_VERION v3.6.1
-ENV NEOVIM_VERSION v0.3.2
+ENV NEOVIM_VERSION v0.3.3
 ENV CLANG_VERSION 7
 
 ENV JAVA_APT_VERSION openjdk-11-jdk
 ENV JAVA_PKG_VERSION jdk-11.0.1
 ENV JAVA_DOWNLOAD_URL https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz
+
+ENV PLANTUML_VERSION 1.2018.14
 
 # -----------------------------------------------------------------------------
 #                          Install Base Dependencies
@@ -194,6 +196,10 @@ RUN set -ex; \
         git://github.com/junegunn/fzf.git /build/fzf \
     && cd /build/fzf \
     && ./install --all
+
+# ------------------------ command line tool: plantuml ------------------------
+COPY ./docker/plantuml-prebuilt/plantuml.${PLANTUML_VERSION}.jar /usr/local/lib/plantuml.jar
+COPY ./docker/tools/plantuml /usr/local/bin
 
 # ------------------------ Jemalloc -------------------------------------------
 RUN set -ex; \

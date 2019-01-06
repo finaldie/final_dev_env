@@ -37,7 +37,7 @@ source $FENV_HOME/vim/tagbar.vimrc
 " source $FENV_HOME/vim/taglist.vimrc
 
 " Auto re-genterate tag files and update the tagbar
-source $FENV_HOME/vim/gutentags.vimrc
+" source $FENV_HOME/vim/gutentags.vimrc
 
 source $FENV_HOME/vim/cscope.vimrc
 source $FENV_HOME/vim/easymotion.vimrc
