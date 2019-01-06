@@ -11,6 +11,11 @@ The project is Basic Development Environment, including:
 
 This environment is a simple, clean and easy to manage.
 
+## Editors
+
+- `Vim` latest `8.x` version
+- `NeoVim` `0.3.3` version
+
 ## Vim Plugins
 
 The following are the total plugins in here:
