@@ -64,9 +64,9 @@ RUN set -ex; \
 
 # ------------------------ OpenJDK --------------------------------------------
 RUN set -ex; \
-    mkdir -p /usr/local/lib/jvm
+    mkdir -p ${JAVA_HOME}
 
-COPY --from=dev-java ${JAVA_HOME} /usr/local/lib/jvm
+COPY --from=dev-java ${JAVA_HOME} ${JAVA_HOME}
 
 
 # ------------------------ APACHE MAVEN ---------------------------------------
