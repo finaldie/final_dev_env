@@ -70,7 +70,7 @@ COPY --from=dev-java ${JAVA_HOME} ${JAVA_HOME}
 
 # Create symbol links and Verification
 RUN set -ex; \
-    && cd /usr/local/bin \
+    cd /usr/local/bin \
     && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/java java \
     && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/javac javac \
     \
