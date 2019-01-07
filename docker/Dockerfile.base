@@ -26,6 +26,7 @@ RUN set -ex; \
         tree \
         less \
         unzip \
+        openssh-client \
         \
         # Tags
         exuberant-ctags \
