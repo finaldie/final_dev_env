@@ -68,6 +68,21 @@ RUN set -ex; \
 
 COPY --from=dev-java ${JAVA_HOME} ${JAVA_HOME}
 
+# Create symbol links and Verification
+RUN set -ex; \
+    && cd /usr/local/bin \
+    && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/java java \
+    && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/javac javac \
+    \
+    && echo $PATH \
+    && ls -l /usr/local/lib/jvm \
+    && ls -l /usr/local/lib/jvm/${JAVA_PKG_VERSION} \
+    && ls -l /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin \
+    && ls -l /usr/local/bin \
+    # Verification
+    && java --version \
+    && javac --version
+
 
 # ------------------------ APACHE MAVEN ---------------------------------------
 RUN set -ex; \
