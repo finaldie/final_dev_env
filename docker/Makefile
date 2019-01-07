@@ -66,8 +66,9 @@ DOCKER_BASE_NAME   := finaldie/dev-base
 DOCKER_CLANG_NAME  := finaldie/dev-clang
 DOCKER_CQUERY_NAME := finaldie/dev-cquery
 DOCKER_CCLS_NAME   := finaldie/dev-ccls
+DOCKER_JAVA_NAME   := finaldie/dev-java
 
-docker-deps: docker-base docker-clang docker-cquery docker-ccls
+docker-deps: docker-base docker-clang docker-cquery docker-ccls docker-java
 
 docker-base:
 	@docker build --rm -t $(DOCKER_BASE_NAME) -f ./Dockerfile.base ../
@@ -80,3 +81,6 @@ docker-cquery: docker-base
 
 docker-ccls: docker-clang
 	@docker build --rm -t $(DOCKER_CCLS_NAME) -f ./Dockerfile.ccls ../
+
+docker-java:
+	@docker build --rm -t $(DOCKER_JAVA_NAME) -f ./Dockerfile.javaimg ../

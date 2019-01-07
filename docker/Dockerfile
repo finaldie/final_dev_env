@@ -1,5 +1,6 @@
 FROM finaldie/dev-cquery as dev-cquery
 FROM finaldie/dev-ccls as dev-ccls
+FROM finaldie/dev-java as dev-java
 FROM finaldie/dev-clang:latest
 
 VOLUME /workspace
@@ -17,9 +18,7 @@ ENV JEMALLOC_VERSION 5.1.0
 ENV PROTOBUF_VERION v3.6.1
 ENV NEOVIM_VERSION v0.3.3
 
-ENV JAVA_APT_VERSION openjdk-11-jdk
 ENV JAVA_PKG_VERSION jdk-11.0.1
-ENV JAVA_DOWNLOAD_URL https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz
 ENV JAVA_HOME /usr/local/lib/jvm/${JAVA_PKG_VERSION}
 
 ENV MAVEN_VERSION 3.6.0
@@ -65,27 +64,10 @@ RUN set -ex; \
 
 # ------------------------ OpenJDK --------------------------------------------
 RUN set -ex; \
-    mkdir -p /build/jdk \
-    && cd /build/jdk \
-    && wget $JAVA_DOWNLOAD_URL \
-    && mkdir -p /usr/local/lib/jvm \
-    && tar -zxf open${JAVA_PKG_VERSION}_linux-x64_bin.tar.gz --directory /usr/local/lib/jvm \
-    && cd /usr/local/bin \
-    && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/java java \
-    && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/javac javac \
-    \
-    # Verification
-    && echo $PATH \
-    && ls -l /usr/local/lib/jvm \
-    && ls -l /usr/local/lib/jvm/${JAVA_PKG_VERSION} \
-    && ls -l /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin \
-    && ls -l /usr/local/bin \
-    && java --version \
-    && javac --version \
-    \
-    # Clean up
-    && cd / \
-    && rm -rf /build/jdk
+    mkdir -p /usr/local/lib/jvm
+
+COPY --from=dev-java ${JAVA_HOME} /usr/local/lib/jvm
+
 
 # ------------------------ APACHE MAVEN ---------------------------------------
 RUN set -ex; \
