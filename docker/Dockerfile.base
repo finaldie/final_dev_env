@@ -37,6 +37,11 @@ RUN set -ex; \
         less \
         dnsutils \
         unzip \
+        iputils-ping \
+        traceroute \
+        iptraf \
+        mtr \
+        tcpdump \
         \
         # Building toolchain
         ninja-build \
