@@ -55,6 +55,12 @@ notes:
 clang-prebuilt:
 	$(MAKE) -C docker clang7
 
+plantuml:
+	$(MAKE) -C docker plantuml
+
+docker_deps:
+	$(MAKE) -C docker docker-deps
+
 docker: clang-prebuilt plantuml
 	@docker build --rm -t $(DOCKER_NAME) -f ./docker/Dockerfile .
 

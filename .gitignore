@@ -4,3 +4,4 @@ tags
 # docker
 docker/downloads
 docker/clang7-prebuilt
+docker/plantuml-prebuilt

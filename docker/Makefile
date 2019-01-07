@@ -51,10 +51,32 @@ plantuml-download:
 	    mkdir -p $(PLANTUML_DOWNLOAD) && \
 	    cd $(PLANTUML_DOWNLOAD) && \
 	    wget $(PLANTUML_URL) \
+	    ; \
 	fi
 
 plantuml-install: plantuml-download
 	if [ ! -d $(PLANTUML_PREBUILT) ]; then \
 	    mkdir -p $(PLANTUML_PREBUILT) && \
 	    cp -R $(PLANTUML_DOWNLOAD)/$(PLANTUML_NAME) $(PLANTUML_PREBUILT) \
+	    ; \
 	fi
+
+# Docker base images
+DOCKER_BASE_NAME   := finaldie/dev-base
+DOCKER_CLANG_NAME  := finaldie/dev-clang
+DOCKER_CQUERY_NAME := finaldie/dev-cquery
+DOCKER_CCLS_NAME   := finaldie/dev-ccls
+
+docker-deps: docker-base docker-clang docker-cquery docker-ccls
+
+docker-base:
+	@docker build --rm -t $(DOCKER_BASE_NAME) -f ./Dockerfile.base ../
+
+docker-clang: docker-base
+	@docker build --rm -t $(DOCKER_CLANG_NAME) -f ./Dockerfile.clang ../
+
+docker-cquery: docker-base
+	@docker build --rm -t $(DOCKER_CQUERY_NAME) -f ./Dockerfile.cquery ../
+
+docker-ccls: docker-clang
+	@docker build --rm -t $(DOCKER_CCLS_NAME) -f ./Dockerfile.ccls ../

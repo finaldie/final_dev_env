@@ -1,4 +1,6 @@
-FROM ubuntu:18.10
+FROM finaldie/dev-cquery as dev-cquery
+FROM finaldie/dev-ccls as dev-ccls
+FROM finaldie/dev-clang:latest
 
 VOLUME /workspace
 WORKDIR /workspace
@@ -14,84 +16,12 @@ ENV FZF_VERION 0.17.5
 ENV JEMALLOC_VERSION 5.1.0
 ENV PROTOBUF_VERION v3.6.1
 ENV NEOVIM_VERSION v0.3.3
-ENV CLANG_VERSION 7
 
 ENV JAVA_APT_VERSION openjdk-11-jdk
 ENV JAVA_PKG_VERSION jdk-11.0.1
 ENV JAVA_DOWNLOAD_URL https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz
 
 ENV PLANTUML_VERSION 1.2018.14
-
-# -----------------------------------------------------------------------------
-#                          Install Base Dependencies
-# -----------------------------------------------------------------------------
-RUN set -ex; \
-    deps=' \
-        # Basic tools
-        git \
-        tmux \
-        lsof \
-        strace \
-        ltrace \
-        pstack \
-        telnet \
-        iproute2 \
-        netcat-openbsd \
-        expect \
-        net-tools \
-        psmisc \
-        curl \
-        wget \
-        exuberant-ctags \
-        cscope \
-        ncurses-dev \
-        libyaml-dev \
-        tree \
-        less \
-        dnsutils \
-        unzip \
-        \
-        # Building toolchain
-        ninja-build \
-        gettext \
-        libtool-bin \
-        pkg-config \
-        autoconf \
-        automake \
-        libtool \
-        cmake \
-        \
-        # Other basic dev package
-        libtinfo5 \
-        zlib1g-dev \
-        libc-ares-dev \
-        \
-        # gcc
-        build-essential \
-        gdb \
-        bear \
-        valgrind \
-        \
-        # python3
-        python3-dev \
-        python3-pip \
-        python3-setuptools \
-        python3-wheel \
-    ';\
-    apt-get update && apt-get install -y --no-install-recommends \
-        $deps \
-    && rm -rf /var/lib/apt/lists/* \
-    \
-    # python3 basic libraries
-    && pip3 install \
-        PyYAML \
-        pympler \
-        WebOb \
-        dnslib \
-        pynvim \
-        neovim \
-    \
-    && mkdir /build
 
 # -----------------------------------------------------------------------------
 #                          Install Fenv Plugins
@@ -116,43 +46,9 @@ RUN set -ex; \
 # -----------------------------------------------------------------------------
 #                          Install Compilers
 # -----------------------------------------------------------------------------
-# ------------------------ Clang/LLVM pre-built -------------------------------
-#  - Install bin: clang-7, clangd, clang-tidy, clang-format, lld -> /usr/local/bin/
-#  - Install includes: lib/clang -> /usr/local/lib/clang
-#  - Install libs: libclang.so.7 -> /usr/local/lib/
-#  - Install share: clang-format.py -> /usr/local/share/clang/
-# Notes, the pre-built bin/lib/includes should be already downloaded
-# Create symbol links
-COPY ./docker/clang${CLANG_VERSION}-prebuilt/bin/* /usr/local/bin/
-COPY ./docker/clang${CLANG_VERSION}-prebuilt/lib/clang /usr/local/lib/clang/
-COPY ./docker/clang${CLANG_VERSION}-prebuilt/lib/libclang.so.${CLANG_VERSION} /usr/local/lib/
-COPY ./docker/clang${CLANG_VERSION}-prebuilt/lib/libomp.so /usr/local/lib/
-COPY ./docker/clang${CLANG_VERSION}-prebuilt/share/clang/* /usr/local/share/clang/
-
-# Create symbol links
-RUN set -ex; \
-    cd /usr/local/bin \
-    && ln -s clang-${CLANG_VERSION} clang \
-    && ln -s clang clang++ \
-    && ln -s lld ld.lld \
-    && ln -s lld ld64.lld \
-    && ln -s lld lld-link \
-    && ln -s lld wasm-ld \
-    && cd /usr/local/lib \
-    && ln -s libclang.so.${CLANG_VERSION} libclang.so \
-    # libgomp is used by Clang Polly Optimzer
-    && ln -s libomp.so libgomp.so \
-    \
-    # Verification
-    && ls -l /usr/local/bin \
-    && ls -l /usr/local/lib \
-    && ls -l /usr/local/share \
-    && clang --version \
-    && clang++ --version
-
 # ------------------------ Nodejs ---------------------------------------------
 RUN set -ex; \
-    git clone git://github.com/tj/n.git /build/n \
+    git clone --depth 1 --recurse-submodules -j8 git://github.com/tj/n.git /build/n \
     && cd /build/n \
     && make install \
     # Install node.js, npm and yarn
@@ -290,33 +186,10 @@ RUN set -ex; \
 #                          Install Language Servers
 # -----------------------------------------------------------------------------
 # ------------------------ cquery (C/C++) -------------------------------------
-RUN set -ex; \
-    git clone --depth 1 --recurse-submodules -j8 \
-        git://github.com/cquery-project/cquery.git /build/cquery \
-    && cd /build/cquery \
-    && mkdir build \
-    && cd build \
-    && cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=release \
-    && cmake --build . \
-    && cmake --build . --target install \
-    # Install cquery into usr local
-    && cp /build/cquery/build/release/bin/cquery /usr/local/bin \
-    # Remove cquery build folder
-    && cd / \
-    && rm -rf /build/cquery
+COPY --from=dev-cquery /usr/local/bin/cquery /usr/local/bin
 
 # ------------------------ ccls (C/C++) ---------------------------------------
-RUN set -ex; \
-    git clone --depth 1 --recurse-submodules -j8 \
-        git://github.com/MaskRay/ccls.git /build/ccls \
-    && cd /build/ccls \
-    && cmake -H. -BRelease -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_LINKER=/usr/local/bin/lld \
-    # Hack cmake internal clang path
-    && sed -i 's|Clang_EXECUTABLE:FILEPATH=.*|Clang_EXECUTABLE:FILEPATH=/usr/local/bin/clang|' Release/CMakeCache.txt \
-    && cmake --build Release \
-    && cp /build/ccls/Release/ccls /usr/local/bin \
-    && cd / \
-    && rm -rf /build/ccls
+COPY --from=dev-ccls /usr/local/bin/ccls /usr/local/bin
 
 # -------- YouCompleteMe: Enable C/C++, JavaScript/TypeScript and Java --------
 RUN set -ex; \

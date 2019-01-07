@@ -1,0 +1,17 @@
+FROM finaldie/dev-base:latest
+
+# ------------------------ cquery (C/C++) -------------------------------------
+RUN set -ex; \
+    git clone --depth 1 --recurse-submodules -j8 \
+        git://github.com/cquery-project/cquery.git /build/cquery \
+    && cd /build/cquery \
+    && mkdir build \
+    && cd build \
+    && cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=release \
+    && cmake --build . \
+    && cmake --build . --target install \
+    # Install cquery into usr local
+    && cp /build/cquery/build/release/bin/cquery /usr/local/bin \
+    # Remove cquery build folder
+    && cd / \
+    && rm -rf /build/cquery

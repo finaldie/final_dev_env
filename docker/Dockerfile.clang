@@ -1,0 +1,37 @@
+FROM finaldie/dev-base:latest
+
+ENV CLANG_VERSION 7
+
+# ------------------------ Clang/LLVM pre-built -------------------------------
+#  - Install bin: clang-7, clangd, clang-tidy, clang-format, lld -> /usr/local/bin/
+#  - Install includes: lib/clang -> /usr/local/lib/clang
+#  - Install libs: libclang.so.7 -> /usr/local/lib/
+#  - Install share: clang-format.py -> /usr/local/share/clang/
+# Notes, the pre-built bin/lib/includes should be already downloaded
+# Create symbol links
+COPY ./docker/clang${CLANG_VERSION}-prebuilt/bin/* /usr/local/bin/
+COPY ./docker/clang${CLANG_VERSION}-prebuilt/lib/clang /usr/local/lib/clang/
+COPY ./docker/clang${CLANG_VERSION}-prebuilt/lib/libclang.so.${CLANG_VERSION} /usr/local/lib/
+COPY ./docker/clang${CLANG_VERSION}-prebuilt/lib/libomp.so /usr/local/lib/
+COPY ./docker/clang${CLANG_VERSION}-prebuilt/share/clang/* /usr/local/share/clang/
+
+# Create symbol links
+RUN set -ex; \
+    cd /usr/local/bin \
+    && ln -s clang-${CLANG_VERSION} clang \
+    && ln -s clang clang++ \
+    && ln -s lld ld.lld \
+    && ln -s lld ld64.lld \
+    && ln -s lld lld-link \
+    && ln -s lld wasm-ld \
+    && cd /usr/local/lib \
+    && ln -s libclang.so.${CLANG_VERSION} libclang.so \
+    # libgomp is used by Clang Polly Optimzer
+    && ln -s libomp.so libgomp.so \
+    \
+    # Verification
+    && ls -l /usr/local/bin \
+    && ls -l /usr/local/lib \
+    && ls -l /usr/local/share \
+    && clang --version \
+    && clang++ --version
