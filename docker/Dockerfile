@@ -22,6 +22,9 @@ ENV JAVA_PKG_VERSION jdk-11.0.1
 ENV JAVA_DOWNLOAD_URL https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz
 ENV JAVA_HOME /usr/local/lib/jvm/${JAVA_PKG_VERSION}
 
+ENV MAVEN_VERSION 3.6.0
+ENV MAVEN_DOWNLOAD_URL http://apache.mirrors.hoobly.com/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+
 ENV PLANTUML_VERSION 1.2018.14
 
 # -----------------------------------------------------------------------------
@@ -83,6 +86,14 @@ RUN set -ex; \
     # Clean up
     && cd / \
     && rm -rf /build/jdk
+
+# ------------------------ APACHE MAVEN ---------------------------------------
+RUN set -ex; \
+    mkdir -p /build/maven \
+    && cd /build/maven \
+    && wget $MAVEN_DOWNLOAD_URL \
+    && tar -zxf apache-maven-${MAVEN_VERSION}-bin.tar.gz \
+    && rm -rf apache-maven-${MAVEN_VERSION}-bin.tar.gz
 
 # -----------------------------------------------------------------------------
 #                          Install Libraries/Tools
