@@ -20,6 +20,7 @@ ENV NEOVIM_VERSION v0.3.3
 ENV JAVA_APT_VERSION openjdk-11-jdk
 ENV JAVA_PKG_VERSION jdk-11.0.1
 ENV JAVA_DOWNLOAD_URL https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz
+ENV JAVA_HOME /usr/local/lib/jvm/${JAVA_PKG_VERSION}
 
 ENV PLANTUML_VERSION 1.2018.14
 
