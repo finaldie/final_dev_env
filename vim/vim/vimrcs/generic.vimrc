@@ -1,7 +1,7 @@
 
-" tab produces a 4-space indentation
-set softtabstop=4
-set shiftwidth=4
+" tab produces a 2-space indentation
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 
 " Highlight trailing whitespace and lines longer than 80 columns.
