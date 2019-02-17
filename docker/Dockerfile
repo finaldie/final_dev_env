@@ -16,7 +16,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 ENV FZF_VERION 0.17.5
 ENV JEMALLOC_VERSION 5.1.0
 ENV PROTOBUF_VERION v3.6.1
-ENV NEOVIM_VERSION v0.3.3
+ENV NEOVIM_VERSION v0.3.4
 
 ENV JAVA_PKG_VERSION jdk-11.0.1
 ENV JAVA_HOME /usr/local/lib/jvm/${JAVA_PKG_VERSION}
