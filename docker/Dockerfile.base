@@ -28,6 +28,10 @@ RUN set -ex; \
         unzip \
         openssh-client \
         \
+        # Shells
+        zsh \
+        fish \
+        \
         # Tags
         exuberant-ctags \
         cscope \
