@@ -13,10 +13,10 @@ ENV TZ=America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Package Versions
-ENV FZF_VERION 0.17.5
-ENV JEMALLOC_VERSION 5.1.0
-ENV PROTOBUF_VERION v3.6.1
-ENV NEOVIM_VERSION v0.3.4
+ENV FZF_VERION 0.18.0
+ENV JEMALLOC_VERSION 5.2.0
+ENV PROTOBUF_VERION v3.7.1
+ENV NEOVIM_VERSION v0.3.5
 
 ENV JAVA_PKG_VERSION jdk-11.0.1
 ENV JAVA_HOME /usr/local/lib/jvm/${JAVA_PKG_VERSION}
@@ -24,7 +24,7 @@ ENV JAVA_HOME /usr/local/lib/jvm/${JAVA_PKG_VERSION}
 ENV MAVEN_VERSION 3.6.0
 ENV MAVEN_DOWNLOAD_URL http://apache.mirrors.hoobly.com/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
 
-ENV PLANTUML_VERSION 1.2018.14
+ENV PLANTUML_VERSION 1.2019.5
 
 # -----------------------------------------------------------------------------
 #                          Install Fenv Plugins
