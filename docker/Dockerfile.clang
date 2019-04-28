@@ -1,11 +1,11 @@
 FROM finaldie/dev-base:latest
 
-ENV CLANG_VERSION 7
+ENV CLANG_VERSION 8
 
 # ------------------------ Clang/LLVM pre-built -------------------------------
-#  - Install bin: clang-7, clangd, clang-tidy, clang-format, lld -> /usr/local/bin/
+#  - Install bin: clang-8, clangd, clang-tidy, clang-format, lld -> /usr/local/bin/
 #  - Install includes: lib/clang -> /usr/local/lib/clang
-#  - Install libs: libclang.so.7 -> /usr/local/lib/
+#  - Install libs: libclang.so.8 -> /usr/local/lib/
 #  - Install share: clang-format.py -> /usr/local/share/clang/
 # Notes, the pre-built bin/lib/includes should be already downloaded
 # Create symbol links
