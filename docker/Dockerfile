@@ -1,7 +1,7 @@
 FROM finaldie/dev-cquery as dev-cquery
 FROM finaldie/dev-ccls as dev-ccls
 FROM finaldie/dev-java as dev-java
-FROM finaldie/dev-clang:latest
+FROM finaldie/dev-clang
 
 VOLUME /workspace
 WORKDIR /workspace
