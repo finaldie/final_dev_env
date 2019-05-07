@@ -4,25 +4,25 @@ ENV JAVA_PKG_VERSION jdk-11.0.1
 ENV JAVA_DOWNLOAD_URL https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz
 ENV JAVA_HOME /usr/local/lib/jvm/${JAVA_PKG_VERSION}
 
-RUN set -ex; \
-    mkdir -p /build/jdk \
-    && cd /build/jdk \
-    && wget $JAVA_DOWNLOAD_URL \
-    && mkdir -p /usr/local/lib/jvm \
-    && tar -zxf open${JAVA_PKG_VERSION}_linux-x64_bin.tar.gz --directory /usr/local/lib/jvm \
-    && cd /usr/local/bin \
-    && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/java java \
-    && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/javac javac \
-    \
-    # Verification
-    && echo $PATH \
-    && ls -l /usr/local/lib/jvm \
-    && ls -l /usr/local/lib/jvm/${JAVA_PKG_VERSION} \
-    && ls -l /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin \
-    && ls -l /usr/local/bin \
-    && java --version \
-    && javac --version \
-    \
-    # Clean up
-    && cd / \
-    && rm -rf /build/jdk
+#RUN set -ex; \
+#    mkdir -p /build/jdk \
+#    && cd /build/jdk \
+#    && wget $JAVA_DOWNLOAD_URL \
+#    && mkdir -p /usr/local/lib/jvm \
+#    && tar -zxf open${JAVA_PKG_VERSION}_linux-x64_bin.tar.gz --directory /usr/local/lib/jvm \
+#    && cd /usr/local/bin \
+#    && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/java java \
+#    && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/javac javac \
+#    \
+#    # Verification
+#    && echo $PATH \
+#    && ls -l /usr/local/lib/jvm \
+#    && ls -l /usr/local/lib/jvm/${JAVA_PKG_VERSION} \
+#    && ls -l /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin \
+#    && ls -l /usr/local/bin \
+#    && java --version \
+#    && javac --version \
+#    \
+#    # Clean up
+#    && cd / \
+#    && rm -rf /build/jdk

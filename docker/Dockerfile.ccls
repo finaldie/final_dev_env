@@ -5,9 +5,9 @@ RUN set -ex; \
     git clone --depth 1 --recurse-submodules -j8 \
         git://github.com/MaskRay/ccls.git /build/ccls \
     && cd /build/ccls \
-    && cmake -H. -BRelease -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_LINKER=/usr/local/bin/lld \
-    # Hack cmake internal clang path
-    && sed -i 's|Clang_EXECUTABLE:FILEPATH=.*|Clang_EXECUTABLE:FILEPATH=/usr/local/bin/clang|' Release/CMakeCache.txt \
+    && wget -c http://releases.llvm.org/8.0.0/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz \
+    && tar xf clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz \
+    && cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$PWD/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04 \
     && cmake --build Release \
     && cp /build/ccls/Release/ccls /usr/local/bin \
     && cd / \

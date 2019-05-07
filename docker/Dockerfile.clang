@@ -17,14 +17,14 @@ COPY ./docker/clang${CLANG_VERSION}-prebuilt/share/clang/* /usr/local/share/clan
 
 # Create symbol links
 RUN set -ex; \
-    cd /usr/local/bin \
-    && ln -s clang-${CLANG_VERSION} clang \
-    && ln -s clang clang++ \
-    && ln -s lld ld.lld \
-    && ln -s lld ld64.lld \
-    && ln -s lld lld-link \
-    && ln -s lld wasm-ld \
-    && cd /usr/local/lib \
+    #cd /usr/local/bin \
+    #&& ln -s clang-${CLANG_VERSION} clang \
+    #&& ln -s clang clang++ \
+    #&& ln -s lld ld.lld \
+    #&& ln -s lld ld64.lld \
+    #&& ln -s lld lld-link \
+    #&& ln -s lld wasm-ld \
+    cd /usr/local/lib \
     && ln -s libclang.so.${CLANG_VERSION} libclang.so \
     # libgomp is used by Clang Polly Optimzer
     && ln -s libomp.so libgomp.so \

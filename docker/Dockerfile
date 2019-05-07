@@ -1,6 +1,6 @@
 FROM finaldie/dev-cquery as dev-cquery
 FROM finaldie/dev-ccls as dev-ccls
-FROM finaldie/dev-java as dev-java
+#FROM finaldie/dev-java as dev-java
 FROM finaldie/dev-clang
 
 VOLUME /workspace
@@ -63,25 +63,25 @@ RUN set -ex; \
     && rm -rf /build/n
 
 # ------------------------ OpenJDK --------------------------------------------
-RUN set -ex; \
-    mkdir -p ${JAVA_HOME}
-
-COPY --from=dev-java ${JAVA_HOME} ${JAVA_HOME}
+#RUN set -ex; \
+#    mkdir -p ${JAVA_HOME}
+#
+#COPY --from=dev-java ${JAVA_HOME} ${JAVA_HOME}
 
 # Create symbol links and Verification
-RUN set -ex; \
-    cd /usr/local/bin \
-    && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/java java \
-    && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/javac javac \
-    \
-    && echo $PATH \
-    && ls -l /usr/local/lib/jvm \
-    && ls -l /usr/local/lib/jvm/${JAVA_PKG_VERSION} \
-    && ls -l /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin \
-    && ls -l /usr/local/bin \
-    # Verification
-    && java --version \
-    && javac --version
+#RUN set -ex; \
+#    cd /usr/local/bin \
+#    && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/java java \
+#    && ln -s /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin/javac javac \
+#    \
+#    && echo $PATH \
+#    && ls -l /usr/local/lib/jvm \
+#    && ls -l /usr/local/lib/jvm/${JAVA_PKG_VERSION} \
+#    && ls -l /usr/local/lib/jvm/${JAVA_PKG_VERSION}/bin \
+#    && ls -l /usr/local/bin \
+#    # Verification
+#    && java --version \
+#    && javac --version
 
 
 # ------------------------ APACHE MAVEN ---------------------------------------
