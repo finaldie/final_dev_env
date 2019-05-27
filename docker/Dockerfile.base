@@ -1,10 +1,10 @@
-FROM ubuntu:18.04
+FROM archlinux/base:latest
 
 VOLUME /workspace
 WORKDIR /workspace
 
-ENV LANG C.UTF-8
-ENV LC_ALL C.UTF-8
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
 
 ENV TZ=America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -20,72 +20,99 @@ RUN set -ex; \
         lsof \
         strace \
         ltrace \
-        pstack \
+        #pstack \
         expect \
         psmisc \
         tree \
         less \
         unzip \
-        openssh-client \
+        openssh \
         \
         # Shells
         zsh \
         fish \
         \
         # Tags
-        exuberant-ctags \
+        #exuberant-ctags \
+        ctags \
         cscope \
         \
         # Networking
-        telnet \
+        #telnet \
         iproute2 \
-        netcat-openbsd \
+        openbsd-netcat \
         net-tools \
         curl \
         wget \
+        tar \
         dnsutils \
-        iputils-ping \
+        iputils \
+        inetutils \
         traceroute \
-        iptraf \
+        #iptraf \
         mtr \
         tcpdump \
         \
         # Building toolchain
-        ninja-build \
+        ninja \
         gettext \
-        libtool-bin \
+        libtool \
         pkg-config \
         autoconf \
         automake \
         libtool \
         cmake \
+        make \
         \
         # Other basic dev package
-        libtinfo5 \
-        zlib1g-dev \
-        libc-ares-dev \
-        ncurses-dev \
-        libyaml-dev \
-        libfontconfig1 \
+        #libtinfo5 \
+        #zlib1g-dev \
+        c-ares \
+        ncurses \
+        libyaml \
+        fontconfig \
+        fzf \
+        jemalloc \
+        protobuf \
         \
         # Graph
         graphviz \
         \
-        # gcc
-        build-essential \
+        # editors
+        vim \
+        neovim \
+        \
+        # Languages
+        ## c/c++
+        clang \
+        llvm \
+        gcc \
         gdb \
-        bear \
         valgrind \
         \
-        # Python3
-        python3-dev \
-        python3-pip \
-        python3-setuptools \
-        python3-wheel \
+        ## java
+        jdk-openjdk \
+        \
+        ## Python3
+        python \
+        python-pip \
+        \
+        ## javascript, nodejs
+        nodejs \
+        npm \
+        yarn \
+        \
+        ## shell
+        shellcheck \
+        \
+        ## xml
+        libxml2 \
+        \
+        ## json
+        jq \
     ';\
-    apt-get update && apt-get install -y --no-install-recommends \
+    pacman -Syy && pacman -S --noconfirm \
         $deps \
-    && rm -rf /var/lib/apt/lists/* \
     \
     # python3 basic libraries
     && pip3 install \
@@ -96,5 +123,15 @@ RUN set -ex; \
         pynvim \
         neovim \
         matplotlib \
+        numpy \
+        \
+        # linters
+        flake8 \
+        pylint \
     \
     && mkdir /build
+
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk
+
+# Entrypoint
+CMD ["/bin/bash"]

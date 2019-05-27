@@ -1,13 +1,11 @@
-FROM finaldie/dev-clang:latest
+FROM finaldie/dev-base:latest
 
 # ------------------------ ccls (C/C++) ---------------------------------------
 RUN set -ex; \
     git clone --depth 1 --recurse-submodules -j8 \
         git://github.com/MaskRay/ccls.git /build/ccls \
     && cd /build/ccls \
-    && wget -c http://releases.llvm.org/8.0.0/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz \
-    && tar xf clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz \
-    && cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$PWD/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04 \
+    && cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_CXX_COMPILER=clang++ \
     && cmake --build Release \
     && cp /build/ccls/Release/ccls /usr/local/bin \
     && cd / \
