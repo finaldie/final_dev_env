@@ -1,7 +1,6 @@
 include common/Makefile.common
 
 topdir := $(shell pwd)
-xdg_home := $(topdir)/$(USER_ENV)
 
 DOCKER_NAME := finaldie/dev
 
@@ -15,7 +14,7 @@ install:
 	@for module in $(MODULES); \
 	do \
 		echo "[$$module] Installing..."; \
-		$(MAKE) -s -C $$module topdir=$(topdir) XDG_HOME=$(xdg_home); \
+		$(MAKE) -s -C $$module topdir=$(topdir); \
 	done;
 
 bash:
@@ -42,7 +41,7 @@ zsh:
 notes:
 	@for module in $(MODULES); \
 	do \
-		$(MAKE) -s -C $$module topdir=$(topdir) XDG_HOME=$(xdg_home) notes; \
+		$(MAKE) -s -C $$module topdir=$(topdir) notes; \
 	done;
 	@echo ""
 	@echo "========================LAST NOTE========================";
@@ -68,7 +67,7 @@ clean:
 	@for module in $(MODULES); \
 	do \
 		echo "[$$module] Clean..."; \
-		$(MAKE) -s -C $$module topdir=$(topdir) XDG_HOME=$(xdg_home) clean; \
+		$(MAKE) -s -C $$module topdir=$(topdir) clean; \
 	done;
 	@rm -rf $(USER_ENV)
 

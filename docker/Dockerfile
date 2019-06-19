@@ -40,8 +40,6 @@ RUN set -ex; \
         /build/user_env/bash/env_home.bashrc \
     && sed -i 's:export FENV_GIT=.*:export FENV_GIT=/build:' \
         /build/user_env/bash/env_home.bashrc \
-    && sed -i 's:export XDG_CONFIG_HOME=.*:export XDG_CONFIG_HOME=/build/user_env:' \
-        /build/user_env/bash/export_xdg_home.bashrc \
     && cat /build/user_env/all.bashrc | sed '/^$/d' | awk -F '/' '{print $NF}' \
         | awk '{printf "source /build/user_env/bash/%s\n", $1}' > /build/user_env/all.bashrc.new \
     && mv /build/user_env/all.bashrc.new /build/user_env/all.bashrc
