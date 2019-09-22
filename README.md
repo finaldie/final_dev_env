@@ -36,7 +36,7 @@ The following are the total plugins in here:
   - [Valloric/YouCompleteMe][2]
   - [autozimu/languageclient-neovim][15]
   - [honza/vim-snippets][17]
-  - [w0rp/ale][18]
+  - [dense-analysis/ale][18]
 - Omnifunc Management
   - [Shougo/deoplete.nvim][16]
 
@@ -211,7 +211,7 @@ If you have more suggestions or recommendations, it's great to send a pull reque
 [15]: https://github.com/autozimu/languageclient-neovim
 [16]: https://github.com/Shougo/deoplete.nvim
 [17]: https://github.com/honza/vim-snippets
-[18]: https://github.com/w0rp/ale
+[18]: https://github.com/dense-analysis/ale
 [19]: https://github.com/powerline/fonts/tree/master/SourceCodePro
 [20]: https://github.com/tpope/vim-surround
 [21]: https://github.com/airblade/vim-gitgutter

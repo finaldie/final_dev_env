@@ -1,4 +1,4 @@
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 "" ----------------- Message Window -------------------
 " Write this in your vimrc file

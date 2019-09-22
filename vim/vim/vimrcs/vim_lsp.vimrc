@@ -1,5 +1,7 @@
 Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 "" Github: https://github.com/prabirshrestha/vim-lsp
 
@@ -34,6 +36,7 @@ augroup END
 let g:lsp_signs_enabled = 1
 
 " enable echo under cursor when in normal mode
+let g:lsp_diagnostics_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1
 
 "let g:lsp_signs_error = {'text': '✗'}
