@@ -55,8 +55,8 @@ source $FENV_HOME/vim/languageclient.vimrc
 source $FENV_HOME/vim/vim_lsp.vimrc
 
 " Code completion for C/C++/Python
-source $FENV_HOME/vim/youcompleteme.vimrc
-source $FENV_HOME/vim/listtoggle.vimrc
+"source $FENV_HOME/vim/youcompleteme.vimrc
+"source $FENV_HOME/vim/listtoggle.vimrc
 
 " Code Snippets
 source $FENV_HOME/vim/snippets.vimrc

@@ -120,3 +120,9 @@ set encoding=utf-8
 " load tags
 set tags+=./.tags;,.tags;./tags;,tags;
 
+""""""""""""""""""""""""
+" Fold related settings
+""""""""""""""""""""""""
+" Auto save/reload fold view when close and open a file
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
