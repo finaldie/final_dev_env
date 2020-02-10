@@ -4,6 +4,8 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
+set mouse=a
+
 " Highlight trailing whitespace and lines longer than 80 columns.
 highlight LongLine ctermbg=DarkYellow guibg=DarkYellow
 highlight WhitespaceEOL ctermbg=DarkYellow guibg=DarkYellow

@@ -25,6 +25,7 @@ endfunction()
 " :LspNextError           Jump to next error
 " :LspPreviousError       Jump to previous error
 " :LspStatus              Show the status of the language server
+" :LspTypeHierarchy       View type hierarchy of the symbol under the cursor
 
 augroup VimLSP_config
   autocmd!
@@ -43,6 +44,8 @@ let g:lsp_signs_error = {'text': '✗'}
 "let g:lsp_signs_warning = {'text': '‼', 'icon': '/path/to/some/icon'} " icons require GUI
 "let g:lsp_signs_hint = {'icon': '/path/to/some/other/icon'} " icons require GUI
 let g:lsp_signs_information = {'text': 'i'}
+
+let g:lsp_highlight_references_enabled = 1
 
 "" Debug
 "let g:lsp_log_verbose = 1
