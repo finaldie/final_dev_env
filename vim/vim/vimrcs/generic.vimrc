@@ -33,6 +33,10 @@ if exists('+colorcolumn')
     set colorcolumn=80
 endif
 
+set columns=100
+set nolinebreak
+set showbreak=…
+
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
@@ -48,7 +52,8 @@ filetype on
 " C/C++ programming helpers
 augroup csrc
   au!
-  autocmd FileType *      set nocindent smartindent
+  "autocmd FileType *      set nocindent smartindent
+  autocmd FileType *      set nocindent
   autocmd FileType c,cpp  set cindent
 augroup END
 
