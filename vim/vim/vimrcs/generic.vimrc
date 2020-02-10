@@ -33,7 +33,7 @@ if exists('+colorcolumn')
     set colorcolumn=80
 endif
 
-set columns=100
+"set columns=100
 set nolinebreak
 set showbreak=…
 
