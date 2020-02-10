@@ -34,6 +34,7 @@ if exists('+colorcolumn')
 endif
 
 "set columns=100
+"set textwidth=80
 set nolinebreak
 set showbreak=…
 
