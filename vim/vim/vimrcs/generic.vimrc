@@ -132,5 +132,5 @@ set tags+=./.tags;,.tags;./tags;,tags;
 " Fold related settings
 """"""""""""""""""""""""
 " Auto save/reload fold view when close and open a file
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+au BufWinLeave ?* silent! mkview
+au BufWinEnter ?* silent! loadview
