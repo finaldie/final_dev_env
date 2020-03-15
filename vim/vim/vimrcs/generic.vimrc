@@ -87,8 +87,8 @@ autocmd FileType make set noexpandtab
 " Delete trailing whitespace and tabs at the end of each line
 command! DeleteTrailingWs :%s/\s\+$//
 
-" Convert all tab characters to 4 spaces
-command! Untab :%s/\t/    /g
+" Convert all tab characters to 2 spaces
+command! Untab :%s/\t/  /g
 
 " Enable syntax highlighting for LLVM files. To use, copy
 " utils/vim/llvm.vim to ~/.vim/syntax .
@@ -131,6 +131,8 @@ set tags+=./.tags;,.tags;./tags;,tags;
 """"""""""""""""""""""""
 " Fold related settings
 """"""""""""""""""""""""
+set foldcolumn=2
+
 " Auto save/reload fold view when close and open a file
 au BufWinLeave ?* silent! mkview
 au BufWinEnter ?* silent! loadview
