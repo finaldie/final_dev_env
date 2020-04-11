@@ -1,11 +1,11 @@
 Plug 'dense-analysis/ale'
 
 "" ----------------- Message Window -------------------
-" Write this in your vimrc file
+" Use quickfix list instead of loclist
 "let g:ale_set_loclist = 0
 "let g:ale_set_quickfix = 1
 
-let g:ale_open_list = 1
+let g:ale_open_list = 0
 
 " Set this if you want to.
 " This can be useful if you are combining ALE with
@@ -31,6 +31,9 @@ let g:ale_linters_explicit = 1
 
 "let g:ale_c_parse_compile_commands = 1
 let g:ale_c_parse_makefile = 1
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " clangtidy linter checks (Comment out by using default clang-analyzer-*)
 let g:ale_c_clangtidy_checks = [

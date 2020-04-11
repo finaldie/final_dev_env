@@ -65,7 +65,7 @@ source $FENV_HOME/vim/snippets.vimrc
 source $FENV_HOME/vim/linter.vimrc
 
 " Code Formatter
-source $FENV_HOME/vim/clang_format.vimrc
+"source $FENV_HOME/vim/clang_format.vimrc
 
 call plug#end()
 

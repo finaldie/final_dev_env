@@ -4,6 +4,9 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
+" Highlight current line
+hi CursorLine cterm=NONE ctermbg=darkgray ctermfg=white guibg=gray guifg=white
+
 "set mouse=a
 
 " Highlight trailing whitespace and lines longer than 80 columns.
