@@ -67,6 +67,10 @@ source $FENV_HOME/vim/linter.vimrc
 " Code Formatter
 "source $FENV_HOME/vim/clang_format.vimrc
 
+"" Keep it in the bottom
+"" -------------- File Icon -------------------
+source $FENV_HOME/vim/devicons.vimrc
+
 call plug#end()
 
 source $FENV_HOME/vim/generic.vimrc
