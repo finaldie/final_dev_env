@@ -120,6 +120,7 @@ set incsearch
 set ruler
 set hlsearch
 set nu
+set relativenumber
 set backspace=indent,eol,start
 set t_Co=256
 set laststatus=2
@@ -137,5 +138,5 @@ set tags+=./.tags;,.tags;./tags;,tags;
 set foldcolumn=2
 
 " Auto save/reload fold view when close and open a file
-au BufWinLeave ?* silent! mkview
-au BufWinEnter ?* silent! loadview
+"au BufWinLeave ?* silent! mkview
+"au BufWinEnter ?* silent! loadview
