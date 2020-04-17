@@ -18,6 +18,9 @@ set nocompatible
 set rtp+=$FENV_HOME/vim
 call plug#begin('$FENV_HOME/vim/plugged')
 
+"" -------------- Color Scheme ----------------
+source $FENV_HOME/vim/gruvbox.vimrc
+
 "" -------------- Status Bar ------------------
 source $FENV_HOME/vim/airline.vimrc
 " source $FENV_HOME/vim/powerline.vimrc
@@ -74,3 +77,4 @@ source $FENV_HOME/vim/devicons.vimrc
 call plug#end()
 
 source $FENV_HOME/vim/generic.vimrc
+source $FENV_HOME/vim/color.vimrc
