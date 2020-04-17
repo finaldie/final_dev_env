@@ -116,9 +116,13 @@ augroup END
 set showcmd
 set showmatch
 set showmode
-set incsearch
 set ruler
+
 set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
 set nu
 set relativenumber
 set backspace=indent,eol,start
