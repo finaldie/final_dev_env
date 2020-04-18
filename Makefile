@@ -17,11 +17,11 @@ install:
 	done;
 
 bash:
-	@echo "[bash] Installing..."; \
+	@echo "[bash] Installing...";
 	@cd bash && make topdir=$(topdir)
 
 zsh:
-	@echo "[zsh] Installing..."; \
+	@echo "[zsh] Installing...";
 	@cd zsh && make topdir=$(topdir)
 
 notes:
