@@ -54,7 +54,7 @@ source $FENV_HOME/vim/deoplete.vimrc
 
 "" -------------- Code Related ----------------
 " LSP client
-source $FENV_HOME/vim/languageclient.vimrc
+"source $FENV_HOME/vim/languageclient.vimrc
 source $FENV_HOME/vim/vim_lsp.vimrc
 
 " Code completion for C/C++/Python

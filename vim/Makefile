@@ -4,6 +4,7 @@ vimrc := vimrc
 vimrc_new := vimrc_new
 vimplugins := vim
 vim_bashrc := vim.bashrc
+vim_zsh := vim.zsh
 extra := $(vimplugins)/vimrcs
 ycm_conf := $(vimplugins)/config/ycm_extra_conf.py
 clang_format_tpl := $(vimplugins)/config/clang-format.tpl
@@ -16,6 +17,7 @@ all:
 	test -d $(topdir)/$(USER_ENV)/$(vimplugins)/share || mkdir $(topdir)/$(USER_ENV)/$(vimplugins)/share
 	test -d $(topdir)/$(USER_ENV)/$(vimplugins)/$(tools) || mkdir $(topdir)/$(USER_ENV)/$(vimplugins)/$(tools)
 	cp $(vim_bashrc) $(topdir)/$(USER_ENV)/$(BASH_OUT)
+	cp $(vim_zsh) $(topdir)/$(USER_ENV)/$(ZSH_OUT)/rcs
 	cp $(vimrc_new) $(topdir)/$(USER_ENV)/vimrc
 	cp $(extra)/*.vimrc $(topdir)/$(USER_ENV)/$(vimplugins)
 	cp $(ycm_conf) $(topdir)/$(USER_ENV)/$(vimplugins)/share

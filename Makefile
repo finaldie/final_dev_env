@@ -8,7 +8,6 @@ all: prepare install bash zsh notes
 
 prepare:
 	@test -d $(USER_ENV) || mkdir $(USER_ENV);
-	@test -d $(USER_ENV)/$(BASH_OUT) || mkdir $(USER_ENV)/$(BASH_OUT);
 
 install:
 	@for module in $(MODULES); \
@@ -18,25 +17,10 @@ install:
 	done;
 
 bash:
-	@cd $(topdir)/$(USER_ENV) && echo "" > all.$(BASH_SUFFIX) && \
-	    for bashrc in `ls $(BASH_OUT) | grep .$(BASH_SUFFIX)`; do \
-		echo "source $(topdir)/$(USER_ENV)/$(BASH_OUT)/$$bashrc" >> all.$(BASH_SUFFIX); \
-	    done;
-	@echo "=========================================================";
-	@echo "*   Install Complete, Please Read The Following Notes   *";
-	@echo "=========================================================";
-	@echo "";
-	@echo "========================BASH NOTE========================";
-	@echo "If you are using bash as your default shell";
-	@echo "1. Add the following into $(HOME)/.bash_profile";
-	@echo "2. Run bash or re-login";
-	@echo "=========================================================";
-	@echo "if [ -f $(topdir)/$(USER_ENV)/all.$(BASH_SUFFIX) ]; then";
-	@echo "    . $(topdir)/$(USER_ENV)/all.$(BASH_SUFFIX)";
-	@echo "fi";
-	@echo "";
+	@cd bash && make
 
 zsh:
+	@cd zsh && make
 
 notes:
 	@for module in $(MODULES); \

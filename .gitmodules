@@ -4,3 +4,6 @@
 [submodule "vim/vim/vim-plug"]
 	path = vim/vim/vim-plug
 	url = git://github.com/junegunn/vim-plug.git
+[submodule "zsh/theme/powerlevel10k"]
+	path = zsh/theme/powerlevel10k
+	url = git://github.com/romkatv/powerlevel10k.git
