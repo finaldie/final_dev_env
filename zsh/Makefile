@@ -44,10 +44,11 @@ notes:
 	    done;
 	@echo "========================ZSH NOTE========================";
 	@echo "If you are using zsh as your default shell";
-	@echo "1. Add the following into $(HOME)/.zshrc";
+	@echo "1. Add the following into $(HOME)/.zshrc if doesn't have";
 	@echo "2. Run zsh or re-login";
 	@echo "3. [Optional] Consider to set default-shell to zsh: chsh -s $(`which zsh`) $USER";
 	@echo "=========================================================";
+	@echo "[[ ! -f ~/.fenv.zsh ]] || source ~/.fenv.zsh";
 	@echo "";
 
 .PHONY: all clean notes

@@ -27,8 +27,8 @@ notes:
 	@echo "*   Install Complete, Please Read The Following Notes   *";
 	@echo "=========================================================";
 	@echo "";
-	@cd bash && make topdir=$(topdir) notes
-	@cd zsh && make topdir=$(topdir) notes
+	@cd bash && make topdir=$(topdir) notes --no-print-directory
+	@cd zsh && make topdir=$(topdir) notes --no-print-directory
 	@for module in $(MODULES); \
 	do \
 		$(MAKE) -s -C $$module topdir=$(topdir) notes; \

@@ -17,7 +17,8 @@ clean:
 	cd $(topdir)/$(USER_ENV) && rm -rf $(FOLDER)
 
 notes:
-	echo "=======================TMUX NOTE==========================";
-	echo "";
+	@echo "=======================TMUX NOTE==========================";
+	@echo "N/A";
+	@echo "";
 
 .PHONY: all clean copy_files notes
