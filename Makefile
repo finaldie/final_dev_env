@@ -17,10 +17,10 @@ install:
 	done;
 
 bash:
-	@cd bash && make
+	@cd bash && make topdir=$(topdir)
 
 zsh:
-	@cd zsh && make
+	@cd zsh && make topdir=$(topdir)
 
 notes:
 	@for module in $(MODULES); \
