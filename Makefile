@@ -41,6 +41,10 @@ notes:
 	@echo "Have fun :)"
 	@echo ""
 
+dist-update:
+	@cd vim/vim/vim-plug && git checkout master && git pull
+	@cd zsh/theme/powerlevel10k && git checkout master && git pull
+
 clang-prebuilt:
 	$(MAKE) -C docker clang7
 
