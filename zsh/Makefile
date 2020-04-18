@@ -16,6 +16,7 @@ all: prepare export_env_home copy_files plugin theme fzf generate
 	
 prepare:
 	mkdir -p $(localzsh);
+	mkdir -p $(topdir)/$(USER_ENV)/$(ZSH_OUT);
 	mkdir -p $(topdir)/$(USER_ENV)/$(ZSH_OUT)/rcs;
 	mkdir -p $(topdir)/$(USER_ENV)/$(ZSH_OUT)/theme;
 
