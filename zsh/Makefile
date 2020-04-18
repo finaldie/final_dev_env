@@ -46,8 +46,8 @@ notes:
 	@echo "If you are using zsh as your default shell";
 	@echo "1. Add the following into $(HOME)/.zshrc";
 	@echo "2. Run zsh or re-login";
+	@echo "3. [Optional] Consider to set default-shell to zsh: chsh -s $(`which zsh`) $USER";
 	@echo "=========================================================";
-	@echo "[[ ! -f $(topdir)/$(USER_ENV)/all.$(ZSH_SUFFIX) ]] || source $(topdir)/$(USER_ENV)/all.$(ZSH_SUFFIX)"
 	@echo "";
 
 .PHONY: all clean notes
