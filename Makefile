@@ -17,9 +17,11 @@ install:
 	done;
 
 bash:
+	@echo "[bash] Installing..."; \
 	@cd bash && make topdir=$(topdir)
 
 zsh:
+	@echo "[zsh] Installing..."; \
 	@cd zsh && make topdir=$(topdir)
 
 notes:
@@ -42,6 +44,7 @@ notes:
 	@echo ""
 
 dist-update:
+	@echo "[dist upgrading]..."; \
 	@cd vim/vim/vim-plug && git checkout master && git pull
 	@cd zsh/theme/powerlevel10k && git checkout master && git pull
 	@cd zsh/plugin/zsh-syntax-highlighting && git checkout master && git pull
