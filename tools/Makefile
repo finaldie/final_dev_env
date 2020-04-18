@@ -2,6 +2,7 @@ all: fzf
 
 fzf:
 
+notes:
 
-.PHONY: fzf
+.PHONY: all fzf notes
 
