@@ -12,7 +12,7 @@ p10k_zsh_theme := p10k.zsh-theme
 plugin_syntax_highlight := zsh-syntax-highlighting.zsh
 plugin_autosuggestions  := zsh-autosuggestions.zsh
 
-all: prepare export_env_home copy_files plugin theme generate
+all: prepare export_env_home copy_files plugin theme fzf generate
 	
 prepare:
 	mkdir -p $(localzsh);
@@ -37,6 +37,9 @@ theme:
 	test -f $(localzsh)/$(p10k_zsh) || ln -s $(topdir)/$(USER_ENV)/$(ZSH_OUT)/theme/$(p10k_zsh) $(localzsh)/$(p10k_zsh)
 	test -f $(localzsh)/$(p10k_zsh_theme) || ln -s $(topdir)/zsh/theme/powerlevel10k/powerlevel10k.zsh-theme $(localzsh)/$(p10k_zsh_theme)
 
+fzf:
+	test -f $(localzsh)/fzf-key-bindings.zsh || ln -s $(topdir)/tools/fzf/shell/key-bindings.zsh $(localzsh)/fzf-key-bindings.zsh
+	test -f $(localzsh)/fzf-completion.zsh || ln -s $(topdir)/tools/fzf/shell/completion.zsh $(localzsh)/fzf-completion.zsh
 
 generate:
 	@cd $(topdir)/$(USER_ENV)/$(ZSH_OUT) && echo "" > all.$(ZSH_SUFFIX) && \
@@ -63,4 +66,4 @@ notes:
 	@echo "[[ ! -f ~/.fenv.zsh ]] || source ~/.fenv.zsh";
 	@echo "";
 
-.PHONY: all clean notes copy_files plugin theme generate
+.PHONY: all clean notes copy_files plugin theme fzf generate

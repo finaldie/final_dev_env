@@ -13,3 +13,6 @@
 [submodule "zsh/plugin/zsh-autosuggestions"]
 	path = zsh/plugin/zsh-autosuggestions
 	url = git://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "tools/fzf"]
+	path = tools/fzf
+	url = git://github.com/junegunn/fzf.git

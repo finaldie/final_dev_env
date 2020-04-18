@@ -1,7 +1,7 @@
 MAKE := make
 USER_ENV := user_env
 BACKUP := backup
-MODULES := git vim tmux
+MODULES := git vim tmux tools
 BASH_SUFFIX := bashrc
 ZSH_SUFFIX := zsh
 BASH_OUT := bash
