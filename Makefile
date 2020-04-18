@@ -46,6 +46,7 @@ dist-update:
 	@cd zsh/theme/powerlevel10k && git checkout master && git pull
 	@cd zsh/plugin/zsh-syntax-highlighting && git checkout master && git pull
 	@cd zsh/plugin/zsh-autosuggestions && git checkout master && git pull
+	@cd tools/fzf && git checkout master && git pull
 
 clang-prebuilt:
 	$(MAKE) -C docker clang7
