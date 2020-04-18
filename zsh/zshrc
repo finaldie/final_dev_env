@@ -19,11 +19,16 @@ compinit
 # End of lines added by compinstall
 
 # fenv zshrcs
-[[ ! -f ~/.fenv.zsh ]] || source ~/.fenv.zsh
+[[ ! -f ~/.zsh/fenv.zsh ]] || source ~/.zsh/fenv.zsh
 
 # Enable powerlevel10k theme
-[[ ! -f ~/.p10k.zsh-theme ]] || source ~/.p10k.zsh-theme
+[[ ! -f ~/.zsh/p10k.zsh-theme ]] || source ~/.zsh/p10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.zsh/p10k.zsh ]] || source ~/.zsh/p10k.zsh
 
+# [Plugin] zsh-autosuggestions
+[[ ! -f ~/.zsh/zsh-autosuggestions.zsh ]] || source ~/.zsh/zsh-autosuggestions.zsh
+
+# [Plugin] zsh-syntax-highlighting (Keep it at the bottom)
+[[ ! -f ~/.zsh/zsh-syntax-highlighting.zsh ]] || source ~/.zsh/zsh-syntax-highlighting.zsh

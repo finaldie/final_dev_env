@@ -1,4 +1,4 @@
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 "" Github: https://github.com/junegunn/fzf
 
