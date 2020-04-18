@@ -6,6 +6,11 @@ set expandtab
 
 " Highlight current line
 hi CursorLine cterm=NONE ctermbg=darkgray ctermfg=white guibg=gray guifg=white
+hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=white guibg=darkred guifg=white
+set cursorline
+
+" toggle highlight current line and column
+"nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
 "set mouse=a
 
