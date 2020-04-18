@@ -31,7 +31,7 @@ compinit
 [[ ! -f ~/.zsh/p10k.zsh ]] || source ~/.zsh/p10k.zsh
 
 # FZF key-binding and completion
-[[ ! -f ~/.zsh/fzf-key-binding.zsh ]] || source ~/.zsh/fzf-key-binding.zsh
+[[ ! -f ~/.zsh/fzf-key-bindings.zsh ]] || source ~/.zsh/fzf-key-bindings.zsh
 [[ ! -f ~/.zsh/fzf-completion.zsh ]] || source ~/.zsh/fzf-completion.zsh
 
 # [Plugin] zsh-autosuggestions
