@@ -26,13 +26,13 @@ copy_files:
 
 generate:
 	@cd $(topdir)/$(USER_ENV)/$(ZSH_OUT) && echo "" > all.$(ZSH_SUFFIX) && \
-	    for zshrc_file in `ls $(ZSH_OUT)/rcs | grep .$(ZSH_SUFFIX)`; do \
+	    for zshrc_file in `ls rcs | grep .$(ZSH_SUFFIX)`; do \
 		echo "source $(topdir)/$(USER_ENV)/$(ZSH_OUT)/rcs/$$zshrc_file" >> all.$(ZSH_SUFFIX); \
 	    done;
 	test -f ~/.fenv.zsh || ln -s $(topdir)/$(USER_ENV)/$(ZSH_OUT)/all.$(ZSH_SUFFIX) ~/.fenv.zsh
 	test -f ~/.$(rootzsh) || ln -s $(topdir)/$(USER_ENV)/$(ZSH_OUT)/$(rootzsh) ~/.$(rootzsh)
 	test -f ~/.$(p10k_zsh) || ln -s $(topdir)/$(USER_ENV)/$(ZSH_OUT)/theme/$(p10k_zsh) ~/.$(p10k_zsh)
-	test -f ~/.$(p10k_zsh_theme) || ln -s $(topdir)/zsh/theme/powerlevel10k/powerlevel10k.zsh-theme ~/.$(p10k_theme_zsh)
+	test -f ~/.$(p10k_zsh_theme) || ln -s $(topdir)/zsh/theme/powerlevel10k/powerlevel10k.zsh-theme ~/.$(p10k_zsh_theme)
 
 clean:
 	cd $(topdir)/$(USER_ENV)/$(ZSH_OUT) && rm -rf $(files);

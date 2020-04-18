@@ -6,7 +6,7 @@ env_homerc := env_home.bashrc
 all: prepare export_env_home copy_files generate
 
 prepare:
-	@test -d $(USER_ENV)/$(BASH_OUT) || mkdir $(USER_ENV)/$(BASH_OUT);
+	@test -d $(topdir)/$(USER_ENV)/$(BASH_OUT) || mkdir $(topdir)/$(USER_ENV)/$(BASH_OUT);
 
 export_env_home:
 	echo "export FENV_HOME=$(topdir)/$(USER_ENV)" > $(env_homerc)
@@ -26,10 +26,6 @@ clean:
 	cd $(topdir)/$(USER_ENV)/$(BASH_OUT) && rm -rf $(files) $(env_homerc);
 
 notes:
-	@echo "=========================================================";
-	@echo "*   Install Complete, Please Read The Following Notes   *";
-	@echo "=========================================================";
-	@echo "";
 	@echo "========================BASH NOTE========================";
 	@echo "If you are using bash as your default shell";
 	@echo "1. Add the following into $(HOME)/.bash_profile";
