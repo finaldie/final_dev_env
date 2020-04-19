@@ -1,0 +1,17 @@
+if [ -f ~/.bash/fenv.bash ]; then
+    source ~/.bash/fenv.bash
+fi
+
+# User local bashrc
+if [ -f ~/.bash/user.bash ]; then
+  source ~/.bash/user.bash
+fi
+
+# FZF binding
+if [ -f ~/.bash/fzf-key-bindings.bash ]; then
+  source ~/.bash/fzf-key-bindings.bash
+fi
+
+if [ -f ~/.bash/fzf-completion.bash ]; then
+  source ~/.bash/fzf-completion.bash
+fi
