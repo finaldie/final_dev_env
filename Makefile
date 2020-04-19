@@ -8,6 +8,8 @@ all: prepare install bash zsh notes
 
 prepare:
 	@test -d $(USER_ENV) || mkdir $(USER_ENV);
+	@cd zsh && make prepare topdir=$(topdir);
+	@cd bash && make prepare topdir=$(topdir);
 
 install:
 	@for module in $(MODULES); \

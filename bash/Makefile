@@ -9,7 +9,7 @@ rootbash := bashrc
 all: prepare export_env_home copy_files fzf generate
 
 prepare:
-	@test -d $(topdir)/$(USER_ENV)/$(BASH_OUT) || mkdir $(topdir)/$(USER_ENV)/$(BASH_OUT);
+	@test -d $(topdir)/$(USER_ENV)/$(BASH_OUT) || mkdir -p $(topdir)/$(USER_ENV)/$(BASH_OUT);
 	@mkdir -p $(localbash);
 
 export_env_home:
