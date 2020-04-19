@@ -37,5 +37,11 @@ compinit
 # [Plugin] zsh-autosuggestions
 [[ ! -f ~/.zsh/zsh-autosuggestions.zsh ]] || source ~/.zsh/zsh-autosuggestions.zsh
 
+## To speed up autosuggestions plugin (otherwise user will notice a big lag on
+## every prompt)
+typeset -g ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+typeset -g ZSH_AUTOSUGGEST_USE_ASYNC=1
+typeset -g ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+
 # [Plugin] zsh-syntax-highlighting (Keep it at the bottom)
 [[ ! -f ~/.zsh/zsh-syntax-highlighting.zsh ]] || source ~/.zsh/zsh-syntax-highlighting.zsh
