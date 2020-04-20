@@ -150,6 +150,9 @@ set tags+=./.tags;,.tags;./tags;,tags;
 """"""""""""""""""""""""
 set foldcolumn=2
 
+" Autocompletion
+set wildmode=longest,list,full
+
 " Auto save/reload fold view when close and open a file
 "au BufWinLeave ?* silent! mkview
 "au BufWinEnter ?* silent! loadview
