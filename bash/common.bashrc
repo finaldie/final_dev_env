@@ -6,7 +6,7 @@ PS1='\[\033[01;32m\]\u@\h:\[\033[01;33m\] \w>\[\033[00m\]'
 alias ls='ls -F'
 alias la='ls -aF'
 alias ll='ls -aFlh'
-alias sl='svn log --limit 10'
+alias sl='ls -F'
 alias rm='rm -r'
 alias cp='cp -R'
 
