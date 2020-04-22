@@ -4,4 +4,4 @@ Plug 'unblevable/quick-scope'
 
 " Turn off this plugin when the length of line is longer than g:qs_max_chars.
 " (default: 1000)
-let g:qs_max_chars=1000
+let g:qs_max_chars=100
