@@ -2,6 +2,7 @@
 " tab produces a 2-space indentation
 set softtabstop=2
 set shiftwidth=2
+set tabstop=2
 set expandtab
 
 " Highlight current line
