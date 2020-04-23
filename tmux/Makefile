@@ -9,10 +9,10 @@ TARGET_CONF := $(topdir)/$(USER_ENV)/$(FOLDER)/$(TMUX_CONF)
 all: prepare copy_files
 
 prepare:
-	@mkdir ~/.$(FOLDER)
+	@mkdir -p ~/.$(FOLDER)
 
 copy_files:
-	@test -d $(topdir)/$(USER_ENV)/$(FOLDER) || mkdir $(topdir)/$(USER_ENV)/$(FOLDER)
+	@test -d $(topdir)/$(USER_ENV)/$(FOLDER) || mkdir -p $(topdir)/$(USER_ENV)/$(FOLDER)
 	@cp $(TMUX_CONF) $(topdir)/$(USER_ENV)/$(FOLDER)
 	@test -f $(DEFAULT_USER_CONF) || ln -s $(TARGET_CONF) $(DEFAULT_USER_CONF)
 
