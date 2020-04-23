@@ -20,8 +20,8 @@ clean:
 	@cd $(topdir)/$(USER_ENV) && rm -rf $(FOLDER)
 
 notes:
-	@echo "=======================TMUX NOTE==========================";
-	@echo "N/A";
+	@echo "* ======================== TMUX NOTE ======================== *";
+	@echo "1 | Customize ~/.tmux/user.conf to override settings";
 	@echo "";
 
 .PHONY: all prepare clean copy_files notes

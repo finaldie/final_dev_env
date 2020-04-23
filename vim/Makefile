@@ -29,11 +29,8 @@ clean:
 	cd $(topdir)/$(USER_ENV) && rm -rf $(topdir)/$(USER_ENV)/$(vimplugins) $(vimrc) $(BASH_OUT)/$(vim_bashrc)
 
 notes:
-	@echo ""
-	@echo "=======================VIM NOTE=========================="
-	@echo "1. Run 'vim +PluginInstall +qall' to complete the plugin's installation"
-	@echo "2. Run 'cd $(topdir)/$(USER_ENV)/vim/plugged/YouCompleteMe && ./install.py --clang-completer'"
-	@echo "3. Run 'cd $(topdir)/$(USER_ENV)/vim/plugged/LanguageClient-neovim && bash ./install.sh'"
+	@echo "* ======================== VIM NOTE ========================= *"
+	@echo "1 | 'vim +PlugInstall +qall' to install all the plugins"
 	@echo "";
 
 .PHONY: all clean notes clang

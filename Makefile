@@ -8,8 +8,8 @@ all: prepare install bash zsh notes
 
 prepare:
 	@test -d $(USER_ENV) || mkdir $(USER_ENV);
-	@cd zsh && make prepare topdir=$(topdir);
-	@cd bash && make prepare topdir=$(topdir);
+	@cd zsh && make prepare topdir=$(topdir) --no-print-directory;
+	@cd bash && make prepare topdir=$(topdir) --no-print-directory;
 
 install:
 	@for module in $(MODULES); \
@@ -20,16 +20,17 @@ install:
 
 bash:
 	@echo "[bash] Installing...";
-	@cd bash && make topdir=$(topdir)
+	@cd bash && make topdir=$(topdir) --no-print-directory
 
 zsh:
 	@echo "[zsh] Installing...";
-	@cd zsh && make topdir=$(topdir)
+	@cd zsh && make topdir=$(topdir) --no-print-directory
 
 notes:
-	@echo "=========================================================";
-	@echo "*   Install Complete, Please Read The Following Notes   *";
-	@echo "=========================================================";
+	@echo ""
+	@echo "* =========================================================== *";
+	@echo "*    Install Complete, Please Read The Following Notes        *";
+	@echo "* =========================================================== *";
 	@echo "";
 	@cd bash && make topdir=$(topdir) notes --no-print-directory
 	@cd zsh && make topdir=$(topdir) notes --no-print-directory
@@ -37,10 +38,11 @@ notes:
 	do \
 		$(MAKE) -s -C $$module topdir=$(topdir) notes; \
 	done;
-	@echo ""
-	@echo "========================LAST NOTE========================";
-	@echo "Install commands tools to make the life eaiser"
-	@echo "Recommend tools: fzf, plantuml"
+	@echo "* =========================================================== *";
+	@echo "*                          LAST NOTE                          *";
+	@echo "* =========================================================== *";
+	@echo "1 | Install commands tools to make the life eaiser"
+	@echo "2 | Recommend tools: fzf, plantuml"
 	@echo ""
 	@echo "Have fun :)"
 	@echo ""
