@@ -157,3 +157,7 @@ set wildmode=longest,list,full
 " Auto save/reload fold view when close and open a file
 "au BufWinLeave ?* silent! mkview
 "au BufWinEnter ?* silent! loadview
+
+" Move current line up and down (In visual mode)
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
