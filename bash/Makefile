@@ -40,7 +40,7 @@ notes:
 	@echo "* ======================== BASH NOTE ======================== *";
 	@echo "1 | Add the following into $(HOME)/.bashrc if doesn't exist";
 	@echo "  | if [ -f ~/.bash/fenv.bash ]; then";
-	@echo "  | source ~/.bash/fenv.bash";
+	@echo "  |   source ~/.bash/fenv.bash";
 	@echo "  | fi";
 	@echo "2 | Run bash or re-login";
 	@echo "";
