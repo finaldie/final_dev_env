@@ -8,6 +8,7 @@ alias sl='ls -F'
 alias rm='rm -r'
 alias cp='cp -R'
 
-
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+export EDITOR=vim
