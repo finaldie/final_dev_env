@@ -34,6 +34,9 @@ compinit
 [[ ! -f ~/.zsh/fzf-key-bindings.zsh ]] || source ~/.zsh/fzf-key-bindings.zsh
 [[ ! -f ~/.zsh/fzf-completion.zsh ]] || source ~/.zsh/fzf-completion.zsh
 
+# Tmuxinator completion
+[[ ! -f ~/.zsh/tmuxinator.zsh ]] || source ~/.zsh/tmuxinator.zsh
+
 # [Plugin] zsh-autosuggestions
 [[ ! -f ~/.zsh/zsh-autosuggestions.zsh ]] || source ~/.zsh/zsh-autosuggestions.zsh
 

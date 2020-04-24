@@ -16,3 +16,6 @@
 [submodule "tools/fzf"]
 	path = tools/fzf
 	url = git://github.com/junegunn/fzf.git
+[submodule "tools/tmuxinator"]
+	path = tools/tmuxinator
+	url = git://github.com/tmuxinator/tmuxinator.git

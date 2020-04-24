@@ -15,3 +15,8 @@ fi
 if [ -f ~/.bash/fzf-completion.bash ]; then
   source ~/.bash/fzf-completion.bash
 fi
+
+# Tmuxinator
+if [ -f ~/.bash/tmuxinator.bash ]; then
+  source ~/.bash/tmuxinator.bash
+fi
