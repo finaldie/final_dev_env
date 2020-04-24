@@ -42,7 +42,7 @@ notes:
 	@echo "*                          LAST NOTE                          *";
 	@echo "* =========================================================== *";
 	@echo "1 | Install commands tools to make the life eaiser"
-	@echo "2 | Recommend tools: fzf, plantuml"
+	@echo "2 | Recommended tools: fzf, plantuml"
 	@echo ""
 	@echo "Have fun :)"
 	@echo ""
