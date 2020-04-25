@@ -1,7 +1,6 @@
 Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'mattn/vim-lsp-settings'
 
 "" Github: https://github.com/prabirshrestha/vim-lsp
 
@@ -50,9 +49,6 @@ let g:lsp_highlight_references_enabled = 1
 "" Debug
 "let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('~/vim-lsp.log')
-
-" For asyncomplete.vim log
-"let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 
 "" LSP Servers
 "" ------------------ Python lsp server ---------------------
