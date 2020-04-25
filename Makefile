@@ -48,12 +48,14 @@ notes:
 	@echo ""
 
 dist-update:
-	@echo "[dist upgrading]..."; \
+	@echo "[dist upgrading]..."
+	@git submodule update --init --recursive
 	@cd vim/vim/vim-plug && git checkout master && git pull
 	@cd zsh/theme/powerlevel10k && git checkout master && git pull
 	@cd zsh/plugin/zsh-syntax-highlighting && git checkout master && git pull
 	@cd zsh/plugin/zsh-autosuggestions && git checkout master && git pull
 	@cd tools/fzf && git checkout master && git pull
+	@cd tools/tmuxinator && git checkout master && git pull
 
 clang-prebuilt:
 	$(MAKE) -C docker clang7
