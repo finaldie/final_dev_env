@@ -9,7 +9,12 @@ git_config := config
 GIT_CONF := $(topdir)/$(USER_ENV)/$(git_folder)/$(git_config)
 DEFAULT_USER_CONF := ~/.gitconfig
 
-all: copy_files
+DEFAULT_USER_FOLDER := ~/.gitconf
+
+all: prepare copy_files
+
+prepare:
+	@test -d $(DEFAULT_USER_FOLDER) || mkdir -p $(DEFAULT_USER_FOLDER)
 
 copy_files:
 	@test -d $(topdir)/$(USER_ENV)/$(git_folder) || mkdir $(topdir)/$(USER_ENV)/$(git_folder)
@@ -27,4 +32,4 @@ notes:
 	@echo "N/A";
 	@echo "";
 
-.PHONY: all clean copy_files notes
+.PHONY: all clean prepare copy_files notes
