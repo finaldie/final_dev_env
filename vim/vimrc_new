@@ -53,9 +53,9 @@ source $FENV_HOME/vim/plantuml.vimrc
 
 "" -------------- Omnifunc Management ---------
 "" choose either one of the group: deoplete or asyncomplete
-source $FENV_HOME/vim/deoplete.vimrc
+"source $FENV_HOME/vim/deoplete.vimrc
 
-" source $FENV_HOME/vim/asyncomplete.vimrc
+source $FENV_HOME/vim/asyncomplete.vimrc
 
 "" -------------- Code Related ----------------
 " LSP client
