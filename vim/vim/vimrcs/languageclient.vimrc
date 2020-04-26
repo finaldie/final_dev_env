@@ -13,17 +13,17 @@ let g:LanguageClient_autoStart = 1
 
 function SetLSPShortcuts()
   "" Client side common shortcuts
-  nnoremap <leader>ld :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
-  nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
-  nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
-  nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
-  nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
-  nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
-  nnoremap <leader>lw :call LanguageClient#workspace_symbol()<CR>
-  nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
-  nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
-  nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
-  nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+  nnoremap <leader><leader>ld :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
+  nnoremap <leader><leader>lr :call LanguageClient#textDocument_rename()<CR>
+  nnoremap <leader><leader>lf :call LanguageClient#textDocument_formatting()<CR>
+  nnoremap <leader><leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
+  nnoremap <leader><leader>lx :call LanguageClient#textDocument_references()<CR>
+  nnoremap <leader><leader>la :call LanguageClient_workspace_applyEdit()<CR>
+  nnoremap <leader><leader>lw :call LanguageClient#workspace_symbol()<CR>
+  nnoremap <leader><leader>lc :call LanguageClient#textDocument_completion()<CR>
+  nnoremap <leader><leader>lh :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <leader><leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+  nnoremap <leader><leader>lm :call LanguageClient_contextMenu()<CR>
 
   "" ccls special shortcuts
   "" link: https://github.com/MaskRay/ccls/wiki/LanguageClient-neovim

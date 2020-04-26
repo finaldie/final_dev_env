@@ -6,14 +6,14 @@ Plug 'mattn/vim-lsp-settings'
 
 "" Short-Cuts
 function SetVimLSPShortcuts()
-  nnoremap <leader><leader>ld :LspDefinition<CR>
-  nnoremap <leader><leader>lr :LspRename<CR>
-  nnoremap <leader><leader>lf :LspDocumentFormat<CR>
-  nnoremap <leader><leader>lt :LspTypeDefinition<CR>
-  nnoremap <leader><leader>lx :LspReferences<CR>
-  nnoremap <leader><leader>lh :LspHover<CR>
-  nnoremap <leader><leader>ls :LspDocumentSymbol<CR>
-  nnoremap <leader><leader>lw :LspWorkspaceSymbol<CR>  " Search/Show workspace symbol
+  nnoremap <leader>ld :LspDefinition<CR>
+  nnoremap <leader>lr :LspRename<CR>
+  nnoremap <leader>lf :LspDocumentFormat<CR>
+  nnoremap <leader>lt :LspTypeDefinition<CR>
+  nnoremap <leader>lx :LspReferences<CR>
+  nnoremap <leader>lh :LspHover<CR>
+  nnoremap <leader>ls :LspDocumentSymbol<CR>
+  nnoremap <leader>lw :LspWorkspaceSymbol<CR>  " Search/Show workspace symbol
 endfunction()
 
 "" No shortcut commands
