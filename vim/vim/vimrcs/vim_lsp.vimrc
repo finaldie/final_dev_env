@@ -53,15 +53,15 @@ let g:lsp_highlight_references_enabled = 1
 "" LSP Servers (Below are optional since vim-lsp-settings plugin are handling
 ""              all these parts)
 "" ------------------ Python lsp server ---------------------
-"if executable('pyls')
-"    " pip3 install python-language-server
-"    au User lsp_setup call lsp#register_server({
-"        \ 'name': 'pyls',
-"        \ 'cmd': {server_info->['pyls']},
-"        \ 'whitelist': ['python'],
-"        \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}}
-"        \ })
-"endif
+if executable('pyls')
+    " pip3 install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}}
+        \ })
+endif
 
 if executable('clangd')
     au User lsp_setup call lsp#register_server({
