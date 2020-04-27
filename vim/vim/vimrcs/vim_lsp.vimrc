@@ -63,18 +63,13 @@ let g:lsp_highlight_references_enabled = 1
 "        \ })
 "endif
 
-"if executable('clangd')
-"    au User lsp_setup call lsp#register_server({
-"        \ 'name': 'clangd',
-"        \ 'cmd': {server_info->['clangd', '-background-index']},
-"        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-"        \ })
-"
-"    autocmd FileType c setlocal omnifunc=lsp#complete
-"    autocmd FileType cpp setlocal omnifunc=lsp#complete
-"    autocmd FileType objc setlocal omnifunc=lsp#complete
-"    autocmd FileType objcpp setlocal omnifunc=lsp#complete
-"endif
+if executable('clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd', '-background-index']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+endif
 
 "if executable('ccls')
 "   au User lsp_setup call lsp#register_server({
