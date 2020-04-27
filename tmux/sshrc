@@ -1,10 +1,14 @@
 #!/bin/bash
+
 # To fix ssh-agent broken issue when reattach to a session
 #   we fix the ssh_auth_sock path to ~/.ssh/sock
 # Put this file into .ssh/rc, then it will be automatically ran when connected
 #   to a server
 
-if [ ! -S ~/.ssh/auth-sock ] && [ -S $SSH_AUTH_SOCK ] && [[ $SSH_AUTH_SOCK != *"yubiagent"*  ]]; then
+if [ ! -S ~/.ssh/auth-sock ] \
+  && [ -n "${SSH_AUTH_SOCK}" ] \
+  && [ -S ${SSH_AUTH_SOCK} ] \
+  && [[ ${SSH_AUTH_SOCK} != *"yubiagent"*  ]]; then
   ln -sf $SSH_AUTH_SOCK ~/.ssh/auth-sock
 
   echo "sshrc: ~/.ssh/auth-sock link has been created"
