@@ -7,3 +7,5 @@
 if [ ! -S ~/.ssh/auth-sock ] && [ -S $SSH_AUTH_SOCK ] && [[ $SSH_AUTH_SOCK != *"yubiagent"*  ]]; then
   ln -sf $SSH_AUTH_SOCK ~/.ssh/auth-sock
 fi
+
+echo "sshrc: ~/.ssh/auth-sock link has been created"
