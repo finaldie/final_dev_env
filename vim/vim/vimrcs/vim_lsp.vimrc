@@ -50,30 +50,31 @@ let g:lsp_highlight_references_enabled = 1
 "let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('~/vim-lsp.log')
 
-"" LSP Servers
+"" LSP Servers (Below are optional since vim-lsp-settings plugin are handling
+""              all these parts)
 "" ------------------ Python lsp server ---------------------
-if executable('pyls')
-    " pip3 install python-language-server
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}}
-        \ })
-endif
+"if executable('pyls')
+"    " pip3 install python-language-server
+"    au User lsp_setup call lsp#register_server({
+"        \ 'name': 'pyls',
+"        \ 'cmd': {server_info->['pyls']},
+"        \ 'whitelist': ['python'],
+"        \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}}
+"        \ })
+"endif
 
-if executable('clangd')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'clangd',
-        \ 'cmd': {server_info->['clangd', '-background-index']},
-        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-        \ })
-
-    autocmd FileType c setlocal omnifunc=lsp#complete
-    autocmd FileType cpp setlocal omnifunc=lsp#complete
-    autocmd FileType objc setlocal omnifunc=lsp#complete
-    autocmd FileType objcpp setlocal omnifunc=lsp#complete
-endif
+"if executable('clangd')
+"    au User lsp_setup call lsp#register_server({
+"        \ 'name': 'clangd',
+"        \ 'cmd': {server_info->['clangd', '-background-index']},
+"        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+"        \ })
+"
+"    autocmd FileType c setlocal omnifunc=lsp#complete
+"    autocmd FileType cpp setlocal omnifunc=lsp#complete
+"    autocmd FileType objc setlocal omnifunc=lsp#complete
+"    autocmd FileType objcpp setlocal omnifunc=lsp#complete
+"endif
 
 "if executable('ccls')
 "   au User lsp_setup call lsp#register_server({
@@ -95,10 +96,10 @@ endif
 "      \ })
 "endif
 
-if executable('bash-language-server')
-  au User lsp_setup call lsp#register_server({
-        \ 'name': 'bash-language-server',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
-        \ 'whitelist': ['sh'],
-        \ })
-endif
+"if executable('bash-language-server')
+"  au User lsp_setup call lsp#register_server({
+"        \ 'name': 'bash-language-server',
+"        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
+"        \ 'whitelist': ['sh'],
+"        \ })
+"endif
