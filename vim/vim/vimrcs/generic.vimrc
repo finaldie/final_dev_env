@@ -42,6 +42,10 @@ if exists('+colorcolumn')
     set colorcolumn=80
 endif
 
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 "set columns=100
 "set textwidth=80
 set nolinebreak
