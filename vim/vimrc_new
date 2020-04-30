@@ -25,6 +25,9 @@ source $FENV_HOME/vim/gruvbox.vimrc
 source $FENV_HOME/vim/airline.vimrc
 " source $FENV_HOME/vim/powerline.vimrc
 
+"" -------------- Syntax ----------------------
+source $FENV_HOME/vim/syntax.vimrc
+
 "" -------------- Common Plugins --------------
 " git wrapper for status bar
 source $FENV_HOME/vim/fugitive.vimrc
