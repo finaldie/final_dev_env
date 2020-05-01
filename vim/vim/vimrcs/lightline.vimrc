@@ -1,5 +1,6 @@
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
+Plug 'ap/vim-buftabline'
 
 let g:lightline = {
   \ 'colorscheme': 'wombat',
