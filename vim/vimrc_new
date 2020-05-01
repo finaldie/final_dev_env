@@ -1,15 +1,3 @@
-" This vimrc is based on LLVM TEAM's vimrc
-
-" LLVM coding guidelines conformance for VIM
-" $Revision$
-"
-" Maintainer: The LLVM Team, http://llvm.org
-" WARNING:    Read before you source in all these commands and macros!  Some
-"             of them may change VIM behavior that you depend on.
-"
-" You can run VIM with these settings without changing your current setup with:
-" $ vim -u /path/to/llvm/utils/vim/vimrc
-
 " It's VIM, not VI
 set nocompatible
 
@@ -38,7 +26,15 @@ source $FENV_HOME/vim/gitgutter.vimrc
 " surrounder
 source $FENV_HOME/vim/surround.vimrc
 
+" File navigation
 source $FENV_HOME/vim/nerdtree.vimrc
+source $FENV_HOME/vim/fzf.vimrc
+source $FENV_HOME/vim/ctrlp.vimrc
+
+" Start Page
+source $FENV_HOME/vim/startify.vimrc
+
+" Tagbar
 source $FENV_HOME/vim/tagbar.vimrc
 " source $FENV_HOME/vim/taglist.vimrc
 
@@ -46,12 +42,15 @@ source $FENV_HOME/vim/tagbar.vimrc
 " source $FENV_HOME/vim/gutentags.vimrc
 
 source $FENV_HOME/vim/cscope.vimrc
+
+" Cursor movement
 source $FENV_HOME/vim/easymotion.vimrc
 source $FENV_HOME/vim/quick-scope.vimrc
-source $FENV_HOME/vim/ctrlp.vimrc
-source $FENV_HOME/vim/fzf.vimrc
+
+" Content format
 source $FENV_HOME/vim/tabular.vimrc
 
+" In-file preview: Plantuml
 source $FENV_HOME/vim/plantuml.vimrc
 
 "" -------------- Omnifunc Management ---------
@@ -74,9 +73,6 @@ source $FENV_HOME/vim/snippets.vimrc
 
 " Code Linter
 source $FENV_HOME/vim/linter.vimrc
-
-" Code Formatter
-"source $FENV_HOME/vim/clang_format.vimrc
 
 "" Keep it in the bottom
 "" -------------- File Icon -------------------
