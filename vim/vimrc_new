@@ -10,7 +10,8 @@ call plug#begin('$FENV_HOME/vim/plugged')
 source $FENV_HOME/vim/gruvbox.vimrc
 
 "" -------------- Status Bar ------------------
-source $FENV_HOME/vim/airline.vimrc
+source $FENV_HOME/vim/lightline.vimrc
+"source $FENV_HOME/vim/airline.vimrc
 " source $FENV_HOME/vim/powerline.vimrc
 
 "" -------------- Syntax ----------------------

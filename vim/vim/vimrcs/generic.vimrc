@@ -151,6 +151,10 @@ set laststatus=2
 set ic
 set encoding=utf-8
 
+" Disable text mode for 'INSERT|NORMAL|...' since status bar plugin has
+" handled it
+set noshowmode
+
 " Force using old regex engine to avoid performance issue
 set re=1
 
