@@ -23,3 +23,6 @@ let g:startify_lists = [
         \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
         \ { 'type': 'commands',  'header': ['   Commands']       },
         \ ]
+
+" Disable showing empty buffer and quit link
+let g:startify_enable_special = 0

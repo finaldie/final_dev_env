@@ -11,6 +11,9 @@ clang_format_tpl := $(vimplugins)/config/clang-format.tpl
 tools := tools
 vim_plug := vim-plug/plug.vim
 
+USER_VIM := ~/.vim
+INIT_VIM := $(USER_VIM)/init.vim
+
 all:
 	test -d $(topdir)/$(USER_ENV)/$(vimplugins) || mkdir $(topdir)/$(USER_ENV)/$(vimplugins)
 	test -d $(topdir)/$(USER_ENV)/$(vimplugins)/autoload || mkdir $(topdir)/$(USER_ENV)/$(vimplugins)/autoload
@@ -24,6 +27,8 @@ all:
 	cp $(clang_format_tpl) $(topdir)/$(USER_ENV)/$(vimplugins)/share
 	cp $(vimplugins)/$(tools)/* $(topdir)/$(USER_ENV)/$(vimplugins)/$(tools)
 	cp $(vimplugins)/$(vim_plug) $(topdir)/$(USER_ENV)/$(vimplugins)/autoload
+	mkdir -p $(USER_VIM) && touch $(INIT_VIM)
+	test -e ~/.vimrc || ln -s $(topdir)/$(USER_ENV)/$(vimrc) ~/.vimrc
 
 clean:
 	cd $(topdir)/$(USER_ENV) && rm -rf $(topdir)/$(USER_ENV)/$(vimplugins) $(vimrc) $(BASH_OUT)/$(vim_bashrc)

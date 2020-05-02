@@ -11,6 +11,7 @@ all: prepare export_env_home copy_files fzf generate
 prepare:
 	@test -d $(topdir)/$(USER_ENV)/$(BASH_OUT) || mkdir -p $(topdir)/$(USER_ENV)/$(BASH_OUT);
 	@mkdir -p $(localbash);
+	@touch $(localbash)/user.bash
 
 export_env_home:
 	@echo "export FENV_HOME=$(topdir)/$(USER_ENV)" > $(env_homerc)

@@ -83,3 +83,8 @@ call plug#end()
 
 source $FENV_HOME/vim/generic.vimrc
 source $FENV_HOME/vim/color.vimrc
+
+" Load user.vim
+if filereadable(expand('~/.vim/init.vim'))
+  source ~/.vim/init.vim
+endif
