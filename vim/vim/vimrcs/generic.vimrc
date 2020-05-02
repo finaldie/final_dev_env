@@ -8,6 +8,8 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 
+set lazyredraw
+
 " tab produces a 2-space indentation
 set softtabstop=2
 set shiftwidth=2
