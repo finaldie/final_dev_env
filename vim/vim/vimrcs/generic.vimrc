@@ -1,3 +1,42 @@
+" Status bar related information
+set showcmd
+set showmatch
+set showmode
+set ruler
+
+" Content search options
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+set nu
+set relativenumber
+
+set backspace=indent,eol,start
+set t_Co=256
+set laststatus=2
+set encoding=utf-8
+
+" Disable text mode for 'INSERT|NORMAL|...' since status bar plugin has
+" handled it
+set noshowmode
+
+" Force using old regex engine to avoid performance issue
+set re=1
+
+"set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+"set listchars=tab:>-
+
+" load tags
+set tags+=./.tags;,.tags;./tags;,tags;
+
+set foldcolumn=2
+
+" Command Autocompletion
+set wildmenu
+set wildmode=longest,list,full
+
 set hidden
 set nobackup
 set nowritebackup
@@ -101,6 +140,7 @@ set synmaxcol=120
 " so it's important to categorize them as such.
 augroup filetype
   au! BufRead,BufNewFile *Makefile* set filetype=make
+  au! BufRead,BufNewFile *.mk       set filetype=make
 augroup END
 
 " In Makefiles, don't expand tabs to spaces, since we need the actual tabs
@@ -130,54 +170,14 @@ augroup END
 " rest.vim (http://www.vim.org/scripts/script.php?script_id=973)
 " to ~/.vim/syntax .
 augroup filetype
- au! BufRead,BufNewFile *.rst     set filetype=rest
+  au! BufRead,BufNewFile *.rst     set filetype=rest
 augroup END
-
-" Additional vim features to optionally uncomment.
-set showcmd
-set showmatch
-set showmode
-set ruler
-
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-
-set nu
-set relativenumber
-set backspace=indent,eol,start
-set t_Co=256
-set wildmenu
-set laststatus=2
-set ic
-set encoding=utf-8
-
-" Disable text mode for 'INSERT|NORMAL|...' since status bar plugin has
-" handled it
-set noshowmode
-
-" Force using old regex engine to avoid performance issue
-set re=1
-
-"set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
-"set listchars=tab:>-
-
-" load tags
-set tags+=./.tags;,.tags;./tags;,tags;
-
-""""""""""""""""""""""""
-" Fold related settings
-""""""""""""""""""""""""
-set foldcolumn=2
-
-" Autocompletion
-set wildmode=longest,list,full
 
 " Auto save/reload fold view when close and open a file
 "au BufWinLeave ?* silent! mkview
 "au BufWinEnter ?* silent! loadview
 
+"----------------------- Shortcuts -------------------------
 " Move current line up and down (In visual mode)
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
