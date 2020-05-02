@@ -11,6 +11,8 @@ SSHRC := sshrc
 USER_SSHRC := $(SSH_FOLDER)/rc
 TARGET_SSHRC := $(topdir)/$(USER_ENV)/$(FOLDER)/$(SSHRC)
 
+TARGET_TMUX_ATTACH := $(topdir)/$(USER_ENV)/$(FOLDER)/tmux_attach.sh
+
 all: prepare copy_files completion
 
 prepare:
@@ -23,6 +25,9 @@ copy_files:
 	@cp $(SSHRC) $(TARGET_SSHRC)
 	@test -f $(DEFAULT_USER_CONF) || ln -s $(TARGET_CONF) $(DEFAULT_USER_CONF)
 	@test -e $(USER_SSHRC) || ln -s $(TARGET_SSHRC) $(USER_SSHRC)
+	@cp tmux_attach.sh $(topdir)/$(USER_ENV)/$(FOLDER)
+	@test -e ~/.bash/tmux_attach.sh || ln -s $(TARGET_TMUX_ATTACH) ~/.bash/tmux_attach.sh
+	@test -e ~/.zsh/tmux_attach.sh || ln -s $(TARGET_TMUX_ATTACH) ~/.zsh/tmux_attach.sh
 
 completion:
 	@test -e ~/.bash/tmuxinator.bash || ln -s $(topdir)/tools/tmuxinator/completion/tmuxinator.bash ~/.bash/tmuxinator.bash

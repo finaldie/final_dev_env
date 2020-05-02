@@ -1,15 +1,7 @@
 # TMUX - automatically attach the first session if not inside tmux and vim
-if which tmux >/dev/null 2>&1; then
-  if [ -z $VIM ]; then
-    ID="$(tmux ls | head -1 | cut -d: -f1)" # get the id of the first one
+# Notes: Keep it at the beginning
+[[ -f ~/.zsh/tmux_attach.sh ]] && source ~/.zsh/tmux_attach.sh
 
-    if [[ -z "$ID" ]]; then # if not available create a new one
-      tmux new-session
-    else
-      tmux attach-session -t "$ID" # if available attach to it
-    fi
-  fi
-fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
