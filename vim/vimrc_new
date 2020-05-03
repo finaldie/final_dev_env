@@ -32,6 +32,11 @@ source $FENV_HOME/vim/nerdtree.vimrc
 source $FENV_HOME/vim/fzf.vimrc
 source $FENV_HOME/vim/ctrlp.vimrc
 
+source $FENV_HOME/vim/rnvimr.vimrc " nvim ranger
+
+" Org-Mode
+source $FENV_HOME/vim/orgmode.vimrc
+
 " Start Page
 source $FENV_HOME/vim/startify.vimrc
 

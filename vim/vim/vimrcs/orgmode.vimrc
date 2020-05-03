@@ -1,0 +1,5 @@
+Plug 'jceb/vim-orgmode'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-repeat'
+Plug 'itchyny/calendar.vim'
+Plug 'vim-scripts/utl.vim'
