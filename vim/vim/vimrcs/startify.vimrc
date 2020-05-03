@@ -26,3 +26,6 @@ let g:startify_lists = [
 
 " Disable showing empty buffer and quit link
 let g:startify_enable_special = 1
+
+" To avoid execute expensive syscalls to speed up the startup time
+let g:startify_enable_unsafe = 1
