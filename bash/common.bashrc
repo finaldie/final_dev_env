@@ -1,5 +1,7 @@
 #!/bin/bash
 
+bind 'set completion-ignore-case on'
+
 PS1='\[\033[01;32m\]\u@\h:\[\033[01;33m\] \w>\[\033[00m\]'
 
 # normal alias
