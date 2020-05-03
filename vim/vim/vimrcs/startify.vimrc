@@ -25,4 +25,4 @@ let g:startify_lists = [
         \ ]
 
 " Disable showing empty buffer and quit link
-let g:startify_enable_special = 0
+let g:startify_enable_special = 1
