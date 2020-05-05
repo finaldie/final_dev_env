@@ -34,8 +34,9 @@ source $FENV_HOME/vim/ctrlp.vimrc
 
 source $FENV_HOME/vim/rnvimr.vimrc " nvim ranger
 
-" Org-Mode
+" Content/Notes management
 source $FENV_HOME/vim/orgmode.vimrc
+source $FENV_HOME/vim/vimwiki.vimrc
 
 " Start Page
 source $FENV_HOME/vim/startify.vimrc
