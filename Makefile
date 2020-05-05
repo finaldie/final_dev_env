@@ -56,6 +56,7 @@ dist-update:
 	@cd zsh/plugin/zsh-autosuggestions && git checkout master && git pull
 	@cd tools/fzf && git checkout master && git pull
 	@cd tools/tmuxinator && git checkout master && git pull
+	@cd tools/github-markdown-css && git checkout master && git pull
 
 clang-prebuilt:
 	$(MAKE) -C docker clang7
