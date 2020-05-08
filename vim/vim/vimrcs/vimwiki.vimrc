@@ -10,6 +10,15 @@ Plug 'mzlogin/vim-markdown-toc'
 " To generate a TOC with number ordered
 "let g:vmt_list_item_char = '1.'
 
+Plug 'ferrine/md-img-paste.vim'
+
+" use <leader>p to trigger the save-and-genurl
+autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+
+" There are some defaults for image directory and image name, you can change them
+let g:mdip_imgdir = 'img'
+let g:mdip_imgname = 'image'
+
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 " set to 1, nvim will open the preview window after entering the markdown buffer
