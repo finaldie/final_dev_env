@@ -19,6 +19,11 @@ autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownCli
 let g:mdip_imgdir = 'img'
 let g:mdip_imgname = 'image'
 
+Plug 'dbridges/vim-markdown-runner'
+
+autocmd FileType markdown nnoremap <buffer> <Leader>r :MarkdownRunner<CR>
+autocmd FileType markdown nnoremap <buffer> <Leader>R :MarkdownRunnerInsert<CR>
+
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 " set to 1, nvim will open the preview window after entering the markdown buffer
