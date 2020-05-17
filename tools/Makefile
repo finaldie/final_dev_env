@@ -4,5 +4,7 @@ fzf:
 
 notes:
 
-.PHONY: all fzf notes
+clean:
+
+.PHONY: all fzf notes clean
 
