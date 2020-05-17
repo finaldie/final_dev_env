@@ -24,7 +24,8 @@ Plug 'dbridges/vim-markdown-runner'
 autocmd FileType markdown nnoremap <buffer> <Leader>r :MarkdownRunner<CR>
 autocmd FileType markdown nnoremap <buffer> <Leader>R :MarkdownRunnerInsert<CR>
 
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+"Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 " set to 1, nvim will open the preview window after entering the markdown buffer
 " default: 0
@@ -83,16 +84,17 @@ let g:mkdp_browserfunc = ''
 " hide_yaml_meta: if hide yaml metadata, default is 1
 " sequence_diagrams: js-sequence-diagrams options
 let g:mkdp_preview_options = {
-    \ 'mkit': {},
-    \ 'katex': {},
-    \ 'uml': {},
-    \ 'maid': {},
-    \ 'disable_sync_scroll': 0,
-    \ 'sync_scroll_type': 'middle',
-    \ 'hide_yaml_meta': 1,
-    \ 'sequence_diagrams': {},
-    \ 'flowchart_diagrams': {}
-    \ }
+  \ 'mkit': {},
+  \ 'katex': {},
+  \ 'uml': {},
+  \ 'maid': {},
+  \ 'disable_sync_scroll': 0,
+  \ 'sync_scroll_type': 'middle',
+  \ 'hide_yaml_meta': 1,
+  \ 'sequence_diagrams': {},
+  \ 'flowchart_diagrams': {},
+  \ 'content_editable': v:true
+  \ }
 
 " use a custom markdown style must be absolute path
 " like '/Users/username/markdown.css' or expand('~/markdown.css')
