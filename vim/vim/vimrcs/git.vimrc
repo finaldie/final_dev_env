@@ -6,4 +6,4 @@ nmap <Leader>gm <Plug>(git-messenger)
 let g:git_messenger_include_diff = 'none'
 
 " default: v:false
-let g:git_messenger_always_into_popup = v:false
+let g:git_messenger_always_into_popup = v:true
