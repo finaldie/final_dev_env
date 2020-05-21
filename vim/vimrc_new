@@ -6,6 +6,9 @@ set nocompatible
 set rtp+=$FENV_HOME/vim
 call plug#begin('$FENV_HOME/vim/plugged')
 
+" common
+source $FENV_HOME/vim/common.vimrc
+
 "" -------------- Color Scheme ----------------
 source $FENV_HOME/vim/gruvbox.vimrc
 
@@ -23,6 +26,9 @@ source $FENV_HOME/vim/fugitive.vimrc
 
 " git in-file differ
 source $FENV_HOME/vim/gitgutter.vimrc
+
+" git utils
+source $FENV_HOME/vim/git.vimrc
 
 " surrounder
 source $FENV_HOME/vim/surround.vimrc
