@@ -21,7 +21,19 @@ let g:which_key_map.l = {'name' : '+LSP'}
 
 " Single mappings
 nnoremap <Leader><CR> :buffer#<CR>
-let g:which_key_map['<CR>'] = 'Toggle last buffer'
+let g:which_key_map['<CR>'] = 'Last buffer'
+
+" Jump to anywhere you want with minimal keystrokes, with just one key
+" binding.  `s{char}{label}`
+nmap <Leader>s <Plug>(easymotion-overwin-f)
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+let g:which_key_map.s = '+EasyMotion'
+let g:which_key_map.j = '+EasyMotion J'
+let g:which_key_map.k = '+EasyMotion K'
 
 " Group mappings
 let g:which_key_map.b = {
