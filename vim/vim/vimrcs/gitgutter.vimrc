@@ -1,6 +1,9 @@
 " Git in-file differ
 Plug 'airblade/vim-gitgutter'
 
+" disable all pre-defined mapping, use vim-which-key instead
+let g:gitgutter_map_keys = 0
+
 "" Link: https://github.com/airblade/vim-gitgutter
 
 " You can explicitly turn vim-gitgutter off and on (defaults to on):

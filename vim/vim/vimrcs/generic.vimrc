@@ -44,6 +44,13 @@ set nowritebackup
 "set cmdheight=2
 set updatetime=100
 
+" By default timeoutlen is 1000 ms
+set timeoutlen=500
+
+" Remap leader keys
+let g:mapleader = "\<Space>"
+let g:maplocalleader = ','
+
 set shortmess+=c
 set signcolumn=yes
 
