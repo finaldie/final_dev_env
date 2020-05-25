@@ -62,7 +62,7 @@ let g:which_key_map.s = {
   \ 'G'  : [':GGrep'             , 'Git grep'                   ],
   \ 's'  : [':Rg'                , 'rg search...'               ],
   \ 'm'  : [':Marks'             , 'Marks'                      ],
-  \ 'n'  : [':UltiSnipsEdit'     , 'Edit Snippets'              ],
+  \ 'n'  : [':UltiSnipsEdit!'    , 'Edit Snippets'              ],
   \ 'N'  : [':Snippets'          , 'Search Snippets'            ],
   \ 'Mn' : ['<plug>(fzf-maps-n)' , 'Normal mode mappings'       ],
   \ 'Mi' : ['<plug>(fzf-maps-i)' , 'Insert mode mappings'       ],
