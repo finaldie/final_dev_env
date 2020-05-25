@@ -69,7 +69,7 @@ let g:which_key_map.s = {
   \ 'Mo' : ['<plug>(fzf-maps-o)' , 'Operator-pending mappings'  ],
   \ }
 
-let g:which_key_map.v = {
+let g:which_key_map.w = {
   \ 'name' : '+Wiki' ,
   \ 'I' : ['<Plug>VimwikiIndex'   , 'Goto Index'  ],
   \ 'i' : ['<Plug>VimwikiTabIndex', 'Goto Tab Index'  ],
@@ -81,8 +81,7 @@ let g:which_key_map.v = {
   \ 'R' : [':MarkdownRunnerInsert', 'Run and paste result'],
   \ }
 
-" w is for window
-let g:which_key_map['w'] = {
+let g:which_key_map.v = {
   \ 'name' : '+Windows' ,
   \ 'w' : ['<C-W>w'     , 'other-window'          ],
   \ 'd' : ['<C-W>c'     , 'delete-window'         ],
