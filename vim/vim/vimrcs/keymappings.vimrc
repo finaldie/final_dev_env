@@ -56,17 +56,27 @@ let g:which_key_map.g = {
   \ 'p' : ['<Plug>(GitGutterPrevHunk)'   , 'Jump to prev Hunk'],
   \ }
 
-let g:which_key_map.m = {
-  \ 'name' : '+Marks' ,
-  \ 'm' : [':marks'     , 'Show marks'],
+let g:which_key_map.s = {
+  \ 'name' : '+Search' ,
+  \ 'g'  : [':GFiles'    , 'Git files'      ],
+  \ 'G'  : [':GGrep'     , 'Git grep'       ],
+  \ 's'  : [':Rg'        , 'rg search...'   ],
+  \ 'm'  : [':Marks'     , 'Marks'          ],
+  \ 'n'  : [':Snippets'  , 'Snippets'       ],
+  \ 'Mn' : ['<plug>(fzf-maps-n)' , 'Normal mode mappings'  ],
+  \ 'Mi' : ['<plug>(fzf-maps-i)' , 'Insert mode mappings'  ],
+  \ 'Mv' : ['<plug>(fzf-maps-x)' , 'Visual mode mappings'  ],
+  \ 'Mo' : ['<plug>(fzf-maps-o)' , 'Operator-pending mappings'  ],
   \ }
 
 let g:which_key_map.v = {
   \ 'name' : '+Wiki' ,
-  \ 'i' : ['<Plug>VimwikiIndex'   , 'Goto Index'  ],
+  \ 'I' : ['<Plug>VimwikiIndex'   , 'Goto Index'  ],
+  \ 'i' : ['<Plug>VimwikiTabIndex', 'Goto Tab Index'  ],
   \ 'v' : [':MarkdownPreview'     , 'Open Preview'],
-  \ 't' : [':GenTocGFM'           , 'Gen Toc'     ],
-  \ 'p' : [':call mdip#MarkdownClipboardImage()', 'Paste clipImg'],
+  \ 't' : [':VimwikiTable'        , 'Gen Table'   ],
+  \ 'T' : [':GenTocGFM'           , 'Gen Toc'     ],
+  \ 'P' : [':call mdip#MarkdownClipboardImage()', 'Paste clipImg'],
   \ 'r' : [':MarkdownRunner'      , 'Run blocks'  ],
   \ 'R' : [':MarkdownRunnerInsert', 'Run and paste result'],
   \ }
