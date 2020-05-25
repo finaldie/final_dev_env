@@ -58,14 +58,15 @@ let g:which_key_map.g = {
 
 let g:which_key_map.s = {
   \ 'name' : '+Search' ,
-  \ 'g'  : [':GFiles'    , 'Git files'      ],
-  \ 'G'  : [':GGrep'     , 'Git grep'       ],
-  \ 's'  : [':Rg'        , 'rg search...'   ],
-  \ 'm'  : [':Marks'     , 'Marks'          ],
-  \ 'n'  : [':Snippets'  , 'Snippets'       ],
-  \ 'Mn' : ['<plug>(fzf-maps-n)' , 'Normal mode mappings'  ],
-  \ 'Mi' : ['<plug>(fzf-maps-i)' , 'Insert mode mappings'  ],
-  \ 'Mv' : ['<plug>(fzf-maps-x)' , 'Visual mode mappings'  ],
+  \ 'g'  : [':GFiles'            , 'Git files'                  ],
+  \ 'G'  : [':GGrep'             , 'Git grep'                   ],
+  \ 's'  : [':Rg'                , 'rg search...'               ],
+  \ 'm'  : [':Marks'             , 'Marks'                      ],
+  \ 'n'  : [':UltiSnipsEdit'     , 'Edit Snippets'              ],
+  \ 'N'  : [':Snippets'          , 'Search Snippets'            ],
+  \ 'Mn' : ['<plug>(fzf-maps-n)' , 'Normal mode mappings'       ],
+  \ 'Mi' : ['<plug>(fzf-maps-i)' , 'Insert mode mappings'       ],
+  \ 'Mv' : ['<plug>(fzf-maps-x)' , 'Visual mode mappings'       ],
   \ 'Mo' : ['<plug>(fzf-maps-o)' , 'Operator-pending mappings'  ],
   \ }
 
