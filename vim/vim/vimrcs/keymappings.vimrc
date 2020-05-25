@@ -52,6 +52,9 @@ let g:which_key_map.v = {
       \ 'i' : ['<Plug>VimwikiIndex'   , 'Goto Index'  ],
       \ 'v' : [':MarkdownPreview'     , 'Open Preview'],
       \ 't' : [':GenTocGFM'           , 'Gen Toc'     ],
+      \ 'p' : [':call mdip#MarkdownClipboardImage()', 'Paste clipImg'],
+      \ 'r' : [':MarkdownRunner'      , 'Run blocks'  ],
+      \ 'R' : [':MarkdownRunnerInsert', 'Run and paste result'],
       \ }
 
 let g:which_key_map.g = {

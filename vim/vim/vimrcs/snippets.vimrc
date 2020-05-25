@@ -1,16 +1,13 @@
-" Snippets Engine
-Plug 'SirVer/ultisnips'
+if has('python3')
 
-" More snippets
-Plug 'honza/vim-snippets'
+  " Snippets Engine
+  Plug 'SirVer/ultisnips'
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+  " More snippets
+  Plug 'honza/vim-snippets'
 
-" If you want :UltiSnipsEdit to split your window.
-"let g:UltiSnipsEditSplit="vertical"
+  Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+endif
 
 Plug 'thomasfaingnaert/vim-lsp-snippets'
 Plug 'thomasfaingnaert/vim-lsp-ultisnips'

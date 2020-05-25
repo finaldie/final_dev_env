@@ -12,8 +12,8 @@ Plug 'mzlogin/vim-markdown-toc'
 
 Plug 'ferrine/md-img-paste.vim'
 
-" use <leader>p to trigger the save-and-genurl
-autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+" use <leader>p to trigger the save-and-genurl (moved to keymappings.vimrc)
+" autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
 
 " There are some defaults for image directory and image name, you can change them
 let g:mdip_imgdir = 'img'
@@ -21,8 +21,9 @@ let g:mdip_imgname = 'image'
 
 Plug 'dbridges/vim-markdown-runner'
 
-autocmd FileType markdown nnoremap <buffer> <Leader>r :MarkdownRunner<CR>
-autocmd FileType markdown nnoremap <buffer> <Leader>R :MarkdownRunnerInsert<CR>
+" Notes: the keybindings has been moved to keymappings.vimrc
+" autocmd FileType markdown nnoremap <buffer> <Leader>r :MarkdownRunner<CR>
+" autocmd FileType markdown nnoremap <buffer> <Leader>R :MarkdownRunnerInsert<CR>
 
 "Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}

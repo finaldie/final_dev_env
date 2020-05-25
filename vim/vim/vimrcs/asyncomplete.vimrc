@@ -10,6 +10,6 @@ inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 
-set completeopt+=preview
+"set completeopt+=preview
 
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif

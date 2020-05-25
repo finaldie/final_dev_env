@@ -101,6 +101,7 @@ call plug#end()
 
 source $FENV_HOME/vim/generic.vimrc
 source $FENV_HOME/vim/color.vimrc
+source $FENV_HOME/vim/snippets_bottom.vimrc
 source $FENV_HOME/vim/keymappings.vimrc
 
 " Load user.vim
