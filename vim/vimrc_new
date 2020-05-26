@@ -38,7 +38,7 @@ source $FENV_HOME/vim/nerdtree.vimrc
 source $FENV_HOME/vim/fzf.vimrc
 "source $FENV_HOME/vim/ctrlp.vimrc
 
-source $FENV_HOME/vim/rnvimr.vimrc " neovim ranger
+"source $FENV_HOME/vim/rnvimr.vimrc " neovim ranger
 
 " Term
 source $FENV_HOME/vim/term.vimrc
