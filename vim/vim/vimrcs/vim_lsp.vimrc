@@ -36,12 +36,14 @@ augroup VimLSP_config
 augroup END
 
 function! s:on_lsp_buffer_enabled() abort
-  " Omnifunc will be take over by asyncomplete
+  " Omnifunc will be taken care by asyncomplete
   "setlocal omnifunc=lsp#complete
   "setlocal signcolumn=yes
+
   if exists('+tagfunc')
     setlocal tagfunc=lsp#tagfunc
   endif
+
   nmap <buffer> gd <plug>(lsp-definition)
   nmap <buffer> <f2> <plug>(lsp-rename)
   " refer to doc to add more commands

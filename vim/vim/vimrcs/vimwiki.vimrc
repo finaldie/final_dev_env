@@ -6,6 +6,9 @@ let g:vimwiki_list = [{
   \ 'ext'    : '.md'
   \}]
 
+" Disable all vimwiki default mappings
+let g:vimwiki_table_mappings=0
+
 Plug 'mzlogin/vim-markdown-toc'
 " To generate a TOC with number ordered
 "let g:vmt_list_item_char = '1.'
