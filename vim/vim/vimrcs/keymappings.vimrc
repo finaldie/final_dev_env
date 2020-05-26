@@ -16,7 +16,6 @@ call which_key#register(',', "g:which_key_map")
 let g:which_key_map = {}
 
 " Insert descriptions
-let g:which_key_map.t = {'name' : '+Term'}
 let g:which_key_map.l = {'name' : '+LSP'}
 
 " Single mappings
@@ -55,6 +54,11 @@ let g:which_key_map.g = {
   \ 'b' : [':Git blame'   , 'blame'   ],
   \ 'n' : ['<Plug>(GitGutterNextHunk)'   , 'Jump to next Hunk'],
   \ 'p' : ['<Plug>(GitGutterPrevHunk)'   , 'Jump to prev Hunk'],
+  \ }
+
+let g:which_key_map.t = {
+  \ 'name' : '+Term',
+  \ 'l' : [':Vista!!'     ,'TagList' ],
   \ }
 
 let g:which_key_map.s = {

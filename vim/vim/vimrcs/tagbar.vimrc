@@ -20,18 +20,19 @@ let g:vista_default_executive = 'ctags'
 " instead of the default one for these filetypes when using `:Vista` without
 " specifying the executive.
 let g:vista_executive_for = {
-  \ 'c': 'vim_lsp',
-  \ 'cpp': 'vim_lsp',
-  \ 'java': 'vim_lsp',
-  \ 'python': 'vim_lsp',
+  \ 'c'      : 'vim_lsp',
+  \ 'cpp'    : 'vim_lsp',
+  \ 'java'   : 'vim_lsp',
+  \ 'python' : 'vim_lsp',
+  \ 'vim'    : 'vim_lsp',
   \ }
 
 " Declare the command including the executable and options used to generate ctags output
 " for some certain filetypes.The file path will be appened to your custom command.
 " For example:
 let g:vista_ctags_cmd = {
-      \ 'haskell': 'hasktags -x -o - -c',
-      \ }
+  \ 'haskell': 'hasktags -x -o - -c',
+  \ }
 
 " To enable fzf's preview window set g:vista_fzf_preview.
 " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
@@ -42,6 +43,6 @@ let g:vista#renderer#enable_icon = 1
 
 " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
 let g:vista#renderer#icons = {
-\   "function": "\uf794",
-\   "variable": "\uf71b",
-\  }
+  \ "function": "\uf794",
+  \ "variable": "\uf71b",
+  \}
