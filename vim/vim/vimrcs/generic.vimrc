@@ -49,7 +49,7 @@ set timeoutlen=500
 
 " Remap leader keys
 let g:mapleader = "\<Space>"
-let g:maplocalleader = ','
+let g:maplocalleader = '\'
 
 set shortmess+=c
 set signcolumn=yes
