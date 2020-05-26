@@ -29,11 +29,28 @@ endfunction()
 " :LspDocumentDiagnostics Get current document diagnostics information
 " :LspDocumentRangeFormat Format document selection
 " :LspImplementation      Show implementation of interface
-" :LspTypeHierarchy       View type hierarchy of the symbol under the cursor
 
 augroup VimLSP_config
   autocmd!
   autocmd FileType * call SetVimLSPShortcuts()
+augroup END
+
+function! s:on_lsp_buffer_enabled() abort
+  " Omnifunc will be take over by asyncomplete
+  "setlocal omnifunc=lsp#complete
+  "setlocal signcolumn=yes
+  if exists('+tagfunc')
+    setlocal tagfunc=lsp#tagfunc
+  endif
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> <f2> <plug>(lsp-rename)
+  " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+  au!
+  " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
 "" Global settings
