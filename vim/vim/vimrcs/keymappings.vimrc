@@ -19,13 +19,14 @@ let g:which_key_map = {}
 let g:which_key_map.l = {'name' : '+LSP'}
 
 " Single mappings
+
 nnoremap <Leader><CR> :buffer#<CR>
 let g:which_key_map['<CR>'] = 'Last buffer'
 
 " Jump to anywhere you want with minimal keystrokes, with just one key
 " binding.  `s{char}{label}`
-nmap <Leader>f <Plug>(easymotion-overwin-f)
 nmap f <Plug>(easymotion-overwin-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
@@ -58,7 +59,9 @@ let g:which_key_map.g = {
 
 let g:which_key_map.t = {
   \ 'name' : '+Term',
-  \ 'l' : [':Vista!!'     ,'TagList' ],
+  \ 'l' : [':Vista!!'               ,'TagList' ],
+  \ 'p' : [':FloatermNew python3'   ,'Python3' ],
+  \ 'r' : [':FloatermNew ranger'    ,'Ranger'  ],
   \ }
 
 let g:which_key_map.s = {
