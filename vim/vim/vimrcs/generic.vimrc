@@ -45,7 +45,8 @@ set nowritebackup
 set updatetime=100
 
 " By default timeoutlen is 1000 ms
-set timeoutlen=500
+" change it to 175ms (same as my qmk tapping term)
+set timeoutlen=175
 
 " Remap leader keys
 let g:mapleader = "\<Space>"
