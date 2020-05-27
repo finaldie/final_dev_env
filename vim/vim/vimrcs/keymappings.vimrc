@@ -32,7 +32,7 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
-let g:which_key_map.f = 'EasyMotion'
+"let g:which_key_map.f = 'EasyMotion'
 let g:which_key_map.j = 'EasyMotion J'
 let g:which_key_map.k = 'EasyMotion K'
 
