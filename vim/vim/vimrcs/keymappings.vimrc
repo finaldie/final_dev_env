@@ -16,7 +16,7 @@ call which_key#register(',', "g:which_key_map")
 let g:which_key_map = {}
 
 " Insert descriptions
-let g:which_key_map.l = {'name' : '+LSP'}
+"let g:which_key_map.l = {'name' : '+LSP'}
 
 " Single mappings
 
@@ -32,7 +32,7 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
-"let g:which_key_map.f = 'EasyMotion'
+" Insert descriptions
 let g:which_key_map.j = 'EasyMotion J'
 let g:which_key_map.k = 'EasyMotion K'
 
@@ -59,10 +59,20 @@ let g:which_key_map.g = {
   \ }
 
 let g:which_key_map.t = {
+  \ 'name' : '+Tag',
+  \ 'l' : [':Vista!!'                    ,'TagList'                     ],
+  \ }
+
+let g:which_key_map.f = {
   \ 'name' : '+Term',
   \ 'l' : [':Vista!!'                    ,'TagList'                     ],
   \ 'p' : [':FloatermNew python3'        ,'Python3'                     ],
   \ 'r' : [':FloatermNew ranger'         ,'Ranger'                      ],
+  \ }
+
+let g:which_key_map.l = {
+  \ 'name' : '+LSP',
+  \ 'l' : [':Vista!!'                    ,'TagList'                     ],
   \ }
 
 let g:which_key_map.s = {
