@@ -55,6 +55,7 @@ let g:which_key_map.g = {
   \ 'b' : [':Git blame'                  , 'blame'                      ],
   \ 'n' : ['<Plug>(GitGutterNextHunk)'   , 'Jump to next Hunk'          ],
   \ 'p' : ['<Plug>(GitGutterPrevHunk)'   , 'Jump to prev Hunk'          ],
+  \ 'g' : [':GGrep'                      , 'Git grep'                   ],
   \ }
 
 let g:which_key_map.t = {
