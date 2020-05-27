@@ -87,7 +87,7 @@ let g:which_key_map.w = {
   \ 'P' : [':call mdip#MarkdownClipboardImage()', 'Paste clipImg'       ],
   \ 'r' : [':MarkdownRunner'             , 'Run blocks'                 ],
   \ 'R' : [':MarkdownRunnerInsert'       , 'Run and paste result'       ],
-  \ 'v' : [':MarkdownPreview'            , 'Open Preview'               ],
+  \ 'w' : [':MarkdownPreview'            , 'Open Preview'               ],
   \ }
 
 let g:which_key_map.v = {
