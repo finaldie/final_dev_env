@@ -36,6 +36,9 @@ map <Leader>k <Plug>(easymotion-k)
 let g:which_key_map.j = 'EasyMotion J'
 let g:which_key_map.k = 'EasyMotion K'
 
+" vimwikiSearch
+nmap <Leader>wf :VimwikiSearch 
+
 " Group mappings
 let g:which_key_map.b = {
   \ 'name' : '+Buffer' ,
