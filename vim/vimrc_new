@@ -47,6 +47,9 @@ source $FENV_HOME/vim/term.vimrc
 source $FENV_HOME/vim/orgmode.vimrc
 source $FENV_HOME/vim/vimwiki.vimrc
 
+" Scratchpad
+source $FENV_HOME/vim/scratchpad.vimrc
+
 " Start Page
 source $FENV_HOME/vim/startify.vimrc
 
