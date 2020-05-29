@@ -102,6 +102,7 @@ let g:which_key_map.w = {
   \ 'r' : [':MarkdownRunner'             , 'Run blocks'                 ],
   \ 'R' : [':MarkdownRunnerInsert'       , 'Run and paste result'       ],
   \ 'w' : [':MarkdownPreview'            , 'Open Preview'               ],
+  \ 'F' : ['<Plug>VimwikiTableAlignQ'    , 'Format Table'               ],
   \ }
 
 let g:which_key_map.v = {
