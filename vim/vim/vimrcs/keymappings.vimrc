@@ -26,7 +26,7 @@ let g:which_key_map['<CR>'] = 'Last buffer'
 " Jump to anywhere you want with minimal keystrokes, with just one key
 " binding.  `s{char}{label}`
 nmap f <Plug>(easymotion-overwin-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
+"nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
