@@ -21,5 +21,7 @@
     show-tracks = for-each-ref --format='%(refname:short) <- %(upstream:short)' refs/heads
 [push]
     default = simple
+[pull]
+	  ff = only
 [include]
     path = ~/.gitconf/user.conf
