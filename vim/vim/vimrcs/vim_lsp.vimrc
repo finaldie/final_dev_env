@@ -7,12 +7,12 @@ Plug 'mattn/vim-lsp-settings'
 "" Short-Cuts
 function SetVimLSPShortcuts()
   nnoremap <leader>ld  :LspPeekDefinition<CR>
-  nnoremap <leader>ldd :LspDefinition<CR>
+  nnoremap <leader>lD  :LspDefinition<CR>
   nnoremap <leader>lr  :LspRename<CR>
 
   nnoremap <leader>lt  :LspPeekTypeDefinition<CR>
-  nnoremap <leader>ltt :LspTypeDefinition<CR>
-  nnoremap <leader>lT  :LspTypeHierarchy<CR>
+  nnoremap <leader>lT  :LspTypeDefinition<CR>
+  nnoremap <leader>lH  :LspTypeHierarchy<CR>
   nnoremap <leader>lh  :LspHover<CR>
 
   nnoremap <leader>lf  :LspReferences<CR>
@@ -20,6 +20,7 @@ function SetVimLSPShortcuts()
   nnoremap <leader>lw  :LspWorkspaceSymbol<CR>  " Search/Show workspace symbol
 
   nnoremap <leader>la  :LspCodeAction<CR>
+  nnoremap <leader>lc  :LspCodeLens<CR>
   nnoremap <leader>ln  :LspNextError<CR>
   nnoremap <leader>lp  :LspPreviousError<CR>
   nnoremap <leader>lS  :LspStatus<CR>
