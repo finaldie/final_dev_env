@@ -36,6 +36,15 @@ map <Leader>k <Plug>(easymotion-k)
 let g:which_key_map.j = 'EasyMotion J'
 let g:which_key_map.k = 'EasyMotion K'
 
+" Next/Prev/Delete Buffer
+nmap <Leader>n :bnext<CR>
+nmap <Leader>p :bprevious<CR>
+nmap <Leader>d :bd<CR>
+
+let g:which_key_map.n = 'Next Buffer'
+let g:which_key_map.p = 'Previous Buffer'
+let g:which_key_map.d = 'Delete Buffer'
+
 " vimwikiSearch
 nmap <Leader>wf :VimwikiSearch 
 
