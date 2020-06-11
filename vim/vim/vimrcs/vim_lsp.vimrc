@@ -6,8 +6,8 @@ Plug 'mattn/vim-lsp-settings'
 
 "" Short-Cuts
 function SetVimLSPShortcuts()
-  nnoremap <leader>ld  :LspPeekDefinition<CR>
-  nnoremap <leader>lD  :LspDefinition<CR>
+  nnoremap <leader>lD  :LspPeekDefinition<CR>
+  nnoremap <leader>ld  :LspDefinition<CR>
   nnoremap <leader>lr  :LspRename<CR>
 
   nnoremap <leader>lt  :LspPeekTypeDefinition<CR>
