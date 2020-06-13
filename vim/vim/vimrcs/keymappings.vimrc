@@ -80,6 +80,7 @@ let g:which_key_map.f = {
   \ 'l' : [':Vista!!'                    ,'TagList'                     ],
   \ 'p' : [':FloatermNew python3'        ,'Python3'                     ],
   \ 'r' : [':FloatermNew ranger'         ,'Ranger'                      ],
+  \ 'n' : [':FloatermNew node'           ,'Node.js'                     ],
   \ }
 
 let g:which_key_map.l = {
