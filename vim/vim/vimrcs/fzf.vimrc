@@ -14,9 +14,6 @@ let g:fzf_preview_window = 'right:60%'
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
 
-" Shortcuts
-nnoremap <silent> <C-p> :Files<CR>
-
 " git grep wrap
 command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(

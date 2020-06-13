@@ -48,6 +48,12 @@ let g:which_key_map.d = 'Delete Buffer'
 " vimwikiSearch
 nmap <Leader>wf :VimwikiSearch 
 
+" FZF
+nnoremap <silent> <C-p> :Files<CR>
+nmap // :BLines!<CR>
+nmap ?? :Rg!<CR>
+nmap cc :Commands<CR>
+
 " Group mappings
 let g:which_key_map.b = {
   \ 'name' : '+Buffer' ,
