@@ -159,7 +159,7 @@ autocmd FileType make set noexpandtab
 command! DeleteTrailingWs :%s/\s\+$//
 
 " Convert all tab characters to 2 spaces
-command! Untab :%s/\t/  /g
+command! TabExpand :%s/\t/  /g
 
 " Enable syntax highlighting for LLVM files. To use, copy
 " utils/vim/llvm.vim to ~/.vim/syntax .
@@ -183,8 +183,3 @@ augroup END
 " Auto save/reload fold view when close and open a file
 "au BufWinLeave ?* silent! mkview
 "au BufWinEnter ?* silent! loadview
-
-"----------------------- Shortcuts -------------------------
-" Move current line up and down (In visual mode)
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv

@@ -54,6 +54,10 @@ nmap // :BLines!<CR>
 nmap ?? :Rg!<CR>
 nmap cc :Commands<CR>
 
+" Move current line up and down (In visual mode)
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 " Group mappings
 let g:which_key_map.b = {
   \ 'name' : '+Buffer' ,
