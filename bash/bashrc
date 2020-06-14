@@ -1,10 +1,6 @@
 # Tmux auto attach (keep it at the beginning)
 [[ -f ~/.bash/tmux_attach.sh ]] && source ~/.bash/tmux_attach.sh
 
-if [ -f ~/.bash/fenv.bash ]; then
-    source ~/.bash/fenv.bash
-fi
-
 # FZF binding
 if [ -f ~/.bash/fzf-key-bindings.bash ]; then
   source ~/.bash/fzf-key-bindings.bash
@@ -17,6 +13,10 @@ fi
 # Tmuxinator
 if [ -f ~/.bash/tmuxinator.bash ]; then
   source ~/.bash/tmuxinator.bash
+fi
+
+if [ -f ~/.bash/fenv.bash ]; then
+    source ~/.bash/fenv.bash
 fi
 
 # User local bashrc (Keep it at bottom)

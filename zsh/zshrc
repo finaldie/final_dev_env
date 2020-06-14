@@ -23,9 +23,6 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# fenv zshrcs
-[[ ! -f ~/.zsh/fenv.zsh ]] || source ~/.zsh/fenv.zsh
-
 # Enable powerlevel10k theme
 [[ ! -f ~/.zsh/p10k.zsh-theme ]] || source ~/.zsh/p10k.zsh-theme
 
@@ -47,6 +44,9 @@ compinit
 typeset -g ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 typeset -g ZSH_AUTOSUGGEST_USE_ASYNC=1
 typeset -g ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+
+# fenv zshrcs
+[[ ! -f ~/.zsh/fenv.zsh ]] || source ~/.zsh/fenv.zsh
 
 # User local zshrc
 [[ ! -f ~/.zsh/user.zsh ]] || source ~/.zsh/user.zsh
