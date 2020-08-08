@@ -8,6 +8,9 @@ vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey ','<CR>
 vnoremap <silent> <localleader> :<c-u>WhichKeyVisual ','<CR>
 
+" Presentation Mode
+noremap <silent> <F4> :set rnu! nu! showmode! showcmd! showmatch! hidden! ruler! foldcolumn=0 signcolumn=no<CR>
+
 " Register the which key map
 call which_key#register('<Space>', "g:which_key_map")
 call which_key#register(',', "g:which_key_map")
