@@ -5,8 +5,7 @@
 # Put this file into .ssh/rc, then it will be automatically ran when connected
 #   to a server
 
-if [ ! -S ~/.ssh/auth-sock ] \
-  && [ -n "${SSH_AUTH_SOCK}" ] \
+if [ -n "${SSH_AUTH_SOCK}" ] \
   && [ -S ${SSH_AUTH_SOCK} ] \
   && [[ ${SSH_AUTH_SOCK} != *"yubiagent"*  ]]; then
   ln -sf $SSH_AUTH_SOCK ~/.ssh/auth-sock
