@@ -24,4 +24,4 @@ let g:gitgutter_map_keys = 0
 "   turn off with :GitGutterLineHighlightsDisable
 "   toggle with :GitGutterLineHighlightsToggle.
 
-
+let g:gitgutter_max_signs = 500
