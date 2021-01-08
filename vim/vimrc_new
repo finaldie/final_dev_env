@@ -12,6 +12,9 @@ source $FENV_HOME/vim/common.vimrc
 "" -------------- Color Scheme ----------------
 source $FENV_HOME/vim/gruvbox.vimrc
 
+"" -------------- CSS Color Preview ----------------
+source $FENV_HOME/vim/css_color.vimrc
+
 "" -------------- Status Bar ------------------
 source $FENV_HOME/vim/lightline.vimrc
 "source $FENV_HOME/vim/airline.vimrc
