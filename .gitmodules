@@ -1,24 +1,24 @@
 [submodule "vim/vim/vundle"]
 	path = vim/vim/vundle
-	url = git://github.com/gmarik/vundle.git
+	url = https://github.com/gmarik/vundle.git
 [submodule "vim/vim/vim-plug"]
 	path = vim/vim/vim-plug
-	url = git://github.com/junegunn/vim-plug.git
+	url = https://github.com/junegunn/vim-plug.git
 [submodule "zsh/theme/powerlevel10k"]
 	path = zsh/theme/powerlevel10k
-	url = git://github.com/romkatv/powerlevel10k.git
+	url = https://github.com/romkatv/powerlevel10k.git
 [submodule "zsh/plugin/zsh-syntax-highlighting"]
 	path = zsh/plugin/zsh-syntax-highlighting
-	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "zsh/plugin/zsh-autosuggestions"]
 	path = zsh/plugin/zsh-autosuggestions
-	url = git://github.com/zsh-users/zsh-autosuggestions.git
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
 [submodule "tools/fzf"]
 	path = tools/fzf
-	url = git://github.com/junegunn/fzf.git
+	url = https://github.com/junegunn/fzf.git
 [submodule "tools/tmuxinator"]
 	path = tools/tmuxinator
-	url = git://github.com/tmuxinator/tmuxinator.git
+	url = https://github.com/tmuxinator/tmuxinator.git
 [submodule "tools/github-markdown-css"]
 	path = tools/github-markdown-css
-	url = git://github.com/sindresorhus/github-markdown-css.git
+	url = https://github.com/sindresorhus/github-markdown-css.git
