@@ -13,8 +13,7 @@ source $FENV_HOME/vim/common.vimrc
 source $FENV_HOME/vim/gruvbox.vimrc
 
 "" -------------- CSS Color Preview ----------------
-" FixMe: this color plugin is slow
-" source $FENV_HOME/vim/css_color.vimrc
+source $FENV_HOME/vim/css_color.vimrc
 
 "" -------------- Status Bar ------------------
 source $FENV_HOME/vim/lightline.vimrc
@@ -26,8 +25,7 @@ source $FENV_HOME/vim/syntax.vimrc
 
 "" -------------- Common Plugins --------------
 " git wrapper for status bar
-" FixMe: this plugin is slow
-" source $FENV_HOME/vim/fugitive.vimrc
+source $FENV_HOME/vim/fugitive.vimrc
 
 " git in-file differ
 source $FENV_HOME/vim/gitgutter.vimrc

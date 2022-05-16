@@ -1,1 +1,2 @@
-Plug 'sheerun/vim-polyglot'
+" TODO: vim-polyglot is slow
+" Plug 'sheerun/vim-polyglot'
