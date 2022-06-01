@@ -32,6 +32,7 @@ set re=1
 set tags+=./.tags;,.tags;./tags;,tags;
 
 set foldcolumn=2
+set foldmethod=marker
 
 " Command Autocompletion
 set wildmenu
