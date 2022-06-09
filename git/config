@@ -25,3 +25,5 @@
 	  ff = only
 [include]
     path = ~/.gitconf/user.conf
+[url "https://github.com/"]
+	insteadOf = git://github.com/
