@@ -1,6 +1,6 @@
 include $(topdir)/common/Makefile.common
 
-files := common.bashrc tags.bashrc linux.bashrc maven.bashrc
+files := common.bashrc tags.bashrc linux.bashrc maven.bashrc fzf.bashrc
 env_homerc := env_home.bashrc
 
 localbash := ~/.bash

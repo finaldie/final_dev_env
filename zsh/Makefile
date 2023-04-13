@@ -1,6 +1,6 @@
 include $(topdir)/common/Makefile.common
 
-files := common.zsh linux.zsh
+files := common.zsh linux.zsh fzf.zsh
 env_homerc := env_home.zsh
 
 rootzsh := zshrc
