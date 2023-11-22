@@ -26,6 +26,9 @@ let g:which_key_map = {}
 nnoremap <Leader><CR> :buffer#<CR>
 let g:which_key_map['<CR>'] = 'Last buffer'
 
+"" Open buffer list (via fzf)
+nnoremap <C-t> :Buffers<CR>
+
 " Jump to anywhere you want with minimal keystrokes, with just one key
 " binding.  `s{char}{label}`
 nmap f <Plug>(easymotion-overwin-f)
@@ -69,7 +72,7 @@ let g:which_key_map.b = {
   \ 'h' : [':Startify'                   , 'home-buffer'                ],
   \ 'n' : [':bnext'                      , 'next-buffer'                ],
   \ 'p' : [':bprevious'                  , 'previous-buffer'            ],
-  \ '?' : [':Buffers'                    , 'fzf-buffer'                 ],
+  \ 'b' : [':Buffers'                    , 'fzf-buffer'                 ],
   \ }
 
 let g:which_key_map.g = {
