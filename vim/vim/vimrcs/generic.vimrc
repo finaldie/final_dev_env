@@ -23,7 +23,8 @@ set encoding=utf-8
 set noshowmode
 
 " Force using old regex engine to avoid performance issue
-set re=1
+" re=0 is better than re=1 in some cases
+set re=0
 
 "set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 "set listchars=tab:>-
@@ -56,6 +57,7 @@ set shortmess+=c
 set signcolumn=yes
 
 set lazyredraw
+set redrawtime=10000
 
 " tab produces a 2-space indentation
 set softtabstop=2
