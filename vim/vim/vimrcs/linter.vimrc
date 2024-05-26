@@ -73,6 +73,8 @@ let g:ale_linters = {
 \   'xml': ['xmllint'],
 \   'html': ['htmlhint', 'alex', 'write-good'],
 \   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
+\   'typescriptreact': ['eslint'],
 \}
 
 "" ----------------- Disable warnings -----------------
@@ -110,6 +112,8 @@ let g:ale_fixers = {
 \   'xml': ['xmllint'],
 \   'html': ['prettier'],
 \   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'eslint'],
+\   'typescriptreact': ['prettier', 'eslint'],
 \}
 
 "" References
